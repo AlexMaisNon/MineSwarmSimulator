@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": {"model": "mine_swarm_simulator:block/golden_gushers"},
+        "facing=east": {"model": "mine_swarm_simulator:block/golden_gushers"},
+        "facing=south": {"model": "mine_swarm_simulator:block/golden_gushers"},
+        "facing=west": {"model": "mine_swarm_simulator:block/golden_gushers"}
+    }
+}

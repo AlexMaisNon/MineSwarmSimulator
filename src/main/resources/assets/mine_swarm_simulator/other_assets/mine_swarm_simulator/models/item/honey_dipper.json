@@ -1,0 +1,7 @@
+{
+  "parent": "mine_swarm_simulator:custom/honey_dipper",
+  "textures": {
+    "0": "mine_swarm_simulator:block/honey_dipper",
+    "particle": "mine_swarm_simulator:item/armor_sample_leggings"
+  }
+}

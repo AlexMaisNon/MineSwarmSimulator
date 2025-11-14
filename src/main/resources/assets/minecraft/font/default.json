@@ -1,0 +1,11 @@
+{
+    "providers": [
+        {
+            "type": "bitmap",
+            "file": "mine_swarm_simulator:gui/font/better_moon_emoji.png",
+            "ascent": 7,
+            "height": 7,
+            "chars": ["\uF105"]
+        }
+    ]
+}

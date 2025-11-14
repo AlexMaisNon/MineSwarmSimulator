@@ -1,0 +1,16 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "mine_swarm_simulator:item/port_o_hive",
+	"texture_size": [48, 48],
+	"textures": {
+		"0": "mine_swarm_simulator:item/models/bags/red_port_o_hive",
+		"particle": "mine_swarm_simulator:item/models/bags/red_port_o_hive"
+	},
+	"display": {
+		"gui": {
+			"rotation": [2, -13, -1],
+			"translation": [0, -2, 0],
+			"scale": [0.6, 0.6, 0.6]
+		}
+	}
+}

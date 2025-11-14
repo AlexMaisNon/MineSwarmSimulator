@@ -1,0 +1,7 @@
+{
+  "parent": "mine_swarm_simulator:custom/honeycomb_belt",
+  "textures": {
+    "0": "mine_swarm_simulator:blocks/honeycomb_belt",
+    "particle": "mine_swarm_simulator:items/armor_sample_leggings"
+  }
+}

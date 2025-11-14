@@ -1,0 +1,9 @@
+{
+  "parent": "mine_swarm_simulator:custom/stinger_shop0",
+  "textures": {
+    "all": "mine_swarm_simulator:block/stinger_shop_texture",
+    "particle": "mine_swarm_simulator:block/stinger_shop_texture",
+    "0": "mine_swarm_simulator:block/stinger_shop_texture"
+  },
+  "render_type": "cutout"
+}

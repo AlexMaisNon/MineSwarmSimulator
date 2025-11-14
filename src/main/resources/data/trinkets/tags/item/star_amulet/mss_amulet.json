@@ -1,0 +1,10 @@
+{
+    "replace": false,
+    "values": [
+        "mine_swarm_simulator:bronze_star_amulet",
+        "mine_swarm_simulator:silver_star_amulet",
+        "mine_swarm_simulator:gold_star_amulet",
+        "mine_swarm_simulator:diamond_star_amulet",
+        "mine_swarm_simulator:supreme_star_amulet"
+    ]
+}

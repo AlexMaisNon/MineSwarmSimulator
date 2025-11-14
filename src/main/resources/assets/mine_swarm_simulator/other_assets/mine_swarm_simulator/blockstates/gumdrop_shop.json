@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "mine_swarm_simulator:block/gumdrop_shop"
+    },
+    "facing=east": {
+      "model": "mine_swarm_simulator:block/gumdrop_shop",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "mine_swarm_simulator:block/gumdrop_shop",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "mine_swarm_simulator:block/gumdrop_shop",
+      "y": 270
+    }
+  }
+}

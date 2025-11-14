@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "package": "alex.mine_swarm_simulator.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AbstractInventoryScreenMixin",
+    "ClientPlayNetworkHandlerMixin",
+    "EffectCommandMixin",
+    "LivingEntityMixin",
+    "PlayerEntityMixin",
+    "ServerPlayerInteractionManagerMixin",
+    "StatusEffectInstanceMixin",
+    "StatusEffectInstanceParametersMixin"
+  ],
+  "client": [
+    "EntityModelLayersAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}

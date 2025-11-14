@@ -1,0 +1,8 @@
+{
+  "comparator_output": 2,
+  "description": {
+    "translate": "item.mine_swarm_simulator.music_disc_bpatrol.desc"
+  },
+  "length_in_seconds": 110.8,
+  "sound_event": "mine_swarm_simulator:music.bpatrol"
+}

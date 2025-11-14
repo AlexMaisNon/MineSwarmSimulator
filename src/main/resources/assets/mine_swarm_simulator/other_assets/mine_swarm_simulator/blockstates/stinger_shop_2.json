@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "mine_swarm_simulator:block/stinger_shop_2"
+    },
+    "facing=east": {
+      "model": "mine_swarm_simulator:block/stinger_shop_2",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "mine_swarm_simulator:block/stinger_shop_2",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "mine_swarm_simulator:block/stinger_shop_2",
+      "y": 270
+    }
+  }
+}

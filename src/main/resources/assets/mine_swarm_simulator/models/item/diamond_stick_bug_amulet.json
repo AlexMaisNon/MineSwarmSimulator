@@ -1,0 +1,6 @@
+{
+	"parent": "mine_swarm_simulator:item/stick_bug_amulet",
+	"textures": {
+		"all": "mine_swarm_simulator:item/models/amulets/diamond_stick_bug_amulet"
+	}
+}

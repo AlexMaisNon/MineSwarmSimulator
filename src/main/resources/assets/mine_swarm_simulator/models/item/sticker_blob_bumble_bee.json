@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "mine_swarm_simulator:item/sticker_blob_bumble_bee"
+	}
+}

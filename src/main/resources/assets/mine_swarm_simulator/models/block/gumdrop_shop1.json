@@ -1,0 +1,7 @@
+{
+	"parent": "mine_swarm_simulator:block/shop1",
+	"textures": {
+		"particle": "mine_swarm_simulator:block/models/shops/gumdrop_shop",
+		"all": "mine_swarm_simulator:block/models/shops/gumdrop_shop"
+	}
+}

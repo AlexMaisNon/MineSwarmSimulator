@@ -1,0 +1,11 @@
+{
+    "replace": false,
+    "values": [
+        "mine_swarm_simulator:brave_guard",
+        "mine_swarm_simulator:hasty_guard",
+        "mine_swarm_simulator:blue_guard",
+        "mine_swarm_simulator:elite_blue_guard",
+        "mine_swarm_simulator:bucko_guard",
+        "mine_swarm_simulator:cobalt_guard"
+    ]
+}

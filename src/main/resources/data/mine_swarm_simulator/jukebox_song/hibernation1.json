@@ -1,0 +1,8 @@
+{
+  "comparator_output": 7,
+  "description": {
+    "translate": "item.mine_swarm_simulator.music_disc_hibernation1.desc"
+  },
+  "length_in_seconds": 217.3,
+  "sound_event": "mine_swarm_simulator:music.hibernation1"
+}

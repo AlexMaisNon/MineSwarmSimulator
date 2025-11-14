@@ -1,0 +1,19 @@
+{
+    "parent": "mine_swarm_simulator:item/gummyballer2",
+      "overrides": [
+          {
+              "predicate": {
+                  "damaged": 1,
+                  "damage": 0.301
+              },
+              "model": "mine_swarm_simulator:item/gummyballer1"
+          },
+          {
+              "predicate": {
+                  "damaged": 1,
+                  "damage": 0.701
+              },
+              "model": "mine_swarm_simulator:item/gummyballer0"
+          }
+      ]
+  }

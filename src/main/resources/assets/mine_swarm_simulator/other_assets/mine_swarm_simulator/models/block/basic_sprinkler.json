@@ -1,0 +1,9 @@
+{
+  "parent": "mine_swarm_simulator:custom/basic_sprinkler",
+  "textures": {
+    "all": "mine_swarm_simulator:block/basic_spinkler",
+    "particle": "mine_swarm_simulator:block/basic_spinkler",
+    "0": "mine_swarm_simulator:block/basic_spinkler"
+  },
+  "render_type": "cutout"
+}

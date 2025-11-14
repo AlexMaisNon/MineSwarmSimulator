@@ -1,0 +1,1399 @@
+{
+    "variants": {
+      "facing=north,bee_id=0": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_off"
+      },
+      "facing=east,bee_id=0": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_off",
+        "y": 90
+      },
+      "facing=south,bee_id=0": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_off",
+        "y": 180
+      },
+      "facing=west,bee_id=0": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_off",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=1": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_basic_bee"
+      },
+      "facing=east,gifted=false,bee_id=1": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_basic_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=1": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_basic_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=1": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_basic_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=1": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_basic_bee"
+      },
+      "facing=east,gifted=true,bee_id=1": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_basic_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=1": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_basic_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=1": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_basic_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=2": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bomber_bee"
+      },
+      "facing=east,gifted=false,bee_id=2": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bomber_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=2": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bomber_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=2": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bomber_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=2": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bomber_bee"
+      },
+      "facing=east,gifted=true,bee_id=2": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bomber_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=2": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bomber_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=2": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bomber_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=3": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_brave_bee"
+      },
+      "facing=east,gifted=false,bee_id=3": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_brave_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=3": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_brave_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=3": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_brave_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=3": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_brave_bee"
+      },
+      "facing=east,gifted=true,bee_id=3": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_brave_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=3": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_brave_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=3": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_brave_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=4": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bumble_bee"
+      },
+      "facing=east,gifted=false,bee_id=4": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bumble_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=4": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bumble_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=4": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bumble_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=4": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bumble_bee"
+      },
+      "facing=east,gifted=true,bee_id=4": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bumble_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=4": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bumble_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=4": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bumble_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=5": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_cool_bee"
+      },
+      "facing=east,gifted=false,bee_id=5": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_cool_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=5": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_cool_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=5": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_cool_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=5": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_cool_bee"
+      },
+      "facing=east,gifted=true,bee_id=5": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_cool_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=5": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_cool_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=5": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_cool_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=6": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_hasty_bee"
+      },
+      "facing=east,gifted=false,bee_id=6": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_hasty_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=6": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_hasty_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=6": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_hasty_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=6": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_hasty_bee"
+      },
+      "facing=east,gifted=true,bee_id=6": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_hasty_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=6": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_hasty_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=6": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_hasty_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=7": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_looker_bee"
+      },
+      "facing=east,gifted=false,bee_id=7": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_looker_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=7": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_looker_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=7": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_looker_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=7": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_looker_bee"
+      },
+      "facing=east,gifted=true,bee_id=7": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_looker_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=7": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_looker_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=7": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_looker_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=8": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_rad_bee"
+      },
+      "facing=east,gifted=false,bee_id=8": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_rad_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=8": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_rad_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=8": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_rad_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=8": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_rad_bee"
+      },
+      "facing=east,gifted=true,bee_id=8": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_rad_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=8": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_rad_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=8": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_rad_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=9": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_rascal_bee"
+      },
+      "facing=east,gifted=false,bee_id=9": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_rascal_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=9": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_rascal_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=9": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_rascal_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=9": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_rascal_bee"
+      },
+      "facing=east,gifted=true,bee_id=9": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_rascal_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=9": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_rascal_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=9": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_rascal_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=10": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_stubborn_bee"
+      },
+      "facing=east,gifted=false,bee_id=10": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_stubborn_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=10": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_stubborn_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=10": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_stubborn_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=10": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_stubborn_bee"
+      },
+      "facing=east,gifted=true,bee_id=10": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_stubborn_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=10": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_stubborn_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=10": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_stubborn_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=11": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bubble_bee"
+      },
+      "facing=east,gifted=false,bee_id=11": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bubble_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=11": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bubble_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=11": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bubble_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=11": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bubble_bee"
+      },
+      "facing=east,gifted=true,bee_id=11": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bubble_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=11": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bubble_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=11": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bubble_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=12": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bucko_bee"
+      },
+      "facing=east,gifted=false,bee_id=12": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bucko_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=12": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bucko_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=12": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bucko_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=12": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bucko_bee"
+      },
+      "facing=east,gifted=true,bee_id=12": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bucko_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=12": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bucko_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=12": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bucko_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=13": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_commander_bee"
+      },
+      "facing=east,gifted=false,bee_id=13": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_commander_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=13": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_commander_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=13": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_commander_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=13": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_commander_bee"
+      },
+      "facing=east,gifted=true,bee_id=13": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_commander_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=13": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_commander_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=13": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_commander_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=14": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_demo_bee"
+      },
+      "facing=east,gifted=false,bee_id=14": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_demo_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=14": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_demo_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=14": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_demo_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=14": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_demo_bee"
+      },
+      "facing=east,gifted=true,bee_id=14": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_demo_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=14": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_demo_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=14": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_demo_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=15": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_exhausted_bee"
+      },
+      "facing=east,gifted=false,bee_id=15": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_exhausted_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=15": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_exhausted_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=15": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_exhausted_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=15": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_exhausted_bee"
+      },
+      "facing=east,gifted=true,bee_id=15": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_exhausted_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=15": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_exhausted_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=15": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_exhausted_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=16": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_fire_bee"
+      },
+      "facing=east,gifted=false,bee_id=16": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_fire_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=16": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_fire_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=16": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_fire_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=16": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_fire_bee"
+      },
+      "facing=east,gifted=true,bee_id=16": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_fire_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=16": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_fire_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=16": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_fire_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=17": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_frosty_bee"
+      },
+      "facing=east,gifted=false,bee_id=17": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_frosty_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=17": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_frosty_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=17": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_frosty_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=17": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_frosty_bee"
+      },
+      "facing=east,gifted=true,bee_id=17": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_frosty_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=17": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_frosty_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=17": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_frosty_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=18": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_honey_bee"
+      },
+      "facing=east,gifted=false,bee_id=18": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_honey_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=18": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_honey_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=18": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_honey_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=18": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_honey_bee"
+      },
+      "facing=east,gifted=true,bee_id=18": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_honey_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=18": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_honey_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=18": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_honey_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=19": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_rage_bee"
+      },
+      "facing=east,gifted=false,bee_id=19": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_rage_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=19": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_rage_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=19": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_rage_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=19": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_rage_bee"
+      },
+      "facing=east,gifted=true,bee_id=19": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_rage_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=19": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_rage_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=19": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_rage_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=20": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_riley_bee"
+      },
+      "facing=east,gifted=false,bee_id=20": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_riley_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=20": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_riley_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=20": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_riley_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=20": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_riley_bee"
+      },
+      "facing=east,gifted=true,bee_id=20": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_riley_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=20": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_riley_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=20": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_riley_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=21": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_shocked_bee"
+      },
+      "facing=east,gifted=false,bee_id=21": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_shocked_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=21": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_shocked_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=21": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_shocked_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=21": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_shocked_bee"
+      },
+      "facing=east,gifted=true,bee_id=21": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_shocked_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=21": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_shocked_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=21": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_shocked_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=22": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_baby_bee"
+      },
+      "facing=east,gifted=false,bee_id=22": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_baby_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=22": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_baby_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=22": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_baby_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=22": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_baby_bee"
+      },
+      "facing=east,gifted=true,bee_id=22": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_baby_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=22": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_baby_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=22": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_baby_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=23": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_carpenter_bee"
+      },
+      "facing=east,gifted=false,bee_id=23": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_carpenter_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=23": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_carpenter_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=23": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_carpenter_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=23": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_carpenter_bee"
+      },
+      "facing=east,gifted=true,bee_id=23": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_carpenter_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=23": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_carpenter_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=23": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_carpenter_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=24": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_demon_bee"
+      },
+      "facing=east,gifted=false,bee_id=24": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_demon_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=24": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_demon_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=24": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_demon_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=24": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_demon_bee"
+      },
+      "facing=east,gifted=true,bee_id=24": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_demon_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=24": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_demon_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=24": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_demon_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=25": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_diamond_bee"
+      },
+      "facing=east,gifted=false,bee_id=25": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_diamond_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=25": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_diamond_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=25": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_diamond_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=25": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_diamond_bee"
+      },
+      "facing=east,gifted=true,bee_id=25": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_diamond_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=25": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_diamond_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=25": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_diamond_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=26": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_lion_bee"
+      },
+      "facing=east,gifted=false,bee_id=26": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_lion_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=26": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_lion_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=26": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_lion_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=26": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_lion_bee"
+      },
+      "facing=east,gifted=true,bee_id=26": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_lion_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=26": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_lion_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=26": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_lion_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=27": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_music_bee"
+      },
+      "facing=east,gifted=false,bee_id=27": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_music_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=27": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_music_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=27": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_music_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=27": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_music_bee"
+      },
+      "facing=east,gifted=true,bee_id=27": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_music_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=27": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_music_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=27": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_music_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=28": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_ninja_bee"
+      },
+      "facing=east,gifted=false,bee_id=28": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_ninja_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=28": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_ninja_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=28": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_ninja_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=28": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_ninja_bee"
+      },
+      "facing=east,gifted=true,bee_id=28": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_ninja_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=28": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_ninja_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=28": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_ninja_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=29": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_shy_bee"
+      },
+      "facing=east,gifted=false,bee_id=29": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_shy_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=29": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_shy_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=29": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_shy_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=29": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_shy_bee"
+      },
+      "facing=east,gifted=true,bee_id=29": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_shy_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=29": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_shy_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=29": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_shy_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=30": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_buoyant_bee"
+      },
+      "facing=east,gifted=false,bee_id=30": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_buoyant_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=30": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_buoyant_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=30": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_buoyant_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=30": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_buoyant_bee"
+      },
+      "facing=east,gifted=true,bee_id=30": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_buoyant_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=30": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_buoyant_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=30": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_buoyant_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=31": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_fuzzy_bee"
+      },
+      "facing=east,gifted=false,bee_id=31": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_fuzzy_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=31": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_fuzzy_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=31": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_fuzzy_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=31": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_fuzzy_bee"
+      },
+      "facing=east,gifted=true,bee_id=31": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_fuzzy_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=31": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_fuzzy_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=31": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_fuzzy_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=32": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_precise_bee"
+      },
+      "facing=east,gifted=false,bee_id=32": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_precise_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=32": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_precise_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=32": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_precise_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=32": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_precise_bee"
+      },
+      "facing=east,gifted=true,bee_id=32": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_precise_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=32": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_precise_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=32": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_precise_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=33": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_spicy_bee"
+      },
+      "facing=east,gifted=false,bee_id=33": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_spicy_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=33": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_spicy_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=33": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_spicy_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=33": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_spicy_bee"
+      },
+      "facing=east,gifted=true,bee_id=33": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_spicy_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=33": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_spicy_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=33": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_spicy_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=34": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_tadpole_bee"
+      },
+      "facing=east,gifted=false,bee_id=34": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_tadpole_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=34": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_tadpole_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=34": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_tadpole_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=34": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_tadpole_bee"
+      },
+      "facing=east,gifted=true,bee_id=34": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_tadpole_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=34": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_tadpole_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=34": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_tadpole_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=35": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_vector_bee"
+      },
+      "facing=east,gifted=false,bee_id=35": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_vector_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=35": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_vector_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=35": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_vector_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=35": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_vector_bee"
+      },
+      "facing=east,gifted=true,bee_id=35": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_vector_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=35": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_vector_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=35": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_vector_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=36": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bear_bee"
+      },
+      "facing=east,gifted=false,bee_id=36": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bear_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=36": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bear_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=36": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_bear_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=36": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bear_bee"
+      },
+      "facing=east,gifted=true,bee_id=36": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bear_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=36": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bear_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=36": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_bear_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=37": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_cobalt_bee"
+      },
+      "facing=east,gifted=false,bee_id=37": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_cobalt_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=37": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_cobalt_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=37": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_cobalt_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=37": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_cobalt_bee"
+      },
+      "facing=east,gifted=true,bee_id=37": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_cobalt_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=37": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_cobalt_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=37": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_cobalt_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=38": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_crimson_bee"
+      },
+      "facing=east,gifted=false,bee_id=38": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_crimson_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=38": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_crimson_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=38": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_crimson_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=38": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_crimson_bee"
+      },
+      "facing=east,gifted=true,bee_id=38": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_crimson_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=38": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_crimson_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=38": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_crimson_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=39": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_digital_bee"
+      },
+      "facing=east,gifted=false,bee_id=39": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_digital_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=39": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_digital_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=39": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_digital_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=39": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_digital_bee"
+      },
+      "facing=east,gifted=true,bee_id=39": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_digital_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=39": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_digital_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=39": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_digital_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=40": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_festive_bee"
+      },
+      "facing=east,gifted=false,bee_id=40": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_festive_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=40": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_festive_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=40": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_festive_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=40": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_festive_bee"
+      },
+      "facing=east,gifted=true,bee_id=40": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_festive_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=40": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_festive_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=40": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_festive_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=41": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gummy_bee"
+      },
+      "facing=east,gifted=false,bee_id=41": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gummy_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=41": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gummy_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=41": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gummy_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=41": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_gummy_bee"
+      },
+      "facing=east,gifted=true,bee_id=41": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_gummy_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=41": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_gummy_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=41": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_gummy_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=42": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_photon_bee"
+      },
+      "facing=east,gifted=false,bee_id=42": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_photon_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=42": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_photon_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=42": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_photon_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=42": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_photon_bee"
+      },
+      "facing=east,gifted=true,bee_id=42": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_photon_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=42": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_photon_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=42": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_photon_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=43": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_puppy_bee"
+      },
+      "facing=east,gifted=false,bee_id=43": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_puppy_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=43": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_puppy_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=43": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_puppy_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=43": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_puppy_bee"
+      },
+      "facing=east,gifted=true,bee_id=43": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_puppy_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=43": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_puppy_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=43": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_puppy_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=44": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_tabby_bee"
+      },
+      "facing=east,gifted=false,bee_id=44": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_tabby_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=44": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_tabby_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=44": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_tabby_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=44": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_tabby_bee"
+      },
+      "facing=east,gifted=true,bee_id=44": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_tabby_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=44": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_tabby_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=44": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_tabby_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=45": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_vicious_bee"
+      },
+      "facing=east,gifted=false,bee_id=45": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_vicious_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=45": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_vicious_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=45": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_vicious_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=45": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_vicious_bee"
+      },
+      "facing=east,gifted=true,bee_id=45": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_vicious_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=45": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_vicious_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=45": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_vicious_bee",
+        "y": 270
+      },
+      "facing=north,gifted=false,bee_id=46": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_windy_bee"
+      },
+      "facing=east,gifted=false,bee_id=46": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_windy_bee",
+        "y": 90
+      },
+      "facing=south,gifted=false,bee_id=46": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_windy_bee",
+        "y": 180
+      },
+      "facing=west,gifted=false,bee_id=46": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_windy_bee",
+        "y": 270
+      },
+      "facing=north,gifted=true,bee_id=46": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_windy_bee"
+      },
+      "facing=east,gifted=true,bee_id=46": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_windy_bee",
+        "y": 90
+      },
+      "facing=south,gifted=true,bee_id=46": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_windy_bee",
+        "y": 180
+      },
+      "facing=west,gifted=true,bee_id=46": {
+        "model": "mine_swarm_simulator:block/hive_slot/hive_slot_gifted_windy_bee",
+        "y": 270
+      }
+    }
+}

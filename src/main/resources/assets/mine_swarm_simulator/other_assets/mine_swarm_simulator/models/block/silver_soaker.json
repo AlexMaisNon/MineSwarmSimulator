@@ -1,0 +1,9 @@
+{
+  "parent": "mine_swarm_simulator:custom/silver_soaker",
+  "textures": {
+    "all": "mine_swarm_simulator:block/silver_soaker",
+    "particle": "mine_swarm_simulator:block/silver_soaker",
+    "0": "mine_swarm_simulator:block/silver_soaker"
+  },
+  "render_type": "cutout"
+}

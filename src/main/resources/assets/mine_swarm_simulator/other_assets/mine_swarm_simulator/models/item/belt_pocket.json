@@ -1,0 +1,7 @@
+{
+  "parent": "mine_swarm_simulator:custom/belt_pocket",
+  "textures": {
+    "0": "mine_swarm_simulator:blocks/belt_pocket",
+    "particle": "mine_swarm_simulator:items/armor_sample_leggings"
+  }
+}

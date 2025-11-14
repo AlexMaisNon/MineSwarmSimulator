@@ -1,0 +1,7 @@
+{
+  "parent": "mine_swarm_simulator:custom/bomber_guard",
+  "textures": {
+    "0": "mine_swarm_simulator:blocks/bomber_guard",
+    "particle": "mine_swarm_simulator:items/armor_sample_body"
+  }
+}

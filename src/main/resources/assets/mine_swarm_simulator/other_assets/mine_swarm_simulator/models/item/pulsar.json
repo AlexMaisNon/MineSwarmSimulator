@@ -1,0 +1,7 @@
+{
+  "parent": "mine_swarm_simulator:custom/pulsar",
+  "textures": {
+    "main": "mine_swarm_simulator:block/pulsar",
+    "particle": "mine_swarm_simulator:item/armor_sample_leggings"
+  }
+}

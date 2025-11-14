@@ -1,0 +1,7 @@
+{
+    "parent": "mine_swarm_simulator:block/flowers/default/flower_block3",
+    "textures": {
+        "flower": "mine_swarm_simulator:block/models/flowers/white_triple",
+        "particle": "mine_swarm_simulator:block/models/flowers/white_triple"
+    }
+}

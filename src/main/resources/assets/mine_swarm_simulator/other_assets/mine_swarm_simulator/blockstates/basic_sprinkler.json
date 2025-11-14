@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "mine_swarm_simulator:block/basic_sprinkler"
+    }
+  }
+}

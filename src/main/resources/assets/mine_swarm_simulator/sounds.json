@@ -1,0 +1,167 @@
+{
+    "item.coconut_canister.shield": {
+        "subtitle": "subtitles.mine_swarm_simulator.item.coconut_canister.shield",
+        "sounds": [
+            "mine_swarm_simulator:item/emergency_coconut_shield"
+        ]
+    },
+    "item.gumdrops.use": {
+        "subtitle": "subtitles.mine_swarm_simulator.item.gumdrops.use",
+        "sounds": [
+            "mine_swarm_simulator:item/gumdrops_use"
+        ]
+    },
+    "item.night_bell.use": {
+        "subtitle": "subtitles.mine_swarm_simulator.item.night_bell.use",
+        "sounds": [
+            "mine_swarm_simulator:item/night_bell_use"
+        ]
+    },
+    "item.gummy_mask.gummy_morph": {
+        "subtitle": "subtitles.mine_swarm_simulator.item.gummy_mask.gummy_morph",
+        "sounds": [
+            "mine_swarm_simulator:item/gummy_morph"
+        ]
+    },
+    "item.supreme_star_amulet.gummy_star": {
+        "subtitle": "subtitles.mine_swarm_simulator.item.supreme_star_amulet.gummy_star",
+        "sounds": [
+            "mine_swarm_simulator:item/supreme_star_amulet/gummy_star"
+        ]
+    },
+    "item.supreme_star_amulet.pop_star": {
+        "subtitle": "subtitles.mine_swarm_simulator.item.supreme_star_amulet.pop_star",
+        "sounds": [
+            "mine_swarm_simulator:item/supreme_star_amulet/pop_star"
+        ]
+    },
+    "item.supreme_star_amulet.scorching_star": {
+        "subtitle": "subtitles.mine_swarm_simulator.item.supreme_star_amulet.scorching_star",
+        "sounds": [
+            "mine_swarm_simulator:item/supreme_star_amulet/scorching_star"
+        ]
+    },
+    "item.supreme_star_amulet.star_saw": {
+        "subtitle": "subtitles.mine_swarm_simulator.item.supreme_star_amulet.star_saw",
+        "sounds": [
+            "mine_swarm_simulator:item/supreme_star_amulet/star_saw"
+        ]
+    },
+    "music.antmarch1": {
+        "sounds": [
+            {
+                "name": "mine_swarm_simulator:music/antmarch1",
+                "stream": true
+            }
+        ]
+    },
+    "music.bpatrol": {
+        "sounds": [
+            {
+                "name": "mine_swarm_simulator:music/bpatrol",
+                "stream": true
+            }
+        ]
+    },
+    "music.crawlers": {
+        "sounds": [
+            {
+                "name": "mine_swarm_simulator:music/crawlers",
+                "stream": true
+            }
+        ]
+    },
+    "music.digitize": {
+        "sounds": [
+            {
+                "name": "mine_swarm_simulator:music/digitize",
+                "stream": true
+            }
+        ]
+    },
+    "music.drone": {
+        "sounds": [
+            {
+                "name": "mine_swarm_simulator:music/drone",
+                "stream": true
+            }
+        ]
+    },
+    "music.gbtune1": {
+        "sounds": [
+            {
+                "name": "mine_swarm_simulator:music/gbtune1",
+                "stream": true
+            }
+        ]
+    },
+    "music.hibernation1": {
+        "sounds": [
+            {
+                "name": "mine_swarm_simulator:music/hibernation1",
+                "stream": true
+            }
+        ]
+    },
+    "music.mountaincall": {
+        "sounds": [
+            "mine_swarm_simulator:music/mountaincall"
+        ]
+    },
+    "music.nectar": {
+        "sounds": [
+            {
+                "name": "mine_swarm_simulator:music/nectar",
+                "stream": true
+            }
+        ]
+    },
+    "music.overflowin4": {
+        "sounds": [
+            {
+                "name": "mine_swarm_simulator:music/overflowin4",
+                "stream": true
+            }
+        ]
+    },
+    "music.rbcloading": {
+        "sounds": [
+            {
+                "name": "mine_swarm_simulator:music/rbcloading",
+                "stream": true
+            }
+        ]
+    },
+    "music.starhall": {
+        "sounds": [
+            {
+                "name": "mine_swarm_simulator:music/starhall",
+                "stream": true
+            }
+        ]
+    },
+    "music.stickbug": {
+        "sounds": [
+            {
+                "name": "mine_swarm_simulator:music/stickbug",
+                "stream": true
+            }
+        ]
+    },
+    "music.vendor": {
+        "sounds": [
+            {
+                "name": "mine_swarm_simulator:music/vendor",
+                "stream": true
+            }
+        ]
+    },
+    "music.wax": {
+        "sounds": [
+            {
+                "name": "mine_swarm_simulator:music/wax",
+                "stream": true
+            }
+        ]
+    }
+}

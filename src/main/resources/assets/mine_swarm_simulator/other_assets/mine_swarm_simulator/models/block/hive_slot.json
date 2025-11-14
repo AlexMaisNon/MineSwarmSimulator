@@ -1,0 +1,9 @@
+{
+  "parent": "mine_swarm_simulator:custom/hive_slot",
+  "textures": {
+    "all": "mine_swarm_simulator:block/hive_slot",
+    "particle": "mine_swarm_simulator:block/hive_slot",
+    "0": "mine_swarm_simulator:block/hive_slot"
+  },
+  "render_type": "cutout"
+}

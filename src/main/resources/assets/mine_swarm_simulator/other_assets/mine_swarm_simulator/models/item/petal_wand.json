@@ -1,0 +1,7 @@
+{
+  "parent": "mine_swarm_simulator:custom/petal_wand",
+  "textures": {
+    "0": "mine_swarm_simulator:block/petal_wand",
+    "particle": "mine_swarm_simulator:item/armor_sample_leggings"
+  }
+}

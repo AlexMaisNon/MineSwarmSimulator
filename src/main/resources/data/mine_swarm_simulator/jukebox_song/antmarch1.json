@@ -1,0 +1,8 @@
+{
+  "comparator_output": 1,
+  "description": {
+    "translate": "item.mine_swarm_simulator.music_disc_antmarch1.desc"
+  },
+  "length_in_seconds": 97.0,
+  "sound_event": "mine_swarm_simulator:music.antmarch1"
+}

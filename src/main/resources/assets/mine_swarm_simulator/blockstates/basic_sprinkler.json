@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": {"model": "mine_swarm_simulator:block/basic_sprinkler"},
+        "facing=east": {"model": "mine_swarm_simulator:block/basic_sprinkler"},
+        "facing=south": {"model": "mine_swarm_simulator:block/basic_sprinkler"},
+        "facing=west": {"model": "mine_swarm_simulator:block/basic_sprinkler"}
+    }
+}

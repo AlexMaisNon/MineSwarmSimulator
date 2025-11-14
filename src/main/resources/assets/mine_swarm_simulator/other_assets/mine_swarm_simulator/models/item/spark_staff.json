@@ -1,0 +1,7 @@
+{
+  "parent": "mine_swarm_simulator:custom/spark_staff",
+  "textures": {
+    "0": "mine_swarm_simulator:block/spark_staff",
+    "particle": "mine_swarm_simulator:item/armor_sample_leggings"
+  }
+}

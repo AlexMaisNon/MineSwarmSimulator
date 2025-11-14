@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": {"model": "mine_swarm_simulator:block/silver_soakers"},
+        "facing=east": {"model": "mine_swarm_simulator:block/silver_soakers"},
+        "facing=south": {"model": "mine_swarm_simulator:block/silver_soakers"},
+        "facing=west": {"model": "mine_swarm_simulator:block/silver_soakers"}
+    }
+}

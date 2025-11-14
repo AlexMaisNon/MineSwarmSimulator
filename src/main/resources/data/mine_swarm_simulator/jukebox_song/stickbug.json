@@ -1,0 +1,8 @@
+{
+  "comparator_output": 13,
+  "description": {
+    "translate": "item.mine_swarm_simulator.music_disc_stickbug.desc"
+  },
+  "length_in_seconds": 88.6,
+  "sound_event": "mine_swarm_simulator:music.stickbug"
+}

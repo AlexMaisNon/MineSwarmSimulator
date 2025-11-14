@@ -1,0 +1,7 @@
+{
+  "parent": "mine_swarm_simulator:custom/gummyballer",
+  "textures": {
+    "0": "mine_swarm_simulator:block/gummyballer",
+    "particle": "mine_swarm_simulator:item/armor_sample_leggings"
+  }
+}

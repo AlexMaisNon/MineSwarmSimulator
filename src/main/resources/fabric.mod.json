@@ -1,0 +1,42 @@
+{
+	"schemaVersion": 1,
+	"id": "mine_swarm_simulator",
+	"version": "${version}",
+	"name": "Mine Swarm Simulator",
+	"description": "Bee Swarm Simulator in Minecraft ?????????????????????",
+	"authors": [
+		"Alex9734"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/mine_swarm_simulator/textures/gui/icon.png",
+	"environment": "*",
+	"accessWidener" : "mine_swarm_simulator.accesswidener",
+	"entrypoints": {
+		"main": [
+			"alex.mine_swarm_simulator.MineSwarmSimulator"
+		],
+		"client": [
+			"alex.mine_swarm_simulator.MineSwarmSimulatorClient"
+		],
+		"fabric-datagen": [
+			"alex.mine_swarm_simulator.MineSwarmSimulatorDataGenerator"
+		]
+	},
+	"mixins": [
+		"mine_swarm_simulator.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.9",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*",
+		"trinkets": ">=3.10.0"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

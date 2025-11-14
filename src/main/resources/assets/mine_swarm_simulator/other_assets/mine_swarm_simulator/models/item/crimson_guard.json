@@ -1,0 +1,7 @@
+{
+  "parent": "mine_swarm_simulator:custom/crimson_guard",
+  "textures": {
+    "1": "mine_swarm_simulator:blocks/crimson_guard",
+    "particle": "mine_swarm_simulator:items/armor_sample_body"
+  }
+}

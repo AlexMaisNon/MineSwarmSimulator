@@ -1,0 +1,11 @@
+{
+    "replace": false,
+    "values": [
+        "mine_swarm_simulator:bomber_guard",
+        "mine_swarm_simulator:looker_guard",
+        "mine_swarm_simulator:red_guard",
+        "mine_swarm_simulator:elite_red_guard",
+        "mine_swarm_simulator:riley_guard",
+        "mine_swarm_simulator:crimson_guard"
+    ]
+}

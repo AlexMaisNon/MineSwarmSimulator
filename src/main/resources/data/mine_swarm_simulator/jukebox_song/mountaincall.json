@@ -1,0 +1,8 @@
+{
+  "comparator_output": 8,
+  "description": {
+    "translate": "item.mine_swarm_simulator.music_disc_mountaincall.desc"
+  },
+  "length_in_seconds": 152.0,
+  "sound_event": "mine_swarm_simulator:music.mountaincall"
+}

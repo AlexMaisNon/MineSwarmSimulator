@@ -1,0 +1,13 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "mine_swarm_simulator:item/mask",
+	"textures": {
+		"all": "mine_swarm_simulator:item/models/masks/fire_mask"
+	},
+	"display": {
+		"fixed": {
+			"translation": [0, 6, -16],
+			"scale": [2, 2, 2]
+		}
+	}
+}

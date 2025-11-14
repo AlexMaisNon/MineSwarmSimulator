@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "mine_swarm_simulator:block/royal_jelly_shop_1"
+    },
+    "facing=east": {
+      "model": "mine_swarm_simulator:block/royal_jelly_shop_1",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "mine_swarm_simulator:block/royal_jelly_shop_1",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "mine_swarm_simulator:block/royal_jelly_shop_1",
+      "y": 270
+    }
+  }
+}

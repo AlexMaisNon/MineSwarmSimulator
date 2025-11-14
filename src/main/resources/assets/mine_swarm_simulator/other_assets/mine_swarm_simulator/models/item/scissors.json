@@ -1,0 +1,7 @@
+{
+  "parent": "mine_swarm_simulator:custom/scissors",
+  "textures": {
+    "0": "mine_swarm_simulator:block/scissors",
+    "particle": "mine_swarm_simulator:item/armor_sample_leggings"
+  }
+}

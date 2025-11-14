@@ -1,0 +1,399 @@
+{	
+	"beeswarm.token.boost_token": {
+		"sounds": [
+			"beeswarm/token/boost_token"
+		]
+	},"beeswarm.token.bomb_token": {
+		"sounds": [
+			"beeswarm/token/bomb_token"
+		]
+	},"beeswarm.token.haste": {
+		"sounds": [
+			"beeswarm/token/haste"
+		]
+	},"beeswarm.token.token_link": {
+		"sounds": [
+			"beeswarm/token/token_link"
+		]
+	},"beeswarm.token.focus_token": {
+		"sounds": [
+			"beeswarm/token/focus_token"
+		]
+	},"beeswarm.token.mark_token": {
+		"sounds": [
+			"beeswarm/token/mark_token"
+		]
+	},"beeswarm.token.baby_love_token": {
+		"sounds": [
+			"beeswarm/token/baby_love_token"
+		]
+	},"beeswarm.token.melody_token": {
+		"sounds": [
+			"beeswarm/token/melody_token"
+		]
+	},"beeswarm.token.inspire_token": {
+		"sounds": [
+			"beeswarm/token/inspire_token"
+		]
+	},"beeswarm.token.bomb_sync_token": {
+		"sounds": [
+			"beeswarm/token/bomb_sync_token"
+		]
+	},"beeswarm.token.festive_gift_token": {
+		"sounds": [
+			"beeswarm/token/festive_gift_token"
+		]
+	},"beeswarm.token.festive_blessing_token": {
+		"sounds": [
+			"beeswarm/token/festive_blessing_token"
+		]
+	},"beeswarm.token.beesmas_cheer_token": {
+		"sounds": [
+			"beeswarm/token/beesmas_cheer_token"
+		]
+	},"beeswarm.token.glob_token": {
+		"sounds": [
+			"beeswarm/token/glob_token"
+		]
+	},"beeswarm.token.gumdrop_barrage_token": {
+		"sounds": [
+			"beeswarm/token/gumdrop_barrage_token"
+		]
+	},"beeswarm.token.beamstorm_token": {
+		"sounds": [
+			"beeswarm/token/beamstorm_token"
+		]
+	},"beeswarm.token.puppy_love_token": {
+		"sounds": [
+			"beeswarm/token/puppy_love_token"
+		]
+	},"beeswarm.token.fetch_token": {
+		"sounds": [
+			"beeswarm/token/fetch_token"
+		]
+	},"beeswarm.token.fetch_hit": {
+		"sounds": [
+			"beeswarm/token/fetch_hit"
+		]
+	},"beeswarm.token.tabby_love_token": {
+		"sounds": [
+			"beeswarm/token/tabby_love_token"
+		]
+	},"beeswarm.token.scratch_token": {
+		"sounds": [
+			"beeswarm/token/scratch_token"
+		]
+	},"beeswarm.token.impale_token": {
+		"sounds": [
+			"beeswarm/token/impale_token"
+		]
+	},"beeswarm.token.rain_cloud": {
+		"sounds": [
+			"beeswarm/token/rain_cloud"
+		]
+	},"beeswarm.token.tornado": {
+		"sounds": [
+			"beeswarm/token/tornado"
+		]
+	},"beeswarm.token.inferno_token": {
+		"sounds": [
+			"beeswarm/token/inferno_token"
+		]
+	},"beeswarm.token.flame_fuel_token": {
+		"sounds": [
+			"beeswarm/token/flame_fuel_token"
+		]
+	},"beeswarm.token.summon_frog_token": {
+		"sounds": [
+			"beeswarm/token/summon_frog_token"
+		]
+	},"beeswarm.token.triangulate_token": {
+		"sounds": [
+			"beeswarm/token/triangulate_token"
+		]
+	},"beeswarm.token.mark_surge_token": {
+		"sounds": [
+			"beeswarm/token/mark_surge_token"
+		]
+	},"beeswarm.token.fuzz_bomb_token": {
+		"sounds": [
+			"beeswarm/token/fuzz_bomb_token"
+		]
+	},"beeswarm.token.fuzz_bomb_hit": {
+		"sounds": [
+			"beeswarm/token/fuzz_bomb_hit"
+		]
+	},"beeswarm.token.pollen_haze_token": {
+		"sounds": [
+			"beeswarm/token/pollen_haze_token"
+		]
+	},"beeswarm.token.honey_token": {
+		"sounds": [
+			"beeswarm/token/honey_token"
+		]
+	},"beeswarm.token.item_token": {
+		"sounds": [
+			"beeswarm/token/item_token"
+		]
+	},"beeswarm.token.token_appear": {
+		"sounds": [
+			"beeswarm/token/token_appear"
+		]
+	},"beeswarm.mobs.chicken_chirp": {
+		"sounds": [
+			"beeswarm/mobs/chicken_chirp"
+		]
+	},"beeswarm.mobs.egg_crack": {
+		"sounds": [
+			"beeswarm/mobs/egg_crack"
+		]
+	},"beeswarm.mobs.mondo_chicken_chirp": {
+		"sounds": [
+			"beeswarm/mobs/mondo_chicken_chirp"
+		]
+	},"beeswarm.mobs.mondo_egg_crack": {
+		"sounds": [
+			"beeswarm/mobs/mondo_egg_crack"
+		]
+	},"beeswarm.mobs.windy_bee": {
+		"sounds": [
+			"beeswarm/mobs/windy_bee"
+		]
+	},"beeswarm.musics.crawlers": {
+		"sounds": [
+			"beeswarm/musics/crawlers"
+		]
+	},"beeswarm.musics.antmarch1": {
+		"sounds": [
+			"beeswarm/musics/antmarch1"
+		]
+	},"beeswarm.musics.starhall": {
+		"sounds": [
+			"beeswarm/musics/starhall"
+		]
+	},"beeswarm.musics.overflowin4": {
+		"sounds": [
+			"beeswarm/musics/overflowin4"
+		]
+	},"beeswarm.musics.mountaincall": {
+		"sounds": [
+			"beeswarm/musics/mountaincall"
+		]
+	},"beeswarm.musics.gbtune1": {
+		"sounds": [
+			"beeswarm/musics/gbtune1"
+		]
+	},"beeswarm.musics.vendor": {
+		"sounds": [
+			"beeswarm/musics/vendor"
+		]
+	},"beeswarm.musics.stickbug": {
+		"sounds": [
+			"beeswarm/musics/stickbug"
+		]
+	},"beeswarm.game.bee_level_up": {
+		"sounds": [
+			"beeswarm/game/bee_level_up"
+		]
+	},"beeswarm.game.boost_marked_buy": {
+		"sounds": [
+			"beeswarm/game/boost_marked_buy"
+		]
+	},"beeswarm.game.bubble_pop": {
+		"sounds": [
+			"beeswarm/game/bubble_pop"
+		]
+	},"beeswarm.game.cannon": {
+		"sounds": [
+			"beeswarm/game/cannon"
+		]
+	},"beeswarm.game.cloud_vial": {
+		"sounds": [
+			"beeswarm/game/cloud_vial"
+		]
+	},"beeswarm.game.coconut_hit": {
+		"sounds": [
+			"beeswarm/game/coconut_hit"
+		]
+	},"beeswarm.game.diamond_drain": {
+		"sounds": [
+			"beeswarm/game/diamond_drain"
+		]
+	},"beeswarm.game.emergency_coconut_shield": {
+		"sounds": [
+			"beeswarm/game/emergency_coconut_shield"
+		]
+	},"beeswarm.game.field_booster": {
+		"sounds": [
+			"beeswarm/game/field_booster"
+		]
+	},"beeswarm.game.field_dice": {
+		"sounds": [
+			"beeswarm/game/field_dice"
+		]
+	},"beeswarm.game.frog_token_eat": {
+		"sounds": [
+			"beeswarm/game/frog_token_eat"
+		]
+	},"beeswarm.game.gifted_song": {
+		"sounds": [
+			"beeswarm/game/gifted_song"
+		]
+	},"beeswarm.game.glitter": {
+		"sounds": [
+			"beeswarm/game/glitter"
+		]
+	},"beeswarm.game.gumdrop": {
+		"sounds": [
+			"beeswarm/game/gumdrop"
+		]
+	},"beeswarm.game.gummy_morph": {
+		"sounds": [
+			"beeswarm/game/gummy_morph"
+		]
+	},"beeswarm.game.gummy_star": {
+		"sounds": [
+			"beeswarm/game/gummy_star"
+		]
+	},"beeswarm.game.jelly_bean": {
+		"sounds": [
+			"beeswarm/game/jelly_bean"
+		]
+	},"beeswarm.game.legendary_bee_hatch": {
+		"sounds": [
+			"beeswarm/game/legendary_bee_hatch"
+		]
+	},"beeswarm.game.memory_match_card_flip": {
+		"sounds": [
+			"beeswarm/game/memory_match_card_flip"
+		]
+	},"beeswarm.game.memory_match_match": {
+		"sounds": [
+			"beeswarm/game/memory_match_match"
+		]
+	},"beeswarm.game.meteor_shower_meteor": {
+		"sounds": [
+			"beeswarm/game/meteor_shower_meteor"
+		]
+	},"beeswarm.game.meteor_shower_voice": {
+		"sounds": [
+			"beeswarm/game/meteor_shower_voice"
+		]
+	},"beeswarm.game.micro_converter": {
+		"sounds": [
+			"beeswarm/game/micro_converter"
+		]
+	},"beeswarm.game.moon_amulet_get": {
+		"sounds": [
+			"beeswarm/game/moon_amulet_get"
+		]
+	},"beeswarm.game.mythic_bee_hatch": {
+		"sounds": [
+			"beeswarm/game/mythic_bee_hatch"
+		]
+	},"beeswarm.game.night_bell": {
+		"sounds": [
+			"beeswarm/game/night_bell"
+		]
+	},"beeswarm.game.petal_wand_shuriken": {
+		"sounds": [
+			"beeswarm/game/petal_wand_shuriken"
+		]
+	},"beeswarm.game.pop_star": {
+		"sounds": [
+			"beeswarm/game/pop_star"
+		]
+	},"beeswarm.game.porcelain_dipper": {
+		"sounds": [
+			"beeswarm/game/porcelain_dipper"
+		]
+	},"beeswarm.game.quest_end": {
+		"sounds": [
+			"beeswarm/game/quest_end"
+		]
+	},"beeswarm.game.quest_finished": {
+		"sounds": [
+			"beeswarm/game/quest_finished"
+		]
+	},"beeswarm.game.quest_start": {
+		"sounds": [
+			"beeswarm/game/quest_start"
+		]
+	},"beeswarm.game.scorching_star": {
+		"sounds": [
+			"beeswarm/game/scorching_star"
+		]
+	},"beeswarm.game.slingshot": {
+		"sounds": [
+			"beeswarm/game/slingshot"
+		]
+	},"beeswarm.game.spark_staff": {
+		"sounds": [
+			"beeswarm/game/spark_staff"
+		]
+	},"beeswarm.game.sprinkler_build": {
+		"sounds": [
+			"beeswarm/game/sprinkler_build"
+		]
+	},"beeswarm.game.sprinkler_water": {
+		"sounds": [
+			"beeswarm/game/sprinkler_water"
+		]
+	},"beeswarm.game.sprout_stage_1": {
+		"sounds": [
+			"beeswarm/game/sprout_stage_1"
+		]
+	},"beeswarm.game.sprout_stage_2": {
+		"sounds": [
+			"beeswarm/game/sprout_stage_2"
+		]
+	},"beeswarm.game.sprout_stage_3": {
+		"sounds": [
+			"beeswarm/game/sprout_stage_3"
+		]
+	},"beeswarm.game.sprout_stage_4": {
+		"sounds": [
+			"beeswarm/game/sprout_stage_4"
+		]
+	},"beeswarm.game.sprout_stage_5": {
+		"sounds": [
+			"beeswarm/game/sprout_stage_5"
+		]
+	},"beeswarm.game.star_saw": {
+		"sounds": [
+			"beeswarm/game/star_saw"
+		]
+	},"beeswarm.game.star_shower_star": {
+		"sounds": [
+			"beeswarm/game/star_shower_star"
+		]
+	},"beeswarm.game.vicious_end": {
+		"sounds": [
+			"beeswarm/game/vicious_end"
+		]
+	},"beeswarm.game.vicious_start": {
+		"sounds": [
+			"beeswarm/game/vicious_start"
+		]
+	},"beeswarm.game.vine_cut": {
+		"sounds": [
+			"beeswarm/game/vine_cut"
+		]
+	},"beeswarm.game.wealth_clock": {
+		"sounds": [
+			"beeswarm/game/wealth_clock"
+		]
+	},"beeswarm.game.wind_chime": {
+		"sounds": [
+			"beeswarm/game/wind_chime"
+		]
+	},"beeswarm.game.x_flame": {
+		"sounds": [
+			"beeswarm/game/x_flame"
+		]
+	},"beeswarm.game.yay": {
+		"sounds": [
+			"beeswarm/game/yay"
+		]
+	}
+}

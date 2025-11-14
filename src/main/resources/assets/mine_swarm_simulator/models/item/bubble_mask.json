@@ -1,0 +1,6 @@
+{
+    "parent": "mine_swarm_simulator:item/mask",
+    "textures": {
+      "all": "mine_swarm_simulator:item/models/masks/bubble_mask"
+    }
+}

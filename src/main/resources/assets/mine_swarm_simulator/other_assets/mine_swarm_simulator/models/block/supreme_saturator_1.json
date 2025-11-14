@@ -1,0 +1,9 @@
+{
+  "parent": "mine_swarm_simulator:custom/supreme_saturator1",
+  "textures": {
+    "all": "mine_swarm_simulator:block/supreme_saturator",
+    "particle": "mine_swarm_simulator:block/supreme_saturator",
+    "0": "mine_swarm_simulator:block/supreme_saturator"
+  },
+  "render_type": "translucent"
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "mine_swarm_simulator:custom/vacuum",
+  "textures": {
+    "0": "mine_swarm_simulator:block/vacuum",
+    "particle": "mine_swarm_simulator:item/armor_sample_leggings"
+  }
+}

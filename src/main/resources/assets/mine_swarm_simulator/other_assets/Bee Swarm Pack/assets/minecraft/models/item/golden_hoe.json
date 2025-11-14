@@ -1,0 +1,17 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "item/golden_hoe"
+    },
+	"overrides":[
+		{ "predicate": {"custom_model_data": 1}, "model": "item/beeswarm/masks/helmet"},
+		{ "predicate": {"custom_model_data": 2}, "model": "item/beeswarm/masks/propeller_hat"},
+		{ "predicate": {"custom_model_data": 3}, "model": "item/beeswarm/masks/beekeeper_mask"},
+		{ "predicate": {"custom_model_data": 4}, "model": "item/beeswarm/masks/honey_mask"},
+		{ "predicate": {"custom_model_data": 5}, "model": "item/beeswarm/masks/fire_mask"},
+		{ "predicate": {"custom_model_data": 6}, "model": "item/beeswarm/masks/bubble_mask"},
+		{ "predicate": {"custom_model_data": 7}, "model": "item/beeswarm/masks/demon_mask"},
+		{ "predicate": {"custom_model_data": 8}, "model": "item/beeswarm/masks/diamond_mask"},
+		{ "predicate": {"custom_model_data": 9}, "model": "item/beeswarm/masks/gummy_mask"}
+	]
+}

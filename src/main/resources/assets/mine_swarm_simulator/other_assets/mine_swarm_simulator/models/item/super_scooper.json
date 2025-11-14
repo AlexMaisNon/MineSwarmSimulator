@@ -1,0 +1,7 @@
+{
+  "parent": "mine_swarm_simulator:custom/super_scooper",
+  "textures": {
+    "0": "mine_swarm_simulator:block/super_scooper",
+    "particle": "mine_swarm_simulator:item/armor_sample_leggings"
+  }
+}

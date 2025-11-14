@@ -1,0 +1,7 @@
+{
+  "parent": "mine_swarm_simulator:custom/golden_rake",
+  "textures": {
+    "0": "mine_swarm_simulator:block/golden_rake",
+    "particle": "mine_swarm_simulator:item/armor_sample_leggings"
+  }
+}

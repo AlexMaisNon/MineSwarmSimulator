@@ -1,0 +1,7 @@
+{
+  "parent": "mine_swarm_simulator:custom/tide_popper",
+  "textures": {
+    "0": "mine_swarm_simulator:block/tide_popper",
+    "particle": "mine_swarm_simulator:item/armor_sample_leggings"
+  }
+}

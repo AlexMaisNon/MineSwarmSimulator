@@ -1,0 +1,17 @@
+{
+    "entities": [
+        "player"
+    ],
+    "slots": [
+        "chest/mss_glider",
+        "chest/mss_left_guard",
+        "chest/mss_right_guard",
+        "ant_amulet/mss_amulet",
+        "cog_amulet/mss_amulet",
+        "king_beetle_amulet/mss_amulet",
+        "moon_amulet/mss_amulet",
+        "shell_amulet/mss_amulet",
+        "star_amulet/mss_amulet",
+        "stick_bug_amulet/mss_amulet"
+    ]
+  }

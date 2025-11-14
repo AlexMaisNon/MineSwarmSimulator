@@ -1,0 +1,7 @@
+{
+  "parent": "mine_swarm_simulator:custom/electro_magnet",
+  "textures": {
+    "0": "mine_swarm_simulator:block/electro_magnet",
+    "particle": "mine_swarm_simulator:item/armor_sample_leggings"
+  }
+}

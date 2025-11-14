@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": {"model": "mine_swarm_simulator:block/diamond_drenchers"},
+        "facing=east": {"model": "mine_swarm_simulator:block/diamond_drenchers"},
+        "facing=south": {"model": "mine_swarm_simulator:block/diamond_drenchers"},
+        "facing=west": {"model": "mine_swarm_simulator:block/diamond_drenchers"}
+    }
+}

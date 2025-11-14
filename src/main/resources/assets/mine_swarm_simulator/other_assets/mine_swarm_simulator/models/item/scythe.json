@@ -1,0 +1,7 @@
+{
+  "parent": "mine_swarm_simulator:custom/scythe",
+  "textures": {
+    "0": "mine_swarm_simulator:block/scythe",
+    "particle": "mine_swarm_simulator:item/armor_sample_leggings"
+  }
+}

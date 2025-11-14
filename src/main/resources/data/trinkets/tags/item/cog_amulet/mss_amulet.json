@@ -1,0 +1,10 @@
+{
+    "replace": false,
+    "values": [
+        "mine_swarm_simulator:bronze_cog_amulet",
+        "mine_swarm_simulator:silver_cog_amulet",
+        "mine_swarm_simulator:gold_cog_amulet",
+        "mine_swarm_simulator:diamond_cog_amulet",
+        "mine_swarm_simulator:supreme_cog_amulet"
+    ]
+}

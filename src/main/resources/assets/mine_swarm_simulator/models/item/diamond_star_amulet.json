@@ -1,0 +1,6 @@
+{
+	"parent": "mine_swarm_simulator:item/star_amulet",
+	"textures": {
+		"all": "mine_swarm_simulator:item/models/amulets/diamond_amulet"
+	}
+}

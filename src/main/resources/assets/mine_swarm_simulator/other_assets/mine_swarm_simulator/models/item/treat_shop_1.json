@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "mine_swarm_simulator:item/treat_shop"
+  },
+  "render_type": "translucent"
+}

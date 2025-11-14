@@ -1,0 +1,7 @@
+{
+  "parent": "mine_swarm_simulator:custom/mondo_belt_bag",
+  "textures": {
+    "0": "mine_swarm_simulator:blocks/mondo_belt_bag",
+    "particle": "mine_swarm_simulator:items/armor_sample_leggings"
+  }
+}

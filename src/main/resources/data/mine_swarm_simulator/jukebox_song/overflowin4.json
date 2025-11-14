@@ -1,0 +1,8 @@
+{
+  "comparator_output": 10,
+  "description": {
+    "translate": "item.mine_swarm_simulator.music_disc_overflowin4.desc"
+  },
+  "length_in_seconds": 96.7,
+  "sound_event": "mine_swarm_simulator:music.overflowin4"
+}

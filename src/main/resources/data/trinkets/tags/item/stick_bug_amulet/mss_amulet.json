@@ -1,0 +1,9 @@
+{
+    "replace": false,
+    "values": [
+        "mine_swarm_simulator:bronze_stick_bug_amulet",
+        "mine_swarm_simulator:silver_stick_bug_amulet",
+        "mine_swarm_simulator:gold_stick_bug_amulet",
+        "mine_swarm_simulator:diamond_stick_bug_amulet"
+    ]
+}

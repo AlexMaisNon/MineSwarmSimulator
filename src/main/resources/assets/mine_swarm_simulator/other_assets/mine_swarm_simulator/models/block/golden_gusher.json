@@ -1,0 +1,9 @@
+{
+  "parent": "mine_swarm_simulator:custom/golden_gusher",
+  "textures": {
+    "all": "mine_swarm_simulator:block/golden_gusher",
+    "particle": "mine_swarm_simulator:block/golden_gusher",
+    "0": "mine_swarm_simulator:block/golden_gusher"
+  },
+  "render_type": "cutout"
+}

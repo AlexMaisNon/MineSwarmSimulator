@@ -1,0 +1,9 @@
+{
+  "parent": "mine_swarm_simulator:custom/diamond_drencher",
+  "textures": {
+    "all": "mine_swarm_simulator:block/diamond_drencher",
+    "particle": "mine_swarm_simulator:block/diamond_drencher",
+    "0": "mine_swarm_simulator:block/diamond_drencher"
+  },
+  "render_type": "cutout"
+}

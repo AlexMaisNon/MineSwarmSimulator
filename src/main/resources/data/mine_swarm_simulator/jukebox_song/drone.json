@@ -1,0 +1,8 @@
+{
+  "comparator_output": 5,
+  "description": {
+    "translate": "item.mine_swarm_simulator.music_disc_drone.desc"
+  },
+  "length_in_seconds": 204.4,
+  "sound_event": "mine_swarm_simulator:music.drone"
+}

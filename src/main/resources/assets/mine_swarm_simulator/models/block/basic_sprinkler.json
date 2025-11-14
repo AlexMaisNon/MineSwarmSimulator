@@ -1,0 +1,7 @@
+{
+	"parent": "mine_swarm_simulator:block/sprinkler",
+	"textures": {
+		"particle": "mine_swarm_simulator:block/models/sprinklers/basic_sprinkler",
+		"all": "mine_swarm_simulator:block/models/sprinklers/basic_sprinkler"
+	}
+}

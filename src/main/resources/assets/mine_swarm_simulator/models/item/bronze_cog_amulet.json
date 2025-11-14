@@ -1,0 +1,6 @@
+{
+	"parent": "mine_swarm_simulator:item/cog_amulet",
+	"textures": {
+		"all": "mine_swarm_simulator:item/models/amulets/bronze_amulet"
+	}
+}

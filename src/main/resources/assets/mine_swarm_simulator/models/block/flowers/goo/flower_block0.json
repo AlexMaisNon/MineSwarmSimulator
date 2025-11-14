@@ -1,0 +1,34 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"base": "mine_swarm_simulator:block/models/flowers/flower_block"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 12, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 12], "texture": "#base"},
+				"east": {"uv": [0, 0, 16, 12], "texture": "#base"},
+				"south": {"uv": [0, 0, 16, 12], "texture": "#base"},
+				"west": {"uv": [0, 0, 16, 12], "texture": "#base"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#flower"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#base"}
+			}
+		},
+		{
+			"from": [0, 12, 0],
+			"to": [16, 13, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 12, 0]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#goo", "tintindex": 0},
+				"east": {"uv": [0, 0, 16, 1], "texture": "#goo", "tintindex": 0},
+				"south": {"uv": [0, 0, 16, 1], "texture": "#goo", "tintindex": 0},
+				"west": {"uv": [0, 0, 16, 1], "texture": "#goo", "tintindex": 0},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#goo", "tintindex": 0},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#goo", "tintindex": 0}
+			}
+		}
+	]
+}

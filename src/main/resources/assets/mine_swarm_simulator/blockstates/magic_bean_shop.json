@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "facing=north,part_id=0": {"model": "mine_swarm_simulator:block/magic_bean_shop0"},
+        "facing=east,part_id=0": {"model": "mine_swarm_simulator:block/magic_bean_shop0", "y":  90},
+        "facing=south,part_id=0": {"model": "mine_swarm_simulator:block/magic_bean_shop0", "y": 180},
+        "facing=west,part_id=0": {"model": "mine_swarm_simulator:block/magic_bean_shop0", "y": 270},
+        "facing=north,part_id=1": {"model": "mine_swarm_simulator:block/magic_bean_shop1"},
+        "facing=east,part_id=1": {"model": "mine_swarm_simulator:block/magic_bean_shop1", "y":  90},
+        "facing=south,part_id=1": {"model": "mine_swarm_simulator:block/magic_bean_shop1", "y": 180},
+        "facing=west,part_id=1": {"model": "mine_swarm_simulator:block/magic_bean_shop1", "y": 270},
+        "facing=north,part_id=2": {"model": "mine_swarm_simulator:block/magic_bean_shop2"},
+        "facing=east,part_id=2": {"model": "mine_swarm_simulator:block/magic_bean_shop2", "y":  90},
+        "facing=south,part_id=2": {"model": "mine_swarm_simulator:block/magic_bean_shop2", "y": 180},
+        "facing=west,part_id=2": {"model": "mine_swarm_simulator:block/magic_bean_shop2", "y": 270}
+    }
+}

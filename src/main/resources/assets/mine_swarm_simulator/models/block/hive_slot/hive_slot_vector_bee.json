@@ -1,0 +1,6 @@
+{
+	"parent": "mine_swarm_simulator:block/hive_slot",
+	"textures": {
+		"1": "mine_swarm_simulator:block/models/hive_slot/vector_bee"
+	}
+}

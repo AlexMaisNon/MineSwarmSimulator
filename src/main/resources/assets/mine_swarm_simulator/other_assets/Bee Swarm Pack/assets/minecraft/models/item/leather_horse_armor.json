@@ -1,0 +1,35 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "minecraft:item/leather_horse_armor"
+	},
+	"overrides":[
+		{ "predicate": {"custom_model_data": 1}, "model": "item/beeswarm/entities/mobs/ladybug"},
+		{ "predicate": {"custom_model_data": 2}, "model": "item/beeswarm/entities/mobs/rhino_beetle"},
+		{ "predicate": {"custom_model_data": 3}, "model": "item/beeswarm/entities/mobs/spider"},
+		{ "predicate": {"custom_model_data": 4}, "model": "item/beeswarm/entities/mobs/mantis"},
+		{ "predicate": {"custom_model_data": 5}, "model": "item/beeswarm/entities/mobs/werewolf"},
+		{ "predicate": {"custom_model_data": 6}, "model": "item/beeswarm/entities/mobs/scorpion"},
+		{ "predicate": {"custom_model_data": 7}, "model": "item/beeswarm/entities/mobs/cave_monster"},
+		{ "predicate": {"custom_model_data": 8}, "model": "item/beeswarm/entities/mobs/king_beetle"},
+		{ "predicate": {"custom_model_data": 9}, "model": "item/beeswarm/entities/mobs/tunnel_bear"},
+		{ "predicate": {"custom_model_data": 10}, "model": "item/beeswarm/entities/mobs/stump_snail"},
+		{ "predicate": {"custom_model_data": 11}, "model": "item/beeswarm/entities/mobs/coconut_crab"},
+		{ "predicate": {"custom_model_data": 12}, "model": "item/beeswarm/entities/mobs/ant"},
+		{ "predicate": {"custom_model_data": 13}, "model": "item/beeswarm/entities/mobs/army_ant"},
+		{ "predicate": {"custom_model_data": 14}, "model": "item/beeswarm/entities/mobs/giant_ant"},
+		{ "predicate": {"custom_model_data": 15}, "model": "item/beeswarm/entities/mobs/flying_ant"},
+		{ "predicate": {"custom_model_data": 16}, "model": "item/beeswarm/entities/mobs/fire_ant"},
+		{ "predicate": {"custom_model_data": 17}, "model": "item/beeswarm/entities/mobs/aphid"},
+		{ "predicate": {"custom_model_data": 18}, "model": "item/beeswarm/entities/mobs/armored_aphid"},
+		{ "predicate": {"custom_model_data": 19}, "model": "item/beeswarm/entities/mobs/rage_aphid"},
+		{ "predicate": {"custom_model_data": 20}, "model": "item/beeswarm/entities/mobs/diamond_aphid"},
+		{ "predicate": {"custom_model_data": 21}, "model": "item/beeswarm/entities/mobs/stick_bug"},
+		{ "predicate": {"custom_model_data": 22}, "model": "item/beeswarm/entities/mobs/commando_chick"},
+		{ "predicate": {"custom_model_data": 23}, "model": "item/beeswarm/entities/mobs/mondo_chick"},
+		{ "predicate": {"custom_model_data": 24}, "model": "item/beeswarm/entities/mobs/firefly"},
+		{ "predicate": {"custom_model_data": 25}, "model": "item/beeswarm/entities/mobs/bean_bug"},
+		{ "predicate": {"custom_model_data": 26}, "model": "item/beeswarm/entities/mobs/frog"},
+		{ "predicate": {"custom_model_data": 27}, "model": "item/beeswarm/entities/mobs/stick_nymph"}
+	]
+}

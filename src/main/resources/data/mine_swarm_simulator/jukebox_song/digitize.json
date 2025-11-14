@@ -1,0 +1,8 @@
+{
+  "comparator_output": 4,
+  "description": {
+    "translate": "item.mine_swarm_simulator.music_disc_digitize.desc"
+  },
+  "length_in_seconds": 73.8,
+  "sound_event": "mine_swarm_simulator:music.digitize"
+}

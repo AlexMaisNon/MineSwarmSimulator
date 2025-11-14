@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": {"model": "mine_swarm_simulator:block/supreme_saturator"},
+        "facing=east": {"model": "mine_swarm_simulator:block/supreme_saturator", "y":  90},
+        "facing=south": {"model": "mine_swarm_simulator:block/supreme_saturator", "y": 180},
+        "facing=west": {"model": "mine_swarm_simulator:block/supreme_saturator", "y": 270}
+    }
+}

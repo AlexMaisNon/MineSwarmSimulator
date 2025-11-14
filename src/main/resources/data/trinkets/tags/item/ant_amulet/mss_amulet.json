@@ -1,0 +1,10 @@
+{
+    "replace": false,
+    "values": [
+        "mine_swarm_simulator:bronze_ant_amulet",
+        "mine_swarm_simulator:silver_ant_amulet",
+        "mine_swarm_simulator:gold_ant_amulet",
+        "mine_swarm_simulator:diamond_ant_amulet",
+        "mine_swarm_simulator:supreme_ant_amulet"
+    ]
+}

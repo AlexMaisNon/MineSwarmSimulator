@@ -65,7 +65,7 @@ public class BeeEntityRenderer extends MobEntityRenderer<BeeEntity, BeeEntityMod
 
 	@Override
 	public Identifier getTexture(BeeEntity entity) {
-		String path = entity.getGifted() ? "textures/entity/gifted_" + beeTextures[entity.getTypeId()] : "textures/entity/" + beeTextures[entity.getTypeId()];
+		String path = entity.getGifted() ? "textures/entity/gifted_" + beeTextures[entity.getBeeType().getId()] : "textures/entity/" + beeTextures[entity.getBeeType().getId()];
 		return Identifier.of(MineSwarmSimulator.MOD_ID, path);
 	}
 

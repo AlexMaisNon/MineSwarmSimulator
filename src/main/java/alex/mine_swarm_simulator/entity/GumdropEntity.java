@@ -7,8 +7,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.projectile.thrown.ThrownEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
@@ -20,25 +18,24 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GumdropEntity extends ThrownEntity {
-	private static final TrackedData<Integer> DATA_ID_RADIUS = DataTracker.registerData(GumdropEntity.class, TrackedDataHandlerRegistry.INTEGER);
+	private short radius = 0;
 	private short life = 0;
 
 	public GumdropEntity(EntityType<? extends GumdropEntity> entityType, World world) {
 		super(entityType, world);
 	}
 
-	public int getRadius() {
-		return this.dataTracker.get(DATA_ID_RADIUS);
-	}
-
-	public void setRadius(int value) {
-		this.dataTracker.set(DATA_ID_RADIUS, value);
+	public void setRadius(short radius) {
+		this.radius = radius;
 	}
 
 	@Override
 	protected double getGravity() {
 		return 0.05;
 	}
+
+	@Override
+	protected void initDataTracker(DataTracker.Builder builder) {}
 
 	@Override
 	public void tick() {
@@ -54,11 +51,6 @@ public class GumdropEntity extends ThrownEntity {
 	}
 
 	@Override
-	protected void initDataTracker(DataTracker.Builder builder) {
-		builder.add(DATA_ID_RADIUS, 0);
-	}
-
-	@Override
 	protected void onBlockCollision(BlockState state) {
 		super.onBlockCollision(state);
 		if(state.isOf(ModBlocks.FLOWER_BLOCK) && this.getWorld().getBlockState(this.getBlockPos()).isOf(ModBlocks.FLOWER_BLOCK) && this.getWorld() instanceof ServerWorld serverWorld) {
@@ -67,18 +59,18 @@ public class GumdropEntity extends ThrownEntity {
 			int z = this.getBlockZ();
 			List<BlockPos> corners = new ArrayList<>();
 
-			switch(this.getRadius()) {
+			switch(this.radius) {
 				case 9:
 					BlockPos.iterate(new BlockPos(x - 1, y, z - 1), new BlockPos(x + 1, y, z + 1)).forEach(blockPos -> {
 						if(serverWorld.getBlockEntity(blockPos) instanceof FlowerBlockEntity flowerBlockEntity) {
-							flowerBlockEntity.addGoo(new GooObject(this.getRadius(), 1f, null));
+							flowerBlockEntity.addGoo(new GooObject(this.radius, 1f, null));
 						}
 					});
 					break;
 				case 13:
 					BlockPos.iterate(new BlockPos(x - 1, y, z - 1), new BlockPos(x + 1, y, z + 1)).forEach(blockPos -> {
 						if(serverWorld.getBlockEntity(blockPos) instanceof FlowerBlockEntity flowerBlockEntity) {
-							flowerBlockEntity.addGoo(new GooObject(this.getRadius(), 1f, null));
+							flowerBlockEntity.addGoo(new GooObject(this.radius, 1f, null));
 						}
 					});
 					corners.addAll(Arrays.asList(new BlockPos(x - 2, y, z), new BlockPos(x + 2, y, z), new BlockPos(x, y, z - 2), new BlockPos(x, y, z + 2)));
@@ -86,7 +78,7 @@ public class GumdropEntity extends ThrownEntity {
 				case 29:
 					BlockPos.iterate(new BlockPos(x - 2, y, z - 2), new BlockPos(x + 2, y, z + 2)).forEach(blockPos -> {
 						if(serverWorld.getBlockEntity(blockPos) instanceof FlowerBlockEntity flowerBlockEntity) {
-							flowerBlockEntity.addGoo(new GooObject(this.getRadius(), 1f, null));
+							flowerBlockEntity.addGoo(new GooObject(this.radius, 1f, null));
 						}
 					});
 					corners.addAll(Arrays.asList(new BlockPos(x - 3, y, z), new BlockPos(x + 3, y, z), new BlockPos(x, y, z - 3), new BlockPos(x, y, z + 3)));
@@ -97,7 +89,7 @@ public class GumdropEntity extends ThrownEntity {
 
 			corners.forEach(blockPos -> {
 				if(serverWorld.getBlockEntity(blockPos) instanceof FlowerBlockEntity flowerBlockEntity) {
-					flowerBlockEntity.addGoo(new GooObject(this.getRadius(), 1f, null));
+					flowerBlockEntity.addGoo(new GooObject(this.radius, 1f, null));
 				}
 			});
 
@@ -111,8 +103,8 @@ public class GumdropEntity extends ThrownEntity {
 	protected void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
 		nbt.putShort("life", this.life);
-		if(this.getRadius() > 0) {
-			nbt.putInt("Radius", this.getRadius());
+		if(this.radius > 0) {
+			nbt.putShort("Radius", this.radius);
 		}
 	}
 
@@ -120,8 +112,8 @@ public class GumdropEntity extends ThrownEntity {
 	protected void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
 		this.life = nbt.getShort("life");
-		if(nbt.contains("Radius") && nbt.getInt("Radius") > 0) {
-			this.setRadius(nbt.getInt("Radius"));
+		if(nbt.contains("Radius") && nbt.getShort("Radius") > 0) {
+			this.radius = nbt.getShort("Radius");
 		}
 	}
 }

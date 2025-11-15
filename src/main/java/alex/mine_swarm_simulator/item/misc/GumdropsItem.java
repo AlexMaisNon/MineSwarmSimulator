@@ -57,11 +57,11 @@ public class GumdropsItem extends Item {
 					GumdropEntity gumdrop = new GumdropEntity(ModEntities.GUMDROP, world);
 					gumdrop.setPosition(positions[index].toCenterPos());
 					if(n < 0.26) {
-						gumdrop.setRadius(9);
+						gumdrop.setRadius((short)9);
 					} else if(n < 0.74) {
-						gumdrop.setRadius(13);
+						gumdrop.setRadius((short)13);
 					} else {
-						gumdrop.setRadius(29);
+						gumdrop.setRadius((short)29);
 					}
 					world.spawnEntity(gumdrop);
 					try {

@@ -12,12 +12,12 @@ public class ServerEntityLoadHandler implements ServerEntityEvents.Load {
 
 	@Override
 	public void onLoad(Entity entity, ServerWorld serverWorld) {
-		if(entity instanceof PlayerEntity) {
+		if(entity instanceof PlayerEntity playerEntity) {
 			// Modifies default generic attributes
 			// 0.11582 movement_speed = 20 Movespeed <=> 0.00579 movement_speed = 1 Movespeed
-			Objects.requireNonNull(((PlayerEntity) entity).getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)).setBaseValue(0.11582d);
+			Objects.requireNonNull(playerEntity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)).setBaseValue(0.11582d);
 			// +0.177 jump_strength = +22 Jump Power <=> 0.00805 jump_strength = +1 Jump Power
-			Objects.requireNonNull(((PlayerEntity) entity).getAttributeInstance(EntityAttributes.GENERIC_JUMP_STRENGTH)).setBaseValue(0.627d);
+			Objects.requireNonNull(playerEntity.getAttributeInstance(EntityAttributes.GENERIC_JUMP_STRENGTH)).setBaseValue(0.627d);
 		}
 	}
 }

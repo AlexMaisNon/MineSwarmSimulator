@@ -54,20 +54,11 @@ public class FollowAroundOwnerGoal extends FollowOwnerGoal {
 
 	@Override
 	public void tick() {
-		boolean bl = this.tameable.shouldTryTeleportToOwner();
-		if (!bl) {
-			this.tameable.getLookControl().lookAt(this.owner, 10.0F, (float)this.tameable.getMaxLookPitchChange());
-		}
+		BlockPos ownerPos = this.owner.getBlockPos().add(this.xOffset, 0, this.zOffset);
 
 		if (--this.updateCountdownTicks <= 0) {
 			this.updateCountdownTicks = this.getTickCount(10);
-			if (bl) {
-				this.tameable.tryTeleportToOwner();
-			} else {
-				BlockPos ownerPos = this.owner.getBlockPos().add(this.xOffset, 0, this.zOffset);
-
-				this.navigation.startMovingTo(ownerPos.getX(), ownerPos.getY(), ownerPos.getZ(), this.speed);
-			}
+			this.navigation.startMovingTo(ownerPos.getX(), ownerPos.getY(), ownerPos.getZ(), this.speed);
 		}
 	}
 }

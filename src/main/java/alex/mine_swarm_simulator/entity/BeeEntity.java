@@ -53,10 +53,10 @@ public class BeeEntity extends TameableEntity {
 	@Override
 	protected void initDataTracker(DataTracker.Builder builder) {
 		super.initDataTracker(builder);
-		builder.add(BEE_TYPE_ID, (byte)38);
-		builder.add(GIFTED, true);
-		builder.add(LEVEL, (byte)25);
-		builder.add(ENERGY, 50f);
+		builder.add(BEE_TYPE_ID, (byte)0);
+		builder.add(GIFTED, false);
+		builder.add(LEVEL, (byte)0);
+		builder.add(ENERGY, 0f);
 	}
 
 	public BeeType getBeeType() {
@@ -124,9 +124,8 @@ public class BeeEntity extends TameableEntity {
 	}
 
 	private void updateMovespeed() {
-		MineSwarmSimulator.LOGGER.info("UPDATED MOVESPEED");
 		this.getAttributeInstance(EntityAttributes.GENERIC_FLYING_SPEED).clearModifiers();
-		this.getAttributeInstance(EntityAttributes.GENERIC_FLYING_SPEED).setBaseValue(this.getBeeType().getSpeed() * 0.00579d);
+		this.getAttributeInstance(EntityAttributes.GENERIC_FLYING_SPEED).setBaseValue(this.getBeeType().getSpeed() * 0.012777d);
 		this.getAttributeInstance(EntityAttributes.GENERIC_FLYING_SPEED).addPersistentModifier(new EntityAttributeModifier(Identifier.of(MineSwarmSimulator.MOD_ID, "bee_level"), 0.03d * (this.getLevel() - 1), EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 		if(this.getOwner() != null) {
 			this.getAttributeInstance(EntityAttributes.GENERIC_FLYING_SPEED).addPersistentModifier(new EntityAttributeModifier(Identifier.of(MineSwarmSimulator.MOD_ID, "bee_movespeed"), this.getOwner().getAttributeInstance(ModAttributes.PLAYER_BEE_MOVESPEED).getValue() - 1, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));

@@ -6,8 +6,6 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 
-import java.util.Objects;
-
 public class ServerEntityLoadHandler implements ServerEntityEvents.Load {
 
 	@Override
@@ -15,9 +13,9 @@ public class ServerEntityLoadHandler implements ServerEntityEvents.Load {
 		if(entity instanceof PlayerEntity playerEntity) {
 			// Modifies default generic attributes
 			// 0.11582 movement_speed = 20 Movespeed <=> 0.00579 movement_speed = 1 Movespeed
-			Objects.requireNonNull(playerEntity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)).setBaseValue(0.11582d);
+			playerEntity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).setBaseValue(0.11582d);
 			// +0.177 jump_strength = +22 Jump Power <=> 0.00805 jump_strength = +1 Jump Power
-			Objects.requireNonNull(playerEntity.getAttributeInstance(EntityAttributes.GENERIC_JUMP_STRENGTH)).setBaseValue(0.627d);
+			playerEntity.getAttributeInstance(EntityAttributes.GENERIC_JUMP_STRENGTH).setBaseValue(0.627d);
 		}
 	}
 }

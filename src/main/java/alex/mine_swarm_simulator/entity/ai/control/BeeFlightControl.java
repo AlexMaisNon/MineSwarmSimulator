@@ -1,6 +1,5 @@
 package alex.mine_swarm_simulator.entity.ai.control;
 
-import alex.mine_swarm_simulator.MineSwarmSimulator;
 import net.minecraft.entity.ai.control.MoveControl;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MobEntity;

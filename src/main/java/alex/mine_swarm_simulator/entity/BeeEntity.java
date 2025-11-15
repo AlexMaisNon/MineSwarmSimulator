@@ -43,7 +43,7 @@ public class BeeEntity extends TameableEntity {
 	@Override
 	protected void initGoals() {
 		this.goalSelector.add(0, new WanderAroundOwnerGoal(this, 1d));
-		this.goalSelector.add(1, new FollowAroundOwnerGoal(this, 1d, 4, Integer.MAX_VALUE));
+		this.goalSelector.add(1, new FollowAroundOwnerGoal(this, 1.5d, 4, Integer.MAX_VALUE));
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class BeeEntity extends TameableEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createBeeAttributes() {
-		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0).add(EntityAttributes.GENERIC_FLYING_SPEED, 0.2).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30000001192092896).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 48.0);
+		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0).add(EntityAttributes.GENERIC_FLYING_SPEED, 0.2).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 48.0);
 	}
 
 	public boolean isClimbing() {

@@ -23,7 +23,10 @@ public class BeeNavigation extends BirdNavigation {
 		if (!this.isIdle() && this.currentPath != null) {
 			DebugInfoSender.sendPathfindingData(this.world, this.entity, this.currentPath, this.nodeReachProximity);
 			BlockPos blockPos = this.currentPath.getTarget();
+
+			this.entity.getLookControl().lookAt(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 10.0F, this.entity.getMaxLookPitchChange());
 			this.entity.getMoveControl().moveTo(blockPos.getX() + 0.5f, blockPos.getY(), blockPos.getZ() + 0.5f, this.speed);
+
 			if(this.entity.getBlockPos().equals(this.currentPath.getTarget())) {
 				this.stop();
 			}

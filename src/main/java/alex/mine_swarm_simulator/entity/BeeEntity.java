@@ -45,7 +45,7 @@ public class BeeEntity extends TameableEntity {
 
 	@Nullable private BlockPos hivePos;
 
-	protected BeeEntity(EntityType<? extends BeeEntity> entityType, World world) {
+	public BeeEntity(EntityType<? extends BeeEntity> entityType, World world) {
 		super(entityType, world);
 		this.moveControl = new BeeFlightControl(this);
 		this.setNoGravity(true);
@@ -142,6 +142,12 @@ public class BeeEntity extends TameableEntity {
 		this.getAttributeInstance(EntityAttributes.GENERIC_FLYING_SPEED).addPersistentModifier(new EntityAttributeModifier(Identifier.of(MineSwarmSimulator.MOD_ID, "bee_level"), 0.03d * (this.getLevel() - 1), EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 		if(this.getOwner() != null) {
 			this.getAttributeInstance(EntityAttributes.GENERIC_FLYING_SPEED).addPersistentModifier(new EntityAttributeModifier(Identifier.of(MineSwarmSimulator.MOD_ID, "bee_movespeed"), this.getOwner().getAttributeInstance(ModAttributes.PLAYER_BEE_MOVESPEED).getValue() - 1, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+		}
+	}
+
+	public void updateEnergy() {
+		if(this.getOwner() != null) {
+			this.setEnergy(this.getBeeType().getEnergy() * (1f + 0.05f * (this.getLevel() - 1f)) * (float) this.getOwner().getAttributeValue(ModAttributes.PLAYER_MAX_BEE_ENERGY));
 		}
 	}
 

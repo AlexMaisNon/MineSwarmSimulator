@@ -97,13 +97,10 @@ public class FlowerBlockEntity extends BlockEntity {
 			gooObjects.add(nbtObject);
 		});
 		nbt.put("goo", gooObjects);
-
-		super.writeNbt(nbt, registryLookup);
 	}
 
 	@Override
 	protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-		super.readNbt(nbt, registryLookup);
 		this.pollen = nbt.getByte("pollen");
 		this.maxPollen = nbt.getByte("max_pollen");
 

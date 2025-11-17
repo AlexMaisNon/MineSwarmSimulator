@@ -4,8 +4,10 @@ import alex.mine_swarm_simulator.MineSwarmSimulator;
 import alex.mine_swarm_simulator.attributes.ModAttributes;
 import alex.mine_swarm_simulator.entity.ai.control.BeeFlightControl;
 import alex.mine_swarm_simulator.entity.ai.goal.FollowAroundOwnerGoal;
+import alex.mine_swarm_simulator.entity.ai.goal.ReturnToHiveGoal;
 import alex.mine_swarm_simulator.entity.ai.goal.WanderAroundOwnerGoal;
 import alex.mine_swarm_simulator.entity.ai.pathing.BeeNavigation;
+import alex.mine_swarm_simulator.util.BeeType;
 import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
@@ -95,6 +97,14 @@ public class BeeEntity extends TameableEntity {
 		this.dataTracker.set(ENERGY, value);
 	}
 
+	public @Nullable BlockPos getHivePos() {
+		return hivePos;
+	}
+
+	public void setHivePos(@Nullable BlockPos hivePos) {
+		this.hivePos = hivePos;
+	}
+
 	@Override
 	public void onTrackedDataSet(TrackedData<?> data) {
 		super.onTrackedDataSet(data);
@@ -103,8 +113,9 @@ public class BeeEntity extends TameableEntity {
 
 	@Override
 	protected void initGoals() {
-		this.goalSelector.add(0, new WanderAroundOwnerGoal(this, 1d));
-		this.goalSelector.add(1, new FollowAroundOwnerGoal(this, 1.5d, 4, Integer.MAX_VALUE));
+		this.goalSelector.add(0, new ReturnToHiveGoal(this));
+		this.goalSelector.add(1, new WanderAroundOwnerGoal(this, 1d));
+		this.goalSelector.add(2, new FollowAroundOwnerGoal(this, 4));
 	}
 
 	@Override
@@ -125,7 +136,9 @@ public class BeeEntity extends TameableEntity {
 
 	private void updateMovespeed() {
 		this.getAttributeInstance(EntityAttributes.GENERIC_FLYING_SPEED).clearModifiers();
-		this.getAttributeInstance(EntityAttributes.GENERIC_FLYING_SPEED).setBaseValue(this.getBeeType().getSpeed() * 0.012777d);
+
+		// 0.23493 flying_speed = 14.84 Bee Movespeed <=> 0.01583 flying_speed = 1 Bee Movespeed
+		this.getAttributeInstance(EntityAttributes.GENERIC_FLYING_SPEED).setBaseValue(this.getBeeType().getSpeed() * 0.01583d);
 		this.getAttributeInstance(EntityAttributes.GENERIC_FLYING_SPEED).addPersistentModifier(new EntityAttributeModifier(Identifier.of(MineSwarmSimulator.MOD_ID, "bee_level"), 0.03d * (this.getLevel() - 1), EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 		if(this.getOwner() != null) {
 			this.getAttributeInstance(EntityAttributes.GENERIC_FLYING_SPEED).addPersistentModifier(new EntityAttributeModifier(Identifier.of(MineSwarmSimulator.MOD_ID, "bee_movespeed"), this.getOwner().getAttributeInstance(ModAttributes.PLAYER_BEE_MOVESPEED).getValue() - 1, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));

@@ -2,7 +2,7 @@ package alex.mine_swarm_simulator.entity.client;
 
 import alex.mine_swarm_simulator.MineSwarmSimulator;
 import alex.mine_swarm_simulator.entity.BeeEntity;
-import alex.mine_swarm_simulator.entity.BeeType;
+import alex.mine_swarm_simulator.util.BeeType;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;

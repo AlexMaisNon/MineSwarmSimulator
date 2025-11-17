@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class WanderAroundOwnerGoal extends WanderAroundGoal {
 	private final TameableEntity tameable;
-	private LivingEntity owner;
+	@Nullable private LivingEntity owner;
 	private long cooldown = 0L;
 
 	public WanderAroundOwnerGoal(TameableEntity tameable, double speed) {
@@ -21,16 +21,10 @@ public class WanderAroundOwnerGoal extends WanderAroundGoal {
 	@Nullable
 	@Override
 	protected Vec3d getWanderTarget() {
-		if(this.tameable.getOwner() != null) {
-			this.owner = this.tameable.getOwner();
-
-			// 6 "squared" blocks = 36
-			if(this.tameable.squaredDistanceTo(this.owner) < 36f) {
-				Random random = new Random();
-				int xOffset = random.nextInt(-3, 4);
-				int zOffset = random.nextInt(-3, 4);
-
-				return this.owner.getBlockPos().add(xOffset, 0, zOffset).toCenterPos();
+		this.owner = this.tameable.getOwner();
+		if(this.owner != null) {
+			if(this.tameable.squaredDistanceTo(this.owner) < 36) {
+				return this.owner.getBlockPos().toCenterPos();
 			}
 		}
 		return null;
@@ -45,9 +39,13 @@ public class WanderAroundOwnerGoal extends WanderAroundGoal {
 			if (vec3d == null || this.cooldown - this.tameable.getWorld().getTime() > 0f) {
 				return false;
 			} else {
-				this.targetX = vec3d.x;
+				Random random = new Random();
+				int xOffset = random.nextInt(-3, 4);
+				int zOffset = random.nextInt(-3, 4);
+
+				this.targetX = vec3d.x + xOffset;
 				this.targetY = vec3d.y;
-				this.targetZ = vec3d.z;
+				this.targetZ = vec3d.z + zOffset;
 
 				return true;
 			}
@@ -58,7 +56,7 @@ public class WanderAroundOwnerGoal extends WanderAroundGoal {
 	public boolean shouldContinue() {
 		boolean should = super.shouldContinue();
 		if(!should) {
-			this.cooldown = this.tameable.getWorld().getTime() + new Random().nextInt(60, 70);
+			this.cooldown = this.tameable.getWorld().getTime() + new Random().nextInt(49, 55);
 		}
 		return should;
 	}

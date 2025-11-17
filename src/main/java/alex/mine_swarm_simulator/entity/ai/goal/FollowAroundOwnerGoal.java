@@ -1,6 +1,5 @@
 package alex.mine_swarm_simulator.entity.ai.goal;
 
-import alex.mine_swarm_simulator.MineSwarmSimulator;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.FollowOwnerGoal;
 import net.minecraft.entity.ai.pathing.EntityNavigation;
@@ -12,22 +11,19 @@ import java.util.Random;
 public class FollowAroundOwnerGoal extends FollowOwnerGoal {
 	private final TameableEntity tameable;
 	private LivingEntity owner;
-	private final double speed;
-	private final float minDistance;
 
 	private final EntityNavigation navigation;
 	private int updateCountdownTicks;
 
 	private final Random random;
-	private int xOffset = 0;
-	private int zOffset = 0;
+	private int xOffset;
+	private int zOffset;
+	private boolean fastMode = false;
 
-	public FollowAroundOwnerGoal(TameableEntity tameable, double speed, float minDistance, float maxDistance) {
-		super(tameable, speed, minDistance, maxDistance);
+	public FollowAroundOwnerGoal(TameableEntity tameable, float minDistance) {
+		super(tameable, 1d, minDistance, Integer.MAX_VALUE);
 		this.tameable = tameable;
 		this.navigation = tameable.getNavigation();
-		this.speed = speed;
-		this.minDistance = minDistance;
 
 		this.random = new Random();
 		this.xOffset = random.nextInt(-3, 4);
@@ -56,9 +52,15 @@ public class FollowAroundOwnerGoal extends FollowOwnerGoal {
 	public void tick() {
 		BlockPos ownerPos = this.owner.getBlockPos().add(this.xOffset, 0, this.zOffset);
 
+		if(!fastMode) {
+			fastMode = this.tameable.squaredDistanceTo(this.owner) > 361;
+		} else {
+			fastMode = this.tameable.squaredDistanceTo(this.owner) >= 64;
+		}
+
 		if (--this.updateCountdownTicks <= 0) {
 			this.updateCountdownTicks = this.getTickCount(10);
-			this.navigation.startMovingTo(ownerPos.getX(), ownerPos.getY(), ownerPos.getZ(), this.speed);
+			this.navigation.startMovingTo(ownerPos.getX(), ownerPos.getY(), ownerPos.getZ(), fastMode ? 2 : 1);
 		}
 	}
 }

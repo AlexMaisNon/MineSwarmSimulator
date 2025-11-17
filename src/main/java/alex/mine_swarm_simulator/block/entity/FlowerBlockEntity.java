@@ -1,13 +1,11 @@
 package alex.mine_swarm_simulator.block.entity;
 
-import alex.mine_swarm_simulator.MineSwarmSimulator;
 import alex.mine_swarm_simulator.block.ModBlockEntities;
 import alex.mine_swarm_simulator.block.custom.FlowerBlock;
 import alex.mine_swarm_simulator.util.GooObject;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.math.BlockPos;

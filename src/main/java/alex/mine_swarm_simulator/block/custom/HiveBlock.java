@@ -1,14 +1,23 @@
 package alex.mine_swarm_simulator.block.custom;
 
+import alex.mine_swarm_simulator.MineSwarmSimulator;
+import alex.mine_swarm_simulator.block.ModBlockEntities;
+import alex.mine_swarm_simulator.block.entity.FlowerBlockEntity;
+import alex.mine_swarm_simulator.block.entity.HiveBlockEntity;
+import alex.mine_swarm_simulator.entity.BeeEntity;
+import alex.mine_swarm_simulator.entity.ModEntities;
 import alex.mine_swarm_simulator.item.ModItems;
 import alex.mine_swarm_simulator.util.BeeType;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -23,13 +32,14 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class HiveBlock extends Block {
-	private static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
-	private static final BooleanProperty GIFTED = BooleanProperty.of("gifted");
-	private static final IntProperty BEE_ID = IntProperty.of("bee_id", 0, 46);
+public class HiveBlock extends BlockWithEntity {
+	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
+	public static final BooleanProperty GIFTED = BooleanProperty.of("gifted");
+	public static final IntProperty BEE_ID = IntProperty.of("bee_id", 0, 46);
 
 	private static final Map<Item, float[]> chances = new HashMap<>() {{
 		put(ModItems.BASIC_EGG, new float[]{0.87f, 0.1f, 0.025f, 0.005f, 0f});
@@ -77,6 +87,22 @@ public class HiveBlock extends Block {
 	}
 
 	@Override
+	protected MapCodec<? extends BlockWithEntity> getCodec() {
+		return createCodec(HiveBlock::new);
+	}
+
+	@Nullable
+	@Override
+	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+		return ModBlockEntities.HIVE_BLOCK_ENTITY.instantiate(pos, state);
+	}
+
+	@Override
+	protected BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.MODEL;
+	}
+
+	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		return super.getPlacementState(ctx).with(Properties.HORIZONTAL_FACING, ctx.getHorizontalPlayerFacing().getOpposite());
 	}
@@ -89,21 +115,28 @@ public class HiveBlock extends Block {
 	@Override
 	protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if(!world.isClient()) {
+			int selectedBee = -1;
+			boolean isGifted = false;
+
 			Random random = new Random();
 
 			if(stack.isOf(ModItems.EVICTION) && state.get(BEE_ID) > 0) {
-				world.setBlockState(pos, state.with(BEE_ID, 0).with(GIFTED, false));
+				HiveBlockEntity hiveBlockEntity = (HiveBlockEntity)world.getBlockEntity(pos);
+
+				if(world instanceof ServerWorld serverWorld && serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
+					beeEntity.kill();
+				}
 
 				if (!player.isInCreativeMode()) {
 					stack.decrement(1);
 				}
 
 			} else if(stack.isOf(ModItems.STAR_EGG)) {
-				int selectedBee = random.nextInt(0, 35);
+				selectedBee = random.nextInt(0, 35);
 				BeeType beeType = BeeType.byId((byte)(selectedBee));
 
 				player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.hatched", "gifted" + "_" + beeType.getName(), beeType.getRarity()).formatted(typeColors.get(beeType.getRarity())));
-				world.setBlockState(pos, state.with(BEE_ID, selectedBee + 1).with(GIFTED, true));
+				isGifted = true;
 
 				if (!player.isInCreativeMode()) {
 					stack.decrement(1);
@@ -119,8 +152,8 @@ public class HiveBlock extends Block {
 					}
 
 					int[] selectedBees = bees[typeId];
-					int selectedBee = selectedBees[random.nextInt(selectedBees.length)];
-					boolean isGifted = random.nextFloat() < 0.004 || Arrays.stream(giftedItems).anyMatch(item -> item == stack.getItem());
+					selectedBee = selectedBees[random.nextInt(selectedBees.length)];
+					isGifted = random.nextFloat() < 0.004 || Arrays.stream(giftedItems).anyMatch(item -> item == stack.getItem());
 
 					BeeType beeType = BeeType.byId((byte)(selectedBee));
 					String beeName = isGifted ? "gifted" + "_" + beeType.getName() : beeType.getName();
@@ -131,14 +164,44 @@ public class HiveBlock extends Block {
 						player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.hatched", beeName, beeType.getRarity()).formatted(typeColors.get(beeType.getRarity())));
 					}
 
-					world.setBlockState(pos, state.with(BEE_ID, selectedBee + 1).with(GIFTED, isGifted));
-
 					if (!player.isInCreativeMode()) {
 						stack.decrement(1);
 					}
 				}
 			}
+
+			if(selectedBee >= 0) {
+				HiveBlockEntity hiveBlockEntity = (HiveBlockEntity)world.getBlockEntity(pos);
+
+				if(world instanceof ServerWorld serverWorld) {
+					byte level = 1;
+					if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity oldBeeEntity) {
+						level = oldBeeEntity.getLevel();
+						oldBeeEntity.kill();
+					}
+
+					BeeEntity beeEntity = new BeeEntity(ModEntities.BEE, world);
+
+					beeEntity.setPosition(pos.toCenterPos().add(0, -0.5d, 0));
+					beeEntity.setBeeTypeId((byte)selectedBee);
+					beeEntity.setGifted(isGifted);
+					beeEntity.setLevel(level);
+					beeEntity.setHivePos(pos);
+					beeEntity.setOwner(player);
+
+					beeEntity.updateEnergy();
+
+					world.spawnEntity(beeEntity);
+					hiveBlockEntity.setBeeUUID(beeEntity.getUuid());
+				}
+			}
 		}
 		return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
+	}
+
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+		return validateTicker(type, ModBlockEntities.HIVE_BLOCK_ENTITY, HiveBlockEntity::tick);
 	}
 }

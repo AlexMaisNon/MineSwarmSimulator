@@ -32,7 +32,7 @@ public class ReturnToHiveGoal extends Goal {
 
 		if(start) {
 			this.ownerDied = this.owner.isDead();
-			this.resetEnergy = this.bee.getEnergy() <= 0;
+			this.resetEnergy = this.bee.getEnergy() == 0;
 
 			start = this.ownerDied || this.resetEnergy;
 		}
@@ -60,7 +60,7 @@ public class ReturnToHiveGoal extends Goal {
 		this.ownerDied = false;
 
 		if(this.resetEnergy) {
-			this.bee.setEnergy(this.bee.getBeeType().getEnergy() * (1f + 0.05f * (this.bee.getLevel() - 1f)) * (float)this.owner.getAttributeValue(ModAttributes.PLAYER_MAX_BEE_ENERGY));
+			this.bee.updateEnergy();
 		}
 
 		this.resetEnergy = false;

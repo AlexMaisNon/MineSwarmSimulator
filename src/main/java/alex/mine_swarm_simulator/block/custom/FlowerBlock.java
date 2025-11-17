@@ -76,7 +76,7 @@ public class FlowerBlock extends BlockWithEntity {
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new FlowerBlockEntity(pos, state);
+		return ModBlockEntities.FLOWER_BLOCK_ENTITY.instantiate(pos, state);
 	}
 
 	@Nullable

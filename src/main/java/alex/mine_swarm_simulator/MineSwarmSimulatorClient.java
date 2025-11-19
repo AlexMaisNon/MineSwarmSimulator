@@ -1,5 +1,7 @@
 package alex.mine_swarm_simulator;
 
+import alex.mine_swarm_simulator.block.ModBlockEntities;
+import alex.mine_swarm_simulator.block.client.HiveBlockEntityRenderer;
 import alex.mine_swarm_simulator.block.custom.FlowerBlock;
 import alex.mine_swarm_simulator.entity.ModEntities;
 import alex.mine_swarm_simulator.entity.client.BeeEntityModel;
@@ -24,6 +26,7 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.util.RawTextureDataLoader;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -80,6 +83,8 @@ public class MineSwarmSimulatorClient implements ClientModInitializer {
 
 		EntityRendererRegistry.register(ModEntities.BEE, BeeEntityRenderer::new);
 		EntityModelLayerRegistry.registerModelLayer(BeeEntityModel.BEE_MODEL_LAYER, BeeEntityModel::getTexturedModelData);
+
+		BlockEntityRendererFactories.register(ModBlockEntities.HIVE_BLOCK_ENTITY, HiveBlockEntityRenderer::new);
 	}
 
 	private void registerArmorRenderer() {

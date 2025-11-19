@@ -1,12 +1,11 @@
 package alex.mine_swarm_simulator.block.custom;
 
-import alex.mine_swarm_simulator.MineSwarmSimulator;
 import alex.mine_swarm_simulator.block.ModBlockEntities;
-import alex.mine_swarm_simulator.block.entity.FlowerBlockEntity;
 import alex.mine_swarm_simulator.block.entity.HiveBlockEntity;
 import alex.mine_swarm_simulator.entity.BeeEntity;
 import alex.mine_swarm_simulator.entity.ModEntities;
 import alex.mine_swarm_simulator.item.ModItems;
+import alex.mine_swarm_simulator.item.misc.BeequipItem;
 import alex.mine_swarm_simulator.util.BeeType;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
@@ -168,12 +167,29 @@ public class HiveBlock extends BlockWithEntity {
 						stack.decrement(1);
 					}
 				}
+			} else if(stack.getItem() instanceof BeequipItem) {
+				if(world instanceof ServerWorld serverWorld && world.getBlockEntity(pos) instanceof HiveBlockEntity hiveBlockEntity) {
+					if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
+						beeEntity.setBeequip(stack.copy());
+
+						player.giveItemStack(hiveBlockEntity.getBeeBeequip());
+						hiveBlockEntity.setBeeBeequip(beeEntity.getBeequip());
+
+						stack.decrement(1);
+					}
+				}
+			} else if(stack.isOf(ModItems.BEEQUIP_CASE)) {
+				if(world instanceof ServerWorld serverWorld && world.getBlockEntity(pos) instanceof HiveBlockEntity hiveBlockEntity) {
+					if (serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
+						player.giveItemStack(beeEntity.getBeequip());
+						beeEntity.setBeequip(ItemStack.EMPTY);
+						hiveBlockEntity.setBeeBeequip(ItemStack.EMPTY);
+					}
+				}
 			}
 
 			if(selectedBee >= 0) {
-				HiveBlockEntity hiveBlockEntity = (HiveBlockEntity)world.getBlockEntity(pos);
-
-				if(world instanceof ServerWorld serverWorld) {
+				if(world instanceof ServerWorld serverWorld && world.getBlockEntity(pos) instanceof HiveBlockEntity hiveBlockEntity) {
 					byte level = 1;
 					if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity oldBeeEntity) {
 						level = oldBeeEntity.getLevel();

@@ -2,6 +2,7 @@ package alex.mine_swarm_simulator.entity;
 
 import alex.mine_swarm_simulator.MineSwarmSimulator;
 import alex.mine_swarm_simulator.attributes.ModAttributes;
+import alex.mine_swarm_simulator.block.entity.HiveBlockEntity;
 import alex.mine_swarm_simulator.entity.ai.control.BeeFlightControl;
 import alex.mine_swarm_simulator.entity.ai.goal.FollowAroundOwnerGoal;
 import alex.mine_swarm_simulator.entity.ai.goal.ReturnToHiveGoal;
@@ -42,6 +43,7 @@ public class BeeEntity extends TameableEntity {
 	private static final TrackedData<Boolean> GIFTED = DataTracker.registerData(BeeEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 	private static final TrackedData<Byte> LEVEL = DataTracker.registerData(BeeEntity.class, TrackedDataHandlerRegistry.BYTE);
 	private static final TrackedData<Float> ENERGY = DataTracker.registerData(BeeEntity.class, TrackedDataHandlerRegistry.FLOAT);
+	private static final TrackedData<ItemStack> BEEQUIP = DataTracker.registerData(BeeEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
 
 	@Nullable private BlockPos hivePos;
 
@@ -59,6 +61,7 @@ public class BeeEntity extends TameableEntity {
 		builder.add(GIFTED, false);
 		builder.add(LEVEL, (byte)0);
 		builder.add(ENERGY, 0f);
+		builder.add(BEEQUIP, ItemStack.EMPTY);
 	}
 
 	public BeeType getBeeType() {
@@ -93,6 +96,10 @@ public class BeeEntity extends TameableEntity {
 		return this.dataTracker.get(ENERGY);
 	}
 
+	public ItemStack getBeequip() {
+		return this.dataTracker.get(BEEQUIP);
+	}
+
 	public void setEnergy(float value) {
 		this.dataTracker.set(ENERGY, value);
 	}
@@ -103,6 +110,10 @@ public class BeeEntity extends TameableEntity {
 
 	public void setHivePos(@Nullable BlockPos hivePos) {
 		this.hivePos = hivePos;
+	}
+
+	public void setBeequip(ItemStack value) {
+		this.dataTracker.set(BEEQUIP, value);
 	}
 
 	@Override
@@ -157,6 +168,10 @@ public class BeeEntity extends TameableEntity {
 
 		if(this.getWorld().isClient()) {
 			this.updateAnimations();
+		} else {
+			if(this.hivePos != null && !(this.getWorld().getBlockEntity(this.hivePos) instanceof HiveBlockEntity)) {
+				this.hivePos = null;
+			}
 		}
 	}
 
@@ -202,6 +217,7 @@ public class BeeEntity extends TameableEntity {
 		this.setGifted(nbt.getBoolean("Gifted"));
 		this.setLevel(nbt.getByte("Level"));
 		this.setEnergy(nbt.getFloat("Energy"));
+		this.setBeequip(ItemStack.fromNbtOrEmpty(this.getRegistryManager(), nbt.getCompound("Beequip")));
 
 		this.hivePos = NbtHelper.toBlockPos(nbt, "hive").orElse(null);
 	}
@@ -209,10 +225,17 @@ public class BeeEntity extends TameableEntity {
 	@Override
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
+
 		nbt.putByte("Type", this.getBeeTypeId());
 		nbt.putBoolean("Gifted", this.getGifted());
 		nbt.putByte("Level", this.getLevel());
 		nbt.putFloat("Energy", this.getEnergy());
+
+		if(!this.getBeequip().isEmpty()) {
+			NbtCompound itemCompound = new NbtCompound();
+			nbt.put("Beequip", this.getBeequip().encode(this.getRegistryManager(), itemCompound));
+		}
+
 		if(this.hivePos != null) {
 			nbt.put("hive", NbtHelper.fromBlockPos(this.hivePos));
 		}

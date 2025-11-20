@@ -3,6 +3,8 @@ The bee swarm minecraft mod
 
 WARNING: This branch will not be updated until the 1.21.1 version is released.
 
+DISCLAIMER: This repo is the only official place where you can download this mod.
+
 ## Current state of the mod
 The mod is currently in pre-pre-pre-pre-pre alpha,
 so don't expect a full release until at least a few months.

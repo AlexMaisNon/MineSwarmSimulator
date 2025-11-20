@@ -23,14 +23,14 @@ public record InventoryComponent(List<Item> items, int size) {
 		return inventory;
 	}
 
-	public InventoryComponent syncInventory(Inventory inventory) {
+	public static InventoryComponent ofInventory(Inventory inventory) {
 		List<Item> itemList = new ArrayList<>();
 		for(int i = 0; i < inventory.size(); i++) {
 			if(!inventory.getStack(i).isEmpty()) {
 				itemList.add(new Item(inventory.getStack(i), i));
 			}
 		}
-		return new InventoryComponent(itemList, this.size);
+		return new InventoryComponent(itemList, inventory.size());
 	}
 
 	public record Item(ItemStack stack, int slot) {

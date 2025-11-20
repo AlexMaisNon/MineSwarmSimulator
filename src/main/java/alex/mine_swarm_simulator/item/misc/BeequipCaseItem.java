@@ -1,5 +1,6 @@
 package alex.mine_swarm_simulator.item.misc;
 
+import alex.mine_swarm_simulator.block.ModBlocks;
 import alex.mine_swarm_simulator.screens.handlers.BeequipCaseScreenHandler;
 import alex.mine_swarm_simulator.component.InventoryComponent;
 import alex.mine_swarm_simulator.component.ModComponents;
@@ -9,11 +10,15 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -26,9 +31,21 @@ public class BeequipCaseItem extends Item implements ExtendedScreenHandlerFactor
 
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		// open the beequip case inventory screen
-		user.openHandledScreen(this);
+		// InventoryComponent oldComponent = user.getStackInHand(hand).get(ModComponents.INVENTORY_COMPONENT);
+		// user.getStackInHand(hand).set(ModComponents.INVENTORY_COMPONENT, new InventoryComponent(oldComponent.items(), oldComponent.size() + 1));
+
+		// Opens the beequip case inventory screen only if not looking at a hive slot
+		BlockHitResult hitResult = (BlockHitResult)user.raycast(5, 0, false);
+		if(!world.getBlockState(hitResult.getBlockPos()).isOf(ModBlocks.HIVE_SLOT)) {
+			user.openHandledScreen(this);
+		}
 		return super.use(world, user, hand);
+	}
+
+	@Override
+	public ActionResult useOnBlock(ItemUsageContext context) {
+		if(!context.getWorld().getBlockState(context.getBlockPos()).isOf(ModBlocks.HIVE_SLOT)) {}
+		return super.useOnBlock(context);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package alex.mine_swarm_simulator.screens.handlers;
 
+import alex.mine_swarm_simulator.component.InventoryComponent;
 import alex.mine_swarm_simulator.component.ModComponents;
 import alex.mine_swarm_simulator.item.ModItems;
 import alex.mine_swarm_simulator.item.misc.StickerItem;
@@ -83,7 +84,7 @@ public class StickerBookScreenHandler extends ScreenHandler {
 	@Override
 	public void onClosed(PlayerEntity player) {
 		super.onClosed(player);
-		this.currentStack.set(ModComponents.INVENTORY_COMPONENT, this.currentStack.get(ModComponents.INVENTORY_COMPONENT).syncInventory(this.inventory));
+		this.currentStack.set(ModComponents.INVENTORY_COMPONENT, InventoryComponent.ofInventory(this.inventory));
 	}
 
 	@Override

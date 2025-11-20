@@ -2,6 +2,8 @@ package alex.mine_swarm_simulator.block.custom;
 
 import alex.mine_swarm_simulator.block.ModBlockEntities;
 import alex.mine_swarm_simulator.block.entity.HiveBlockEntity;
+import alex.mine_swarm_simulator.component.InventoryComponent;
+import alex.mine_swarm_simulator.component.ModComponents;
 import alex.mine_swarm_simulator.entity.BeeEntity;
 import alex.mine_swarm_simulator.entity.ModEntities;
 import alex.mine_swarm_simulator.item.ModItems;
@@ -13,6 +15,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -30,6 +33,8 @@ import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -112,21 +117,44 @@ public class HiveBlock extends BlockWithEntity {
 	}
 
 	@Override
+	protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return this.createHitbox(state);
+	}
+
+	@Override
+	protected VoxelShape getSidesShape(BlockState state, BlockView world, BlockPos pos) {
+		return this.createHitbox(state);
+	}
+
+	@Override
+	protected VoxelShape getCameraCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return this.createHitbox(state);
+	}
+
+	private VoxelShape createHitbox(BlockState state) {
+		return switch(state.get(FACING)) {
+			case EAST -> Block.createCuboidShape(0.0d, 2.0d, 0.0d, 6.0d, 14.0d, 16.0d);
+			case WEST -> Block.createCuboidShape(10.0d, 2.0d, 0.0d, 16.0d, 14.0d, 16.0d);
+			case SOUTH -> Block.createCuboidShape(0.0d, 2.0d, 0.0d, 16.0d, 14.0d, 6.0d);
+			default -> Block.createCuboidShape(0.0d, 2.0d, 10.0d, 16.0d, 14.0d, 16.0d);
+		};
+	}
+
+	@Override
 	protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if(!world.isClient()) {
+		if(!world.isClient() && world instanceof ServerWorld serverWorld && world.getBlockEntity(pos) instanceof HiveBlockEntity hiveBlockEntity) {
 			int selectedBee = -1;
 			boolean isGifted = false;
 
 			Random random = new Random();
 
 			if(stack.isOf(ModItems.EVICTION) && state.get(BEE_ID) > 0) {
-				HiveBlockEntity hiveBlockEntity = (HiveBlockEntity)world.getBlockEntity(pos);
-
-				if(world instanceof ServerWorld serverWorld && serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
+				if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
+					player.giveItemStack(beeEntity.getBeequip());
 					beeEntity.kill();
 				}
 
-				if (!player.isInCreativeMode()) {
+				if(!player.isInCreativeMode()) {
 					stack.decrement(1);
 				}
 
@@ -137,7 +165,7 @@ public class HiveBlock extends BlockWithEntity {
 				player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.hatched", "gifted" + "_" + beeType.getName(), beeType.getRarity()).formatted(typeColors.get(beeType.getRarity())));
 				isGifted = true;
 
-				if (!player.isInCreativeMode()) {
+				if(!player.isInCreativeMode()) {
 					stack.decrement(1);
 				}
 
@@ -163,53 +191,68 @@ public class HiveBlock extends BlockWithEntity {
 						player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.hatched", beeName, beeType.getRarity()).formatted(typeColors.get(beeType.getRarity())));
 					}
 
-					if (!player.isInCreativeMode()) {
+					if(!player.isInCreativeMode()) {
 						stack.decrement(1);
 					}
 				}
 			} else if(stack.getItem() instanceof BeequipItem) {
-				if(world instanceof ServerWorld serverWorld && world.getBlockEntity(pos) instanceof HiveBlockEntity hiveBlockEntity) {
-					if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
-						beeEntity.setBeequip(stack.copy());
+				if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
+					beeEntity.setBeequip(stack.copy());
 
-						player.giveItemStack(hiveBlockEntity.getBeeBeequip());
-						hiveBlockEntity.setBeeBeequip(beeEntity.getBeequip());
+					stack.decrement(1);
+					player.giveItemStack(hiveBlockEntity.getBeeBeequip());
 
-						stack.decrement(1);
-					}
 				}
 			} else if(stack.isOf(ModItems.BEEQUIP_CASE)) {
-				if(world instanceof ServerWorld serverWorld && world.getBlockEntity(pos) instanceof HiveBlockEntity hiveBlockEntity) {
-					if (serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
-						player.giveItemStack(beeEntity.getBeequip());
-						beeEntity.setBeequip(ItemStack.EMPTY);
-						hiveBlockEntity.setBeeBeequip(ItemStack.EMPTY);
+				if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
+					boolean inserted = false;
+					int i = 0;
+
+					Inventory beequipInv = stack.get(ModComponents.INVENTORY_COMPONENT).createInventory();
+
+					while(i < beequipInv.size() && !inserted) {
+						if(beequipInv.getStack(i).isEmpty()) {
+							beequipInv.setStack(i, beeEntity.getBeequip());
+							inserted = true;
+						}
+						i++;
 					}
+
+					if(inserted) {
+						stack.set(ModComponents.INVENTORY_COMPONENT, InventoryComponent.ofInventory(beequipInv));
+					} else {
+						player.giveItemStack(beeEntity.getBeequip());
+					}
+
+					beeEntity.setBeequip(ItemStack.EMPTY);
 				}
 			}
 
 			if(selectedBee >= 0) {
-				if(world instanceof ServerWorld serverWorld && world.getBlockEntity(pos) instanceof HiveBlockEntity hiveBlockEntity) {
-					byte level = 1;
-					if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity oldBeeEntity) {
-						level = oldBeeEntity.getLevel();
-						oldBeeEntity.kill();
-					}
-
-					BeeEntity beeEntity = new BeeEntity(ModEntities.BEE, world);
-
-					beeEntity.setPosition(pos.toCenterPos().add(0, -0.5d, 0));
-					beeEntity.setBeeTypeId((byte)selectedBee);
-					beeEntity.setGifted(isGifted);
-					beeEntity.setLevel(level);
-					beeEntity.setHivePos(pos);
-					beeEntity.setOwner(player);
-
-					beeEntity.updateEnergy();
-
-					world.spawnEntity(beeEntity);
-					hiveBlockEntity.setBeeUUID(beeEntity.getUuid());
+				byte level = 1;
+				ItemStack beequipStack = ItemStack.EMPTY;
+				if (serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity oldBeeEntity) {
+					level = oldBeeEntity.getLevel();
+					beequipStack = oldBeeEntity.getBeequip();
+					oldBeeEntity.kill();
 				}
+
+				BeeEntity beeEntity = new BeeEntity(ModEntities.BEE, world);
+
+				beeEntity.setPosition(pos.toCenterPos().add(0, -0.5d, 0));
+				beeEntity.setBeeTypeId((byte) selectedBee);
+				beeEntity.setGifted(isGifted);
+				beeEntity.setLevel(level);
+
+				player.giveItemStack(beequipStack);
+
+				beeEntity.setHivePos(pos);
+				beeEntity.setOwner(player);
+
+				beeEntity.updateEnergy();
+
+				world.spawnEntity(beeEntity);
+				hiveBlockEntity.setBeeUUID(beeEntity.getUuid());
 			}
 		}
 		return super.onUseWithItem(stack, state, world, pos, player, hand, hit);

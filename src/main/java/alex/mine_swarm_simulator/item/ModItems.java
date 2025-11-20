@@ -25,12 +25,10 @@ import net.minecraft.util.Rarity;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ModItems{
-	public static List<Item> trinketList = new ArrayList<>();
-
 	// Miscellaneous Items
 	public static final Item PRONGED_COG = registerItem("7_pronged_cog", new Item(new Item.Settings()));
 	public static final Item AGED_GINGERBREAD_BEAR = registerItem("aged_gingerbread_bear", new Item(new Item.Settings()));
@@ -44,12 +42,12 @@ public class ModItems{
 	public static final Item BLUEBERRY = registerItem("blueberry", new Item(new Item.Settings()));
 	public static final Item BOX_O_FROGS = registerItem("box_o_frogs", new Item(new Item.Settings().maxCount(15)));
 	public static final Item BROKEN_DRIVE = registerItem("broken_drive", new Item(new Item.Settings()));
-	public static final Item CAUSTIC_WAX = registerItem("caustic_wax", new Item(new Item.Settings()));
+	public static final Item CAUSTIC_WAX = registerItem("caustic_wax", new WaxItem());
 	public static final Item CLOUD_VIAL = registerItem("cloud_vial", new Item(new Item.Settings().maxCount(10)));
 	public static final Item COCONUT = registerItem("coconut", new Item(new Item.Settings().maxCount(500)));
 	public static final Item COG = registerItem("cog", new Item(new Item.Settings()));
 	public static final Item COMFORTING_VIAL = registerItem("comforting_vial", new ConsumableItem(new Item.Settings().maxCount(10), UseAction.DRINK, new StatusEffectInstance(ModStatusEffects.COMFORTING_NECTAR_STATUS_EFFECT, 288000), 20, true));
-	public static final Item DEBUG_WAX = registerItem("debug_wax", new Item(new Item.Settings()));
+	public static final Item DEBUG_WAX = registerItem("debug_wax", new WaxItem());
 	public static final Item DIAMOND_EGG = registerItem("diamond_egg", new Item(new Item.Settings()));
 	public static final Item ENZYMES = registerItem("enzymes", new ConsumableItem(new Item.Settings(), UseAction.EAT, new StatusEffectInstance(ModStatusEffects.ENZYMES_STATUS_EFFECT, 12000), 20));
 	public static final Item EVICTION = registerItem("eviction", new Item(new Item.Settings()));
@@ -65,7 +63,7 @@ public class ModItems{
 	public static final Item GLUE = registerItem("glue", new ConsumableItem(new Item.Settings(), UseAction.DRINK, new StatusEffectInstance(ModStatusEffects.GLUE_STATUS_EFFECT, 12000), 20, true));
 	public static final Item GOLD_EGG = registerItem("gold_egg", new Item(new Item.Settings()));
 	public static final Item GUMDROPS = registerItem("gumdrops", new GumdropsItem());
-	public static final Item HARD_WAX = registerItem("hard_wax", new Item(new Item.Settings()));
+	public static final Item HARD_WAX = registerItem("hard_wax", new WaxItem());
 	public static final Item HONEYSUCKLE = registerItem("honeysuckle", new Item(new Item.Settings()));
 	public static final Item INVIGORATING_VIAL = registerItem("invigorating_vial", new ConsumableItem(new Item.Settings().maxCount(10), UseAction.DRINK, new StatusEffectInstance(ModStatusEffects.INVIGORATING_NECTAR_STATUS_EFFECT, 288000), 20, true));
 	public static final Item JELLY_BEANS = registerItem("jelly_beans", new Item(new Item.Settings().maxCount(100)));
@@ -96,7 +94,7 @@ public class ModItems{
 	public static final Item SILVER_EGG = registerItem("silver_egg", new Item(new Item.Settings()));
 	public static final Item SMOOTH_DICE = registerItem("smooth_dice", new Item(new Item.Settings()));
 	public static final Item SNOWFLAKE = registerItem("snowflake", new Item(new Item.Settings()));
-	public static final Item SOFT_WAX = registerItem("soft_wax", new Item(new Item.Settings()));
+	public static final Item SOFT_WAX = registerItem("soft_wax", new WaxItem());
 	public static final Item SPIRIT_PETAL = registerItem("spirit_petal", new Item(new Item.Settings()));
 	public static final Item STAR_EGG = registerItem("star_egg", new Item(new Item.Settings()));
 	public static final Item STAR_JELLY = registerItem("star_jelly", new Item(new Item.Settings()));
@@ -105,7 +103,7 @@ public class ModItems{
 	public static final Item STRAWBERRY = registerItem("strawberry", new Item(new Item.Settings()));
 	public static final Item SUNFLOWER_SEED = registerItem("sunflower_seed", new Item(new Item.Settings()));
 	public static final Item SUPER_SMOOTHIE = registerItem("super_smoothie", new ConsumableItem(new Item.Settings(), UseAction.DRINK, new StatusEffectInstance(ModStatusEffects.SUPER_SMOOTHIE_STATUS_EFFECT, 24000), 24000));
-	public static final Item SWIRLED_WAX = registerItem("swirled_wax", new Item(new Item.Settings()));
+	public static final Item SWIRLED_WAX = registerItem("swirled_wax", new WaxItem());
 	public static final Item TICKET = registerItem("ticket", new Item(new Item.Settings()));
 	public static final Item TRANSLATOR = registerItem("translator", new Item(new Item.Settings()));
 	public static final Item TREAT = registerItem("treat", new Item(new Item.Settings()));
@@ -1675,11 +1673,21 @@ public class ModItems{
 	public static final Item STICKER_BBM_FROM_BELOW = registerItem("sticker_bbm_from_below", new StickerItem());
 
 
+	public static Item[] trinketList = Arrays.stream(ModItems.class.getFields()).filter(field -> {
+		try {
+			return field.get(null) instanceof TrinketItem;
+		} catch (IllegalAccessException e) {
+			throw new RuntimeException(e);
+		}
+	}).map(field -> {
+		try {
+			return (Item)field.get(null);
+		} catch (IllegalAccessException e) {
+			throw new RuntimeException(e);
+		}
+	}).toArray(Item[]::new);
 
 	private static Item registerItem(String id, Item item) {
-		if(item instanceof TrinketItem) {
-			trinketList.add(item);
-		}
 		return Registry.register(Registries.ITEM, Identifier.of(MineSwarmSimulator.MOD_ID, id), item);
 	}
 

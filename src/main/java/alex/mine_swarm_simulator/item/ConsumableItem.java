@@ -38,19 +38,9 @@ public class ConsumableItem extends Item {
 
 	@Override
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		if(user instanceof PlayerEntity playerEntity) {
-			playerEntity.getItemCooldownManager().set(this, cooldown);
-			if(!playerEntity.isInCreativeMode()) {
-				stack.decrement(1);
-			}
-		} else {
-			stack.decrement(1);
+		if(this.action != UseAction.NONE) {
+			this.useItem(stack, world, user);
 		}
-
-		if(effect != null && !world.isClient) {
-			user.addStatusEffect(new StatusEffectInstance(effect));
-		}
-
 		return super.finishUsing(stack, world, user);
 	}
 
@@ -71,6 +61,25 @@ public class ConsumableItem extends Item {
 
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+		if(this.action == UseAction.NONE) {
+			this.useItem(user.getStackInHand(hand), world, user);
+		}
+
 		return ItemUsage.consumeHeldItem(world, user, hand);
+	}
+
+	private void useItem(ItemStack stack, World world, LivingEntity user) {
+		if(user instanceof PlayerEntity playerEntity) {
+			playerEntity.getItemCooldownManager().set(this, cooldown);
+			if(!playerEntity.isInCreativeMode()) {
+				stack.decrement(1);
+			}
+		} else {
+			stack.decrement(1);
+		}
+
+		if(effect != null && !world.isClient) {
+			user.addStatusEffect(new StatusEffectInstance(effect));
+		}
 	}
 }

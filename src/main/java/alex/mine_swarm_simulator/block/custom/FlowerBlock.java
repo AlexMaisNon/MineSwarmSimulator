@@ -50,17 +50,21 @@ public class FlowerBlock extends BlockWithEntity {
 
 	@Override
 	protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, state.get(DEPLETION) < 12 ? 12.0 - state.get(DEPLETION) : 1.0, 16.0);
+		return this.createHitbox(state);
 	}
 
 	@Override
 	protected VoxelShape getSidesShape(BlockState state, BlockView world, BlockPos pos) {
-		return Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, state.get(DEPLETION) < 12 ? 12.0 - state.get(DEPLETION) : 1.0, 16.0);
+		return this.createHitbox(state);
 	}
 
 	@Override
 	protected VoxelShape getCameraCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 12.0 - state.get(DEPLETION), 16.0);
+		return this.createHitbox(state);
+	}
+
+	private VoxelShape createHitbox(BlockState state) {
+		return Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, state.get(DEPLETION) < 12 ? 12.0 - state.get(DEPLETION) : 1.0, 16.0);
 	}
 
 	@Override

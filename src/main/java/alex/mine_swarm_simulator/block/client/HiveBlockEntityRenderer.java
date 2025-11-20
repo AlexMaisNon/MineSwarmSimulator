@@ -3,6 +3,7 @@ package alex.mine_swarm_simulator.block.client;
 import alex.mine_swarm_simulator.block.entity.HiveBlockEntity;
 import alex.mine_swarm_simulator.item.ModItems;
 import alex.mine_swarm_simulator.item.misc.BeequipItem;
+import alex.mine_swarm_simulator.item.misc.WaxItem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -57,36 +58,33 @@ public class HiveBlockEntityRenderer implements BlockEntityRenderer<HiveBlockEnt
 		matrices.pop();
 
 		// Beequip rendering
-		matrices.push();
-
-		ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
-		matrices.translate(0.5, 0.4, 0.5);
-
-		switch(direction) {
-			case NORTH -> {
-				matrices.translate(-0.1, 0, 0.15);
-				matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
-			}
-			case EAST -> {
-				matrices.translate(-0.15, 0, -0.1);
-				matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90));
-			}
-			case WEST -> {
-				matrices.translate(0.15, 0, 0.1);
-				matrices.multiply(RotationAxis.NEGATIVE_Y.rotationDegrees(90));
-			}
-			case SOUTH -> {
-				matrices.translate(0.1, 0, -0.15);
-			}
-		}
-
-		matrices.scale(0.5f, 0.5f, 0.5f);
-
 		ClientPlayerEntity player = MinecraftClient.getInstance().player;
-		if(!entity.getBeeBeequip().isEmpty() && player != null && (player.getMainHandStack().getItem() instanceof BeequipItem || player.getMainHandStack().isOf(ModItems.BEEQUIP_CASE))) {
-			itemRenderer.renderItem(entity.getBeeBeequip(), ModelTransformationMode.GUI, light, overlay, matrices, vertexConsumers, entity.getWorld(), 1);
-		}
+		if(!entity.getBeeBeequip().isEmpty() && player != null && (player.getMainHandStack().getItem() instanceof BeequipItem || player.getMainHandStack().getItem() instanceof WaxItem || player.getMainHandStack().isOf(ModItems.BEEQUIP_CASE))) {
+			matrices.push();
 
-		matrices.pop();
+			ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
+			matrices.translate(0.5, 0.4, 0.5);
+
+			switch(direction) {
+				case NORTH -> {
+					matrices.translate(-0.1, 0, 0.15);
+					matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
+				}
+				case EAST -> {
+					matrices.translate(-0.15, 0, -0.1);
+					matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90));
+				}
+				case WEST -> {
+					matrices.translate(0.15, 0, 0.1);
+					matrices.multiply(RotationAxis.NEGATIVE_Y.rotationDegrees(90));
+				}
+				case SOUTH -> matrices.translate(0.1, 0, -0.15);
+			}
+
+			matrices.scale(0.5f, 0.5f, 0.5f);
+			itemRenderer.renderItem(entity.getBeeBeequip(), ModelTransformationMode.GUI, light, overlay, matrices, vertexConsumers, entity.getWorld(), 1);
+
+			matrices.pop();
+		}
 	}
 }

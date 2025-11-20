@@ -104,13 +104,18 @@ public class HiveBlockEntity extends BlockEntity {
 
 	public static void tick(World world, BlockPos blockPos, BlockState blockState, HiveBlockEntity hiveBlockEntity) {
 		if(!world.isClient() && world instanceof ServerWorld serverWorld && hiveBlockEntity.getBeeUUID() != HiveBlockEntity.defaultUUID) {
-			if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
+			if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity && !beeEntity.isDead()) {
 				int typeId = beeEntity.getBeeTypeId() + 1;
-				if(typeId != blockState.get(HiveBlock.BEE_ID) || beeEntity.getGifted() != blockState.get(HiveBlock.GIFTED)) {
+				if (typeId != blockState.get(HiveBlock.BEE_ID) || beeEntity.getGifted() != blockState.get(HiveBlock.GIFTED)) {
 					world.setBlockState(blockPos, blockState.with(HiveBlock.BEE_ID, typeId).with(HiveBlock.GIFTED, beeEntity.getGifted()));
 				}
-				if(beeEntity.getLevel() != hiveBlockEntity.getBeeLevel()) {
+				if (beeEntity.getLevel() != hiveBlockEntity.getBeeLevel()) {
 					hiveBlockEntity.setBeeLevel(beeEntity.getLevel());
+					serverWorld.getChunkManager().markForUpdate(blockPos);
+				}
+				if (beeEntity.getBeequip() != hiveBlockEntity.getBeeBeequip()) {
+					hiveBlockEntity.setBeeBeequip(beeEntity.getBeequip());
+					serverWorld.getChunkManager().markForUpdate(blockPos);
 				}
 			} else {
 				hiveBlockEntity.setBeeUUID(defaultUUID);

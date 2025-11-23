@@ -25,37 +25,40 @@ public class HiveBlockEntityRenderer implements BlockEntityRenderer<HiveBlockEnt
 
 	@Override
 	public void render(HiveBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-		// Level rendering
-		matrices.push();
-
-		TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
-		matrices.translate(0.5, 0.5, 0.5);
-
 		Direction direction = entity.getCachedState().get(Properties.HORIZONTAL_FACING);
-		matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(180));
-		switch(direction) {
-			case NORTH -> matrices.translate(-0.35, 0, 0.2);
-			case EAST -> {
-				matrices.translate(0.2, 0, 0.35);
-				matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90));
+
+		// Level rendering
+		if(entity.getBeeLevel() > 1) {
+			matrices.push();
+
+			TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
+			matrices.translate(0.5, 0.5, 0.5);
+
+			matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(180));
+			switch(direction) {
+				case NORTH -> matrices.translate(-0.35, 0, 0.2);
+				case EAST -> {
+					matrices.translate(0.2, 0, 0.35);
+					matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90));
+				}
+				case WEST -> {
+					matrices.translate(-0.2, 0, -0.35);
+					matrices.multiply(RotationAxis.NEGATIVE_Y.rotationDegrees(90));
+				}
+				case SOUTH -> {
+					matrices.translate(0.35, 0, -0.2);
+					matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
+				}
 			}
-			case WEST -> {
-				matrices.translate(-0.2, 0, -0.35);
-				matrices.multiply(RotationAxis.NEGATIVE_Y.rotationDegrees(90));
-			}
-			case SOUTH -> {
-				matrices.translate(0.35, 0, -0.2);
-				matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
-			}
+
+			matrices.scale(0.45f/18f, 0.45f/18f, 0.45f/18f);
+
+			String text = entity.getBeeLevel() > 0 && !entity.getBeeUUID().equals(HiveBlockEntity.defaultUUID) ? String.valueOf(entity.getBeeLevel()) : "";
+			float width = textRenderer.getWidth(text);
+
+			textRenderer.draw(text, -width / 2f, -3.5f, entity.getBeeMutationId() > 0 ? mutations[entity.getBeeMutationId() - 1] : 0xffffff, false, matrices.peek().getPositionMatrix(), vertexConsumers, TextRenderer.TextLayerType.NORMAL, 0, light);
+			matrices.pop();
 		}
-
-		matrices.scale(0.45f/18f, 0.45f/18f, 0.45f/18f);
-
-		String text = entity.getBeeLevel() > 0 && !entity.getBeeUUID().equals(HiveBlockEntity.defaultUUID) ? String.valueOf(entity.getBeeLevel()) : "";
-		float width = textRenderer.getWidth(text);
-
-		textRenderer.draw(text, -width / 2f, -3.5f, entity.getBeeMutationId() > 0 ? mutations[entity.getBeeMutationId() - 1] : 0xffffff, false, matrices.peek().getPositionMatrix(), vertexConsumers, TextRenderer.TextLayerType.NORMAL, 0, light);
-		matrices.pop();
 
 		// Beequip rendering
 		ClientPlayerEntity player = MinecraftClient.getInstance().player;

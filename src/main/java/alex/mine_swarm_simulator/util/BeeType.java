@@ -57,7 +57,7 @@ public enum BeeType {
 	WINDY((byte)45, "windy", "event", "colorless", 20f, 19.6f, 3f, 10, 180, 3f, 2f, new ModStatusModifier(ModAttributes.PLAYER_INSTANT_WHITE_CONVERSION, 0.15d, EntityAttributeModifier.Operation.ADD_VALUE));
 
 	private final byte id;
-	private final String name;
+	private final String type;
 	private final String rarity;
 	private final String color;
 	private final float energy;
@@ -71,9 +71,9 @@ public enum BeeType {
 
 	private static final BeeType[] beeIds = Arrays.stream(values()).sorted(Comparator.comparingInt(BeeType::getId)).toArray(BeeType[]::new);
 
-	BeeType(byte id, String name, String rarity, String color, float energy, float speed, float attack, int gatherAmount, int convertAmount, float gatherSpeed, float convertSpeed, ModStatusModifier giftedHiveBonus) {
+	BeeType(byte id, String type, String rarity, String color, float energy, float speed, float attack, int gatherAmount, int convertAmount, float gatherSpeed, float convertSpeed, ModStatusModifier giftedHiveBonus) {
 		this.id = id;
-		this.name = name;
+		this.type = type;
 		this.rarity = rarity;
 		this.color = color;
 		this.energy = energy;
@@ -90,8 +90,8 @@ public enum BeeType {
 		return id;
 	}
 
-	public String getName() {
-		return name;
+	public String getType() {
+		return type;
 	}
 
 	public String getRarity() {

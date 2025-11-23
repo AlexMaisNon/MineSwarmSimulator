@@ -1,9 +1,10 @@
 package alex.mine_swarm_simulator.entity.ai.goal;
 
-import alex.mine_swarm_simulator.attributes.ModAttributes;
 import alex.mine_swarm_simulator.entity.BeeEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,9 +18,11 @@ public class ReturnToHiveGoal extends Goal {
 	private boolean ownerDied = false;
 	private boolean resetEnergy = false;
 	private long cooldown = 0L;
+	private final double speed;
 
-	public ReturnToHiveGoal(BeeEntity beeEntity) {
+	public ReturnToHiveGoal(BeeEntity beeEntity, double speed) {
 		this.bee = beeEntity;
+		this.speed = speed;
 		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
 	}
 
@@ -50,7 +53,10 @@ public class ReturnToHiveGoal extends Goal {
 
 	@Override
 	public void start() {
-		this.bee.getNavigation().startMovingTo(this.hivePos.getX(), this.hivePos.getY(), this.hivePos.getZ(), 1);
+		if(this.owner != null) {
+			this.owner.sendMessage(Text.literal(this.bee.getBeeType().getType() + " Bee is out of energy! It's going to sleep.").formatted(Formatting.BLUE));
+		}
+		this.bee.getNavigation().startMovingTo(this.hivePos.getX(), this.hivePos.getY(), this.hivePos.getZ(), this.speed);
 	}
 
 	@Override
@@ -60,7 +66,7 @@ public class ReturnToHiveGoal extends Goal {
 		this.ownerDied = false;
 
 		if(this.resetEnergy) {
-			this.bee.updateEnergy();
+			this.bee.initializeEnergy();
 		}
 
 		this.resetEnergy = false;

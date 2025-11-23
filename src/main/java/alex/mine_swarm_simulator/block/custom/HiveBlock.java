@@ -163,7 +163,7 @@ public class HiveBlock extends BlockWithEntity {
 				selectedBee = random.nextInt(0, 35);
 				BeeType beeType = BeeType.byId((byte)(selectedBee));
 
-				player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.hatched", "gifted" + "_" + beeType.getName(), beeType.getRarity()).formatted(typeColors.get(beeType.getRarity())));
+				player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.hatched", "gifted" + "_" + beeType.getType(), beeType.getRarity()).formatted(typeColors.get(beeType.getRarity())));
 				isGifted = true;
 
 				if(!player.isInCreativeMode()) {
@@ -184,10 +184,10 @@ public class HiveBlock extends BlockWithEntity {
 					isGifted = random.nextFloat() < 0.004 || Arrays.stream(giftedItems).anyMatch(item -> item == stack.getItem());
 
 					BeeType beeType = BeeType.byId((byte)(selectedBee));
-					String beeName = isGifted ? "gifted" + "_" + beeType.getName() : beeType.getName();
+					String beeName = isGifted ? "gifted" + "_" + beeType.getType() : beeType.getType();
 
 					if(stack.isOf(ModItems.ROYAL_JELLY) || stack.isOf(ModItems.STAR_JELLY)) {
-						player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.transform", BeeType.byId((byte)(state.get(BEE_ID) - 1)).getName(), beeName, beeType.getRarity()).formatted(typeColors.get(beeType.getRarity())));
+						player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.transform", BeeType.byId((byte)(state.get(BEE_ID) - 1)).getType(), beeName, beeType.getRarity()).formatted(typeColors.get(beeType.getRarity())));
 					} else {
 						player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.hatched", beeName, beeType.getRarity()).formatted(typeColors.get(beeType.getRarity())));
 					}
@@ -235,7 +235,7 @@ public class HiveBlock extends BlockWithEntity {
 					if(!beeEntity.getGifted()) {
 						if(random.nextFloat() < 1 - Math.pow((1 - treatItem.getGiftedChance(beeEntity.getBeeType())), count)) {
 							beeEntity.setGifted(true);
-							player.sendMessage(Text.literal("The treat transformed " + beeEntity.getBeeType().getName() + " into a Gifted bee!").formatted(Formatting.YELLOW));
+							player.sendMessage(Text.literal("The treat transformed " + beeEntity.getBeeType().getType() + " into a Gifted bee!").formatted(Formatting.YELLOW));
 						}
 					}
 
@@ -282,7 +282,7 @@ public class HiveBlock extends BlockWithEntity {
 				beeEntity.setHivePos(pos);
 				beeEntity.setOwner(player);
 
-				beeEntity.updateEnergy();
+				beeEntity.initializeEnergy();
 
 				world.spawnEntity(beeEntity);
 				hiveBlockEntity.setBeeUUID(beeEntity.getUuid());

@@ -1,5 +1,6 @@
 package alex.mine_swarm_simulator.entity.ai.goal;
 
+import alex.mine_swarm_simulator.block.entity.FlowerBlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.FollowOwnerGoal;
 import net.minecraft.entity.ai.pathing.EntityNavigation;
@@ -33,9 +34,8 @@ public class FollowAroundOwnerGoal extends FollowOwnerGoal {
 	@Override
 	public boolean canStart() {
 		boolean res = super.canStart();
-		if(res) {
-			this.owner = tameable.getOwner();
-		} else {
+		this.owner = tameable.getOwner();
+		if(!res || this.tameable.getWorld().getBlockEntity(this.owner.getBlockPos()) instanceof FlowerBlockEntity) {
 			this.xOffset = random.nextInt(-3, 4);
 			this.zOffset = random.nextInt(-3, 4);
 		}

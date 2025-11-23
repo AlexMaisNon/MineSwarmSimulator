@@ -4,9 +4,7 @@ import alex.mine_swarm_simulator.MineSwarmSimulator;
 import alex.mine_swarm_simulator.attributes.ModAttributes;
 import alex.mine_swarm_simulator.block.entity.HiveBlockEntity;
 import alex.mine_swarm_simulator.entity.ai.control.BeeFlightControl;
-import alex.mine_swarm_simulator.entity.ai.goal.FollowAroundOwnerGoal;
-import alex.mine_swarm_simulator.entity.ai.goal.ReturnToHiveGoal;
-import alex.mine_swarm_simulator.entity.ai.goal.WanderAroundOwnerGoal;
+import alex.mine_swarm_simulator.entity.ai.goal.*;
 import alex.mine_swarm_simulator.entity.ai.pathing.BeeNavigation;
 import alex.mine_swarm_simulator.util.BeeType;
 import net.minecraft.entity.AnimationState;
@@ -28,6 +26,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtHelper;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.LocalDifficulty;
@@ -44,7 +44,7 @@ public class BeeEntity extends TameableEntity {
 	private static final TrackedData<Byte> BEE_TYPE_ID = DataTracker.registerData(BeeEntity.class, TrackedDataHandlerRegistry.BYTE);
 	private static final TrackedData<Boolean> GIFTED = DataTracker.registerData(BeeEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 	private static final TrackedData<Byte> LEVEL = DataTracker.registerData(BeeEntity.class, TrackedDataHandlerRegistry.BYTE);
-	private static final TrackedData<Float> ENERGY = DataTracker.registerData(BeeEntity.class, TrackedDataHandlerRegistry.FLOAT);
+	private static final TrackedData<Integer> ENERGY = DataTracker.registerData(BeeEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private static final TrackedData<Long> BOND = DataTracker.registerData(BeeEntity.class, TrackedDataHandlerRegistry.LONG);
 	private static final TrackedData<ItemStack> BEEQUIP = DataTracker.registerData(BeeEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
 
@@ -63,7 +63,7 @@ public class BeeEntity extends TameableEntity {
 		builder.add(BEE_TYPE_ID, (byte)0);
 		builder.add(GIFTED, false);
 		builder.add(LEVEL, (byte)0);
-		builder.add(ENERGY, 0f);
+		builder.add(ENERGY, 0);
 		builder.add(BOND, 0L);
 		builder.add(BEEQUIP, ItemStack.EMPTY);
 	}
@@ -96,11 +96,11 @@ public class BeeEntity extends TameableEntity {
 		this.dataTracker.set(LEVEL, value);
 	}
 
-	public float getEnergy() {
+	public int getEnergy() {
 		return this.dataTracker.get(ENERGY);
 	}
 
-	public void setEnergy(float value) {
+	public void setEnergy(int value) {
 		this.dataTracker.set(ENERGY, value);
 	}
 
@@ -131,14 +131,16 @@ public class BeeEntity extends TameableEntity {
 	@Override
 	public void onTrackedDataSet(TrackedData<?> data) {
 		super.onTrackedDataSet(data);
-		this.updateMovespeed();
+		this.initializeMovespeed();
 	}
 
 	@Override
 	protected void initGoals() {
-		this.goalSelector.add(0, new ReturnToHiveGoal(this));
-		this.goalSelector.add(1, new WanderAroundOwnerGoal(this, 1d));
-		this.goalSelector.add(2, new FollowAroundOwnerGoal(this, 4));
+		this.goalSelector.add(0, new ReturnToHiveGoal(this, 1d));
+		//this.goalSelector.add(1, new ConvertPollenGoal(this, 1d));
+		this.goalSelector.add(2, new CollectPollenGoal(this, 1d));
+		this.goalSelector.add(3, new WanderAroundOwnerGoal(this, 1d));
+		this.goalSelector.add(4, new FollowAroundOwnerGoal(this, 4));
 	}
 
 	@Override
@@ -157,7 +159,7 @@ public class BeeEntity extends TameableEntity {
 		}
 	}
 
-	private void updateMovespeed() {
+	private void initializeMovespeed() {
 		this.getAttributeInstance(EntityAttributes.GENERIC_FLYING_SPEED).clearModifiers();
 
 		// 0.23493 flying_speed = 14.84 Bee Movespeed <=> 0.01583 flying_speed = 1 Bee Movespeed
@@ -168,26 +170,29 @@ public class BeeEntity extends TameableEntity {
 		}
 	}
 
-	public void updateEnergy() {
+	public void initializeEnergy() {
 		if(this.getOwner() != null) {
-			this.setEnergy(this.getBeeType().getEnergy() * (1f + 0.05f * (this.getLevel() - 1f)) * (float) this.getOwner().getAttributeValue(ModAttributes.PLAYER_MAX_BEE_ENERGY));
+			this.setEnergy((int)Math.round(this.getBeeType().getEnergy() * (1f + 0.05f * (this.getLevel() - 1f)) * this.getOwner().getAttributeValue(ModAttributes.PLAYER_MAX_BEE_ENERGY)));
 		}
 	}
 
 	public void addBond(long value) {
 		this.setBond(this.getBond() + value);
 
-		byte i = 0;
+		byte newLevel = 0;
 		long sum = 0;
 
-		while(sum <= this.getBond() && i <= neededBondForLevel.length) {
-			if(i < neededBondForLevel.length) {
-				sum += neededBondForLevel[i];
+		while(sum <= this.getBond() && newLevel <= neededBondForLevel.length) {
+			if(newLevel < neededBondForLevel.length) {
+				sum += neededBondForLevel[newLevel];
 			}
-			i++;
+			newLevel++;
 		}
 
-		this.setLevel((byte)(i));
+		if(newLevel != this.getLevel() && this.getOwner() != null) {
+			this.getOwner().sendMessage(Text.literal(this.getBeeType().getType() + " Bee leveled up to level " + newLevel + "!").formatted(Formatting.YELLOW));
+		}
+		this.setLevel(newLevel);
 	}
 
 	@Override
@@ -245,7 +250,7 @@ public class BeeEntity extends TameableEntity {
 		this.setGifted(nbt.getBoolean("Gifted"));
 		this.setLevel(nbt.getByte("Level"));
 		this.setBond(nbt.getLong("Bond"));
-		this.setEnergy(nbt.getFloat("Energy"));
+		this.setEnergy(nbt.getInt("Energy"));
 		this.setBeequip(ItemStack.fromNbtOrEmpty(this.getRegistryManager(), nbt.getCompound("Beequip")));
 
 		this.hivePos = NbtHelper.toBlockPos(nbt, "hive").orElse(null);
@@ -259,7 +264,7 @@ public class BeeEntity extends TameableEntity {
 		nbt.putBoolean("Gifted", this.getGifted());
 		nbt.putByte("Level", this.getLevel());
 		nbt.putLong("Bond", this.getBond());
-		nbt.putFloat("Energy", this.getEnergy());
+		nbt.putInt("Energy", this.getEnergy());
 
 		if(!this.getBeequip().isEmpty()) {
 			NbtCompound itemCompound = new NbtCompound();
@@ -277,7 +282,7 @@ public class BeeEntity extends TameableEntity {
 		this.setGifted(false);
 		this.setLevel((byte)1);
 		this.setBond(0L);
-		this.setEnergy(20f);
+		this.setEnergy(20);
 		this.setBeequip(ItemStack.EMPTY);
 		this.hivePos = null;
 		return super.initialize(world, difficulty, spawnReason, entityData);

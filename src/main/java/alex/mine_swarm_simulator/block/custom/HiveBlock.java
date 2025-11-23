@@ -8,6 +8,7 @@ import alex.mine_swarm_simulator.entity.BeeEntity;
 import alex.mine_swarm_simulator.entity.ModEntities;
 import alex.mine_swarm_simulator.item.ModItems;
 import alex.mine_swarm_simulator.item.misc.BeequipItem;
+import alex.mine_swarm_simulator.item.misc.TreatItem;
 import alex.mine_swarm_simulator.util.BeeType;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
@@ -226,13 +227,44 @@ public class HiveBlock extends BlockWithEntity {
 
 					beeEntity.setBeequip(ItemStack.EMPTY);
 				}
+			} else if(stack.getItem() instanceof TreatItem treatItem) {
+				if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
+					int count = stack.getCount();
+					long addedBond = (long)count * treatItem.getBond(beeEntity.getBeeType());
+					beeEntity.addBond(addedBond);
+					if(!beeEntity.getGifted()) {
+						if(random.nextFloat() < 1 - Math.pow((1 - treatItem.getGiftedChance(beeEntity.getBeeType())), count)) {
+							beeEntity.setGifted(true);
+							player.sendMessage(Text.literal("The treat transformed " + beeEntity.getBeeType().getName() + " into a Gifted bee!").formatted(Formatting.YELLOW));
+						}
+					}
+
+					long sum = 0;
+					byte i = 0;
+
+					while(i < beeEntity.getLevel() - 1) {
+						sum += BeeEntity.neededBondForLevel[i];
+						i++;
+					}
+
+					long currentBond = beeEntity.getBond() - sum;
+					sum += BeeEntity.neededBondForLevel[i];
+
+					player.sendMessage(Text.literal("Bee bond increased by " + addedBond + " (" + currentBond + "/" + sum + ")!").formatted(Formatting.LIGHT_PURPLE));
+
+					if(!player.isInCreativeMode()) {
+						stack.decrement(count);
+					}
+				}
 			}
 
 			if(selectedBee >= 0) {
 				byte level = 1;
+				long bond = 0;
 				ItemStack beequipStack = ItemStack.EMPTY;
 				if (serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity oldBeeEntity) {
 					level = oldBeeEntity.getLevel();
+					bond = oldBeeEntity.getBond();
 					beequipStack = oldBeeEntity.getBeequip();
 					oldBeeEntity.kill();
 				}
@@ -243,6 +275,7 @@ public class HiveBlock extends BlockWithEntity {
 				beeEntity.setBeeTypeId((byte) selectedBee);
 				beeEntity.setGifted(isGifted);
 				beeEntity.setLevel(level);
+				beeEntity.setBond(bond);
 
 				player.giveItemStack(beequipStack);
 

@@ -23,6 +23,7 @@ public class HiveBlockEntity extends BlockEntity {
 
 	private UUID beeUUID = defaultUUID;
 	private byte beeLevel = 0;
+	private long beeBond = 0;
 	private byte beeMutationId = 0;
 	private ItemStack beeBeequip = ItemStack.EMPTY;
 
@@ -36,6 +37,10 @@ public class HiveBlockEntity extends BlockEntity {
 
 	public byte getBeeLevel() {
 		return this.beeLevel;
+	}
+
+	public long getBeeBond() {
+		return this.beeBond;
 	}
 
 	public byte getBeeMutationId() {
@@ -56,6 +61,11 @@ public class HiveBlockEntity extends BlockEntity {
 		markDirty();
 	}
 
+	public void setBeeBond(long value) {
+		this.beeBond = value;
+		markDirty();
+	}
+
 	public void setBeeMutationId(byte value) {
 		this.beeMutationId = value;
 		markDirty();
@@ -71,6 +81,7 @@ public class HiveBlockEntity extends BlockEntity {
 		NbtCompound beeCompound = nbt.getCompound("Bee");
 		this.beeUUID = beeCompound.getUuid("UUID");
 		this.beeLevel = beeCompound.getByte("Level");
+		this.beeBond = beeCompound.getLong("Bond");
 		this.beeMutationId = beeCompound.getByte("Mutation");
 		this.beeBeequip = ItemStack.fromNbtOrEmpty(registryLookup, beeCompound.getCompound("Beequip"));
 	}
@@ -81,6 +92,7 @@ public class HiveBlockEntity extends BlockEntity {
 
 		beeCompound.putUuid("UUID", this.beeUUID);
 		beeCompound.putByte("Level", this.beeLevel);
+		beeCompound.putLong("Bond", this.beeBond);
 		beeCompound.putByte("Mutation", this.beeMutationId);
 
 		if(!this.beeBeequip.isEmpty()) {
@@ -106,14 +118,18 @@ public class HiveBlockEntity extends BlockEntity {
 		if(!world.isClient() && world instanceof ServerWorld serverWorld && hiveBlockEntity.getBeeUUID() != HiveBlockEntity.defaultUUID) {
 			if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity && !beeEntity.isDead()) {
 				int typeId = beeEntity.getBeeTypeId() + 1;
-				if (typeId != blockState.get(HiveBlock.BEE_ID) || beeEntity.getGifted() != blockState.get(HiveBlock.GIFTED)) {
+				if(typeId != blockState.get(HiveBlock.BEE_ID) || beeEntity.getGifted() != blockState.get(HiveBlock.GIFTED)) {
 					world.setBlockState(blockPos, blockState.with(HiveBlock.BEE_ID, typeId).with(HiveBlock.GIFTED, beeEntity.getGifted()));
 				}
-				if (beeEntity.getLevel() != hiveBlockEntity.getBeeLevel()) {
+				if(beeEntity.getLevel() != hiveBlockEntity.getBeeLevel()) {
 					hiveBlockEntity.setBeeLevel(beeEntity.getLevel());
 					serverWorld.getChunkManager().markForUpdate(blockPos);
 				}
-				if (beeEntity.getBeequip() != hiveBlockEntity.getBeeBeequip()) {
+				if(beeEntity.getBond() != hiveBlockEntity.getBeeBond()) {
+					hiveBlockEntity.setBeeBond(beeEntity.getBond());
+					serverWorld.getChunkManager().markForUpdate(blockPos);
+				}
+				if(beeEntity.getBeequip() != hiveBlockEntity.getBeeBeequip()) {
 					hiveBlockEntity.setBeeBeequip(beeEntity.getBeequip());
 					serverWorld.getChunkManager().markForUpdate(blockPos);
 				}

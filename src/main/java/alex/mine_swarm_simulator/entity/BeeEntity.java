@@ -36,6 +36,8 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class BeeEntity extends TameableEntity {
+	public static final long[] neededBondForLevel = new long[]{10L, 40L, 200L, 750L, 4000L, 15000L, 60000L, 270000L, 450000L, 1200000L, 2000000L, 4000000L, 7000000L, 15000000L, 120000000L, 450000000L, 1900000000L, 7500000000L, 15000000000L, 475000000000L, 4500000000000L, 95000000000000L, 900000000000000L, 9000000000000000L};
+
 	public final AnimationState idleAnimationState = new AnimationState();
 	private int idleAnimationTimeout = 0;
 
@@ -43,6 +45,7 @@ public class BeeEntity extends TameableEntity {
 	private static final TrackedData<Boolean> GIFTED = DataTracker.registerData(BeeEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 	private static final TrackedData<Byte> LEVEL = DataTracker.registerData(BeeEntity.class, TrackedDataHandlerRegistry.BYTE);
 	private static final TrackedData<Float> ENERGY = DataTracker.registerData(BeeEntity.class, TrackedDataHandlerRegistry.FLOAT);
+	private static final TrackedData<Long> BOND = DataTracker.registerData(BeeEntity.class, TrackedDataHandlerRegistry.LONG);
 	private static final TrackedData<ItemStack> BEEQUIP = DataTracker.registerData(BeeEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
 
 	@Nullable private BlockPos hivePos;
@@ -61,6 +64,7 @@ public class BeeEntity extends TameableEntity {
 		builder.add(GIFTED, false);
 		builder.add(LEVEL, (byte)0);
 		builder.add(ENERGY, 0f);
+		builder.add(BOND, 0L);
 		builder.add(BEEQUIP, ItemStack.EMPTY);
 	}
 
@@ -96,12 +100,24 @@ public class BeeEntity extends TameableEntity {
 		return this.dataTracker.get(ENERGY);
 	}
 
+	public void setEnergy(float value) {
+		this.dataTracker.set(ENERGY, value);
+	}
+
+	public long getBond() {
+		return this.dataTracker.get(BOND);
+	}
+
+	public void setBond(long value) {
+		this.dataTracker.set(BOND, value);
+	}
+
 	public ItemStack getBeequip() {
 		return this.dataTracker.get(BEEQUIP);
 	}
 
-	public void setEnergy(float value) {
-		this.dataTracker.set(ENERGY, value);
+	public void setBeequip(ItemStack value) {
+		this.dataTracker.set(BEEQUIP, value);
 	}
 
 	public @Nullable BlockPos getHivePos() {
@@ -110,10 +126,6 @@ public class BeeEntity extends TameableEntity {
 
 	public void setHivePos(@Nullable BlockPos hivePos) {
 		this.hivePos = hivePos;
-	}
-
-	public void setBeequip(ItemStack value) {
-		this.dataTracker.set(BEEQUIP, value);
 	}
 
 	@Override
@@ -160,6 +172,22 @@ public class BeeEntity extends TameableEntity {
 		if(this.getOwner() != null) {
 			this.setEnergy(this.getBeeType().getEnergy() * (1f + 0.05f * (this.getLevel() - 1f)) * (float) this.getOwner().getAttributeValue(ModAttributes.PLAYER_MAX_BEE_ENERGY));
 		}
+	}
+
+	public void addBond(long value) {
+		this.setBond(this.getBond() + value);
+
+		byte i = 0;
+		long sum = 0;
+
+		while(sum <= this.getBond() && i <= neededBondForLevel.length) {
+			if(i < neededBondForLevel.length) {
+				sum += neededBondForLevel[i];
+			}
+			i++;
+		}
+
+		this.setLevel((byte)(i));
 	}
 
 	@Override
@@ -216,6 +244,7 @@ public class BeeEntity extends TameableEntity {
 		this.setBeeTypeId(nbt.getByte("Type"));
 		this.setGifted(nbt.getBoolean("Gifted"));
 		this.setLevel(nbt.getByte("Level"));
+		this.setBond(nbt.getLong("Bond"));
 		this.setEnergy(nbt.getFloat("Energy"));
 		this.setBeequip(ItemStack.fromNbtOrEmpty(this.getRegistryManager(), nbt.getCompound("Beequip")));
 
@@ -229,6 +258,7 @@ public class BeeEntity extends TameableEntity {
 		nbt.putByte("Type", this.getBeeTypeId());
 		nbt.putBoolean("Gifted", this.getGifted());
 		nbt.putByte("Level", this.getLevel());
+		nbt.putLong("Bond", this.getBond());
 		nbt.putFloat("Energy", this.getEnergy());
 
 		if(!this.getBeequip().isEmpty()) {
@@ -246,7 +276,10 @@ public class BeeEntity extends TameableEntity {
 		this.setBeeTypeId((byte)0);
 		this.setGifted(false);
 		this.setLevel((byte)1);
+		this.setBond(0L);
 		this.setEnergy(20f);
+		this.setBeequip(ItemStack.EMPTY);
+		this.hivePos = null;
 		return super.initialize(world, difficulty, spawnReason, entityData);
 	}
 }

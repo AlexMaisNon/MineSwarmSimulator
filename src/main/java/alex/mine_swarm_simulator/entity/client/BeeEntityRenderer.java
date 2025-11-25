@@ -1,13 +1,17 @@
 package alex.mine_swarm_simulator.entity.client;
 
 import alex.mine_swarm_simulator.MineSwarmSimulator;
+import alex.mine_swarm_simulator.block.entity.HiveBlockEntity;
 import alex.mine_swarm_simulator.entity.BeeEntity;
 import alex.mine_swarm_simulator.util.BeeType;
+import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.model.ModelTransform;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.RotationAxis;
 
 public class BeeEntityRenderer extends MobEntityRenderer<BeeEntity, BeeEntityModel<BeeEntity>> {
 	private static final String[] beeTextures = new String[]{
@@ -70,12 +74,53 @@ public class BeeEntityRenderer extends MobEntityRenderer<BeeEntity, BeeEntityMod
 	}
 
 	@Override
-	public void render(BeeEntity livingEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
-		if(livingEntity.getBeeType() == BeeType.BABY || livingEntity.getBeeType() == BeeType.TADPOLE) {
+	public void render(BeeEntity beeEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
+		if(beeEntity.getBeeType() == BeeType.BABY || beeEntity.getBeeType() == BeeType.TADPOLE) {
 			matrixStack.scale(0.7f, 0.7f, 0.7f);
 		} else {
 			matrixStack.scale(1f, 1f, 1f);
 		}
-		super.render(livingEntity, f, g, matrixStack, vertexConsumerProvider, i);
+
+		// Level text rendering
+		if(beeEntity.getLevel() > 1 && !beeEntity.isDead()) {
+			TextRenderer textRenderer = this.getTextRenderer();
+
+			// Left wing
+			matrixStack.push();
+			matrixStack.translate(0f, 0.5f, -0.01f);
+
+			matrixStack.multiply(RotationAxis.NEGATIVE_Y.rotationDegrees(beeEntity.headYaw));
+			matrixStack.multiply(RotationAxis.POSITIVE_X.rotation(this.model.getPart().pitch));
+			matrixStack.multiply(RotationAxis.NEGATIVE_Z.rotation(this.model.getPart().getChild("left_wing").roll));
+			matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90f));
+			matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90f));
+
+			matrixStack.translate(0f, 0.4f, -0.075f);
+			matrixStack.scale(0.5f / 18f, 0.5f / 18f, 0.5f / 18f);
+
+			String text = String.valueOf(beeEntity.getLevel());
+			float width = textRenderer.getWidth(text);
+
+			textRenderer.draw(text, -width / 2f, 0f, 0xffffff, false, matrixStack.peek().getPositionMatrix(), vertexConsumerProvider, TextRenderer.TextLayerType.NORMAL, 0, light);
+			matrixStack.pop();
+
+			// Right wing
+			matrixStack.push();
+			matrixStack.translate(0f, 0.5f, 0.01f);
+
+			matrixStack.multiply(RotationAxis.NEGATIVE_Y.rotationDegrees(beeEntity.headYaw));
+			matrixStack.multiply(RotationAxis.POSITIVE_X.rotation(this.model.getPart().pitch));
+			matrixStack.multiply(RotationAxis.NEGATIVE_Z.rotation(this.model.getPart().getChild("right_wing").roll));
+			matrixStack.multiply(RotationAxis.NEGATIVE_Y.rotationDegrees(90f));
+			matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90f));
+
+			matrixStack.translate(0f, 0.4f, -0.075f);
+			matrixStack.scale(0.5f / 18f, 0.5f / 18f, 0.5f / 18f);
+
+			textRenderer.draw(text, -width / 2f, 0f, 0xffffff, false, matrixStack.peek().getPositionMatrix(), vertexConsumerProvider, TextRenderer.TextLayerType.NORMAL, 0, light);
+			matrixStack.pop();
+		}
+
+		super.render(beeEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
 	}
 }

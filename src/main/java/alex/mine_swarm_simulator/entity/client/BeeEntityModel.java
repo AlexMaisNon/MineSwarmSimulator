@@ -55,13 +55,13 @@ public class BeeEntityModel<T extends BeeEntity> extends SinglePartEntityModel<T
 	}
 
 	private void setBeeAngles(float yaw, float pitch) {
-		this.bee.yaw = MathHelper.clamp(yaw, -50f, 50f) * 0.017453292f;
+		this.bee.yaw = MathHelper.clamp(yaw, -90f, 90f) * 0.017453292f;
 		this.bee.pitch = MathHelper.clamp(pitch, -90f, 90f) * 0.017453292f;
 	}
 
 	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, int color) {
-		bee.render(matrices, vertexConsumer, light, overlay, color);
+		this.bee.render(matrices, vertexConsumer, light, overlay, color);
 	}
 
 	@Override

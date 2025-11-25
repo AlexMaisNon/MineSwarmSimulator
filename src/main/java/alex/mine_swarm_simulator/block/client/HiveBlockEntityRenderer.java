@@ -53,7 +53,7 @@ public class HiveBlockEntityRenderer implements BlockEntityRenderer<HiveBlockEnt
 
 			matrices.scale(0.45f/18f, 0.45f/18f, 0.45f/18f);
 
-			String text = entity.getBeeLevel() > 0 && !entity.getBeeUUID().equals(HiveBlockEntity.defaultUUID) ? String.valueOf(entity.getBeeLevel()) : "";
+			String text = !entity.getBeeUUID().equals(HiveBlockEntity.defaultUUID) ? String.valueOf(entity.getBeeLevel()) : "";
 			float width = textRenderer.getWidth(text);
 
 			textRenderer.draw(text, -width / 2f, -3.5f, entity.getBeeMutationId() > 0 ? mutations[entity.getBeeMutationId() - 1] : 0xffffff, false, matrices.peek().getPositionMatrix(), vertexConsumers, TextRenderer.TextLayerType.NORMAL, 0, light);

@@ -46,7 +46,7 @@ public class ModelArmorItem extends ArmorItem {
 	}
 
 	@NotNull
-	public Identifier getArmorTexture(ItemStack stack, EquipmentSlot slot) {
+	public Identifier getArmorTexture() {
 		return Identifier.of(MineSwarmSimulator.MOD_ID, armorTexturePath);
 	}
 }

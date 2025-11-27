@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class StateSaverAndLoader extends PersistentState {
-
 	public HashMap<String, FieldData> fields = new HashMap<>();
 	public HashMap<UUID, PlayerData> players = new HashMap<>();
 

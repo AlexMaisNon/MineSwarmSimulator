@@ -196,66 +196,6 @@ public class HiveBlock extends BlockWithEntity {
 						stack.decrement(1);
 					}
 				}
-			} else if(stack.getItem() instanceof BeequipItem) {
-				if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
-					beeEntity.setBeequip(stack.copy());
-
-					stack.decrement(1);
-					player.giveItemStack(hiveBlockEntity.getBeeBeequip());
-
-				}
-			} else if(stack.isOf(ModItems.BEEQUIP_CASE)) {
-				if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
-					boolean inserted = false;
-					int i = 0;
-
-					Inventory beequipInv = stack.get(ModComponents.INVENTORY_COMPONENT).createInventory();
-
-					while(i < beequipInv.size() && !inserted) {
-						if(beequipInv.getStack(i).isEmpty()) {
-							beequipInv.setStack(i, beeEntity.getBeequip());
-							inserted = true;
-						}
-						i++;
-					}
-
-					if(inserted) {
-						stack.set(ModComponents.INVENTORY_COMPONENT, InventoryComponent.ofInventory(beequipInv));
-					} else {
-						player.giveItemStack(beeEntity.getBeequip());
-					}
-
-					beeEntity.setBeequip(ItemStack.EMPTY);
-				}
-			} else if(stack.getItem() instanceof TreatItem treatItem) {
-				if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
-					int count = stack.getCount();
-					long addedBond = (long)count * treatItem.getBond(beeEntity.getBeeType());
-					beeEntity.addBond(addedBond);
-					if(!beeEntity.getGifted()) {
-						if(random.nextFloat() < 1 - Math.pow((1 - treatItem.getGiftedChance(beeEntity.getBeeType())), count)) {
-							beeEntity.setGifted(true);
-							player.sendMessage(Text.literal("The treat transformed " + beeEntity.getBeeType().getType() + " into a Gifted bee!").formatted(Formatting.YELLOW));
-						}
-					}
-
-					long sum = 0;
-					byte i = 0;
-
-					while(i < beeEntity.getLevel() - 1) {
-						sum += BeeEntity.neededBondForLevel[i];
-						i++;
-					}
-
-					long currentBond = beeEntity.getBond() - sum;
-					sum += BeeEntity.neededBondForLevel[i];
-
-					player.sendMessage(Text.literal("Bee bond increased by " + addedBond + " (" + currentBond + "/" + sum + ")!").formatted(Formatting.LIGHT_PURPLE));
-
-					if(!player.isInCreativeMode()) {
-						stack.decrement(count);
-					}
-				}
 			}
 
 			if(selectedBee >= 0) {

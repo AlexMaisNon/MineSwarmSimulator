@@ -1,5 +1,6 @@
 package alex.mine_swarm_simulator;
 
+import alex.mine_swarm_simulator.attributes.ModAttributes;
 import alex.mine_swarm_simulator.block.ModBlockEntities;
 import alex.mine_swarm_simulator.block.client.HiveBlockEntityRenderer;
 import alex.mine_swarm_simulator.block.custom.FlowerBlock;
@@ -25,19 +26,25 @@ import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.util.RawTextureDataLoader;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.resource.ResourceManager;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.RotationAxis;
 
 import java.io.IOException;
+import java.util.Locale;
 
 public class MineSwarmSimulatorClient implements ClientModInitializer {
 	private static int[] GOO_COLORMAP;
-	private static PlayerData clientPlayerData = new PlayerData();
+	private static final PlayerData clientPlayerData = new PlayerData();
 
 	public static PlayerData getClientPlayerData() {
 		return clientPlayerData;
@@ -68,13 +75,11 @@ public class MineSwarmSimulatorClient implements ClientModInitializer {
 
 		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> FlowerBlock.getColors(pos, GOO_COLORMAP), ModBlocks.FLOWER_BLOCK);
 
-		ClientPlayNetworking.registerGlobalReceiver(SyncPlayerDataPayload.ID, ((syncPlayerDataPayload, context) -> {
-			context.client().execute(() -> {
-				clientPlayerData.honey = syncPlayerDataPayload.honey();
-				clientPlayerData.pollen = syncPlayerDataPayload.pollen();
-				clientPlayerData.capacity = syncPlayerDataPayload.capacity();
-			});
-		}));
+		ClientPlayNetworking.registerGlobalReceiver(SyncPlayerDataPayload.ID, ((syncPlayerDataPayload, context) -> context.client().execute(() -> {
+			clientPlayerData.honey = syncPlayerDataPayload.honey();
+			clientPlayerData.pollen = syncPlayerDataPayload.pollen();
+			clientPlayerData.capacity = syncPlayerDataPayload.capacity();
+		})));
 
 		ItemTooltipCallback.EVENT.register(new ItemTooltipHandler());
 
@@ -97,9 +102,34 @@ public class MineSwarmSimulatorClient implements ClientModInitializer {
 
 			ModelArmorItem armor = (ModelArmorItem) stack.getItem();
 			var model = armor.getArmorModel();
-			var texture = armor.getArmorTexture(stack, slot);
+			var texture = armor.getArmorTexture();
 			original.copyBipedStateTo(model);
 			ArmorRenderer.renderPart(matrices, vertexConsumer, light, stack, model, texture);
+
+			if(slot.equals(EquipmentSlot.CHEST) && entity instanceof PlayerEntity player) {
+				matrices.push();
+				TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
+
+				String[] languageInfo = MinecraftClient.getInstance().getLanguageManager().getLanguage().split("_");
+				Locale locale = Locale.of(languageInfo[0], languageInfo[1]);
+
+				Text bagText = Text.literal(String.format(locale, "%,d", clientPlayerData.pollen) + "/" + String.format(locale, "%,d", clientPlayerData.capacity));
+				int width = textRenderer.getWidth(bagText);
+
+				// Modify it for each case scenario (right now there's only the backpack that works)
+				// + make another method
+
+				matrices.translate(-0.01f, 0.2f, 0f);
+
+				matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
+				matrices.multiply(RotationAxis.NEGATIVE_X.rotation(original.body.pitch));
+				matrices.translate(0f, -0.25f + original.body.pivotY / 16f, -0.45f);
+
+				matrices.scale(0.1f / 18f / (width * 0.01f), 0.1f / 18f / (width * 0.01f), 0.5f / 18f);
+
+				textRenderer.draw(bagText, -width / 2f, width / 2f, 0xffffff, false, matrices.peek().getPositionMatrix(), vertexConsumer, TextRenderer.TextLayerType.NORMAL, 0, light);
+				matrices.pop();
+			}
 		};
 		ArmorRenderer.register(renderer, armors);
 	}

@@ -1,6 +1,5 @@
 package alex.mine_swarm_simulator;
 
-import alex.mine_swarm_simulator.attributes.ModAttributes;
 import alex.mine_swarm_simulator.block.ModBlockEntities;
 import alex.mine_swarm_simulator.block.client.HiveBlockEntityRenderer;
 import alex.mine_swarm_simulator.block.custom.FlowerBlock;
@@ -30,24 +29,31 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.util.RawTextureDataLoader;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.RotationAxis;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+import java.util.UUID;
 
 public class MineSwarmSimulatorClient implements ClientModInitializer {
 	private static int[] GOO_COLORMAP;
-	private static final PlayerData clientPlayerData = new PlayerData();
+	private static final Map<UUID, PlayerData> clientPlayerDatas = new HashMap<>();
 
-	public static PlayerData getClientPlayerData() {
-		return clientPlayerData;
+	@Nullable
+	public static PlayerData getClientPlayerData(PlayerEntity playerEntity) {
+		return clientPlayerDatas.get(playerEntity.getUuid());
 	}
 
 	@Override
@@ -76,9 +82,15 @@ public class MineSwarmSimulatorClient implements ClientModInitializer {
 		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> FlowerBlock.getColors(pos, GOO_COLORMAP), ModBlocks.FLOWER_BLOCK);
 
 		ClientPlayNetworking.registerGlobalReceiver(SyncPlayerDataPayload.ID, ((syncPlayerDataPayload, context) -> context.client().execute(() -> {
-			clientPlayerData.honey = syncPlayerDataPayload.honey();
-			clientPlayerData.pollen = syncPlayerDataPayload.pollen();
-			clientPlayerData.capacity = syncPlayerDataPayload.capacity();
+			UUID playerUUID = UUID.fromString(syncPlayerDataPayload.uuid());
+
+			if(!clientPlayerDatas.containsKey(playerUUID)) {
+				clientPlayerDatas.put(playerUUID, new PlayerData());
+			}
+
+			clientPlayerDatas.get(playerUUID).honey = syncPlayerDataPayload.honey();
+			clientPlayerDatas.get(playerUUID).pollen = syncPlayerDataPayload.pollen();
+			clientPlayerDatas.get(playerUUID).capacity = syncPlayerDataPayload.capacity();
 		})));
 
 		ItemTooltipCallback.EVENT.register(new ItemTooltipHandler());
@@ -113,24 +125,56 @@ public class MineSwarmSimulatorClient implements ClientModInitializer {
 				String[] languageInfo = MinecraftClient.getInstance().getLanguageManager().getLanguage().split("_");
 				Locale locale = Locale.of(languageInfo[0], languageInfo[1]);
 
-				Text bagText = Text.literal(String.format(locale, "%,d", clientPlayerData.pollen) + "/" + String.format(locale, "%,d", clientPlayerData.capacity));
+				PlayerData playerData = clientPlayerDatas.get(player.getUuid());
+				Text bagText = playerData != null ? Text.literal(String.format(locale, "%,d", playerData.pollen) + "/" + String.format(locale, "%,d", playerData.capacity)) : Text.literal("");
 				int width = textRenderer.getWidth(bagText);
 
-				// Modify it for each case scenario (right now there's only the backpack that works)
-				// + make another method
+				placeTextOnBag(matrices, stack, width, original.body.pitch, original.body.pivotY);
 
-				matrices.translate(-0.01f, 0.2f, 0f);
-
-				matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
-				matrices.multiply(RotationAxis.NEGATIVE_X.rotation(original.body.pitch));
-				matrices.translate(0f, -0.25f + original.body.pivotY / 16f, -0.45f);
-
-				matrices.scale(0.1f / 18f / (width * 0.01f), 0.1f / 18f / (width * 0.01f), 0.5f / 18f);
-
-				textRenderer.draw(bagText, -width / 2f, width / 2f, 0xffffff, false, matrices.peek().getPositionMatrix(), vertexConsumer, TextRenderer.TextLayerType.NORMAL, 0, light);
+				textRenderer.draw(bagText, -width / 2f, 0f, 0xffffff, false, matrices.peek().getPositionMatrix(), vertexConsumer, TextRenderer.TextLayerType.NORMAL, 0, light);
 				matrices.pop();
 			}
 		};
 		ArmorRenderer.register(renderer, armors);
+	}
+
+	private void placeTextOnBag(MatrixStack matrixStack, ItemStack itemStack, int textWidth, float bodyPitch, float bodyPivotY) {
+		matrixStack.translate(-0.01f, bodyPivotY / 16f, 0f);
+		matrixStack.multiply(RotationAxis.POSITIVE_X.rotation(bodyPitch));
+
+		float maxWidth = 0f;
+		if(itemStack.isOf(ModItems.POUCH)) {
+			matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(30f));
+			matrixStack.translate(0f, (24f - 16.75f) / 16f, 6.75f / 16f);
+			maxWidth = 0.09f;
+		} else if(itemStack.isOf(ModItems.JAR)) {
+			matrixStack.translate(0f, (24f - 19.25f) / 16f, 12.5f / 16f);
+			maxWidth = 0.11f;
+		} else if(itemStack.isOf(ModItems.BACKPACK)) {
+			matrixStack.translate(0f, (24f - 20.5f) / 16f, 7.25f / 16f);
+			maxWidth = 0.1f;
+		} else if(itemStack.isOf(ModItems.CANISTER)) {
+			matrixStack.translate(0f, (24f - 17.5f) / 16f, 13f / 16f);
+			maxWidth = 0.11f;
+		} else if(itemStack.isOf(ModItems.MEGA_JUG)) {
+			matrixStack.translate(0f, (24f - 19.5f) / 16f, 13.25f / 16f);
+			maxWidth = 0.11f;
+		} else if(itemStack.isOf(ModItems.COMPRESSOR)) {
+			matrixStack.translate(0f, (24f - 18.75f) / 16f, 13.25f / 16f);
+			maxWidth = 0.14f;
+		} else if(itemStack.isOf(ModItems.ELITE_BARREL)) {
+			matrixStack.translate(0f, (24f - 18.75f) / 16f, 19.25f / 16f);
+			maxWidth = 0.15f;
+		} else if(itemStack.isOf(ModItems.PORT_O_HIVE) || itemStack.isOf(ModItems.RED_PORT_O_HIVE) || itemStack.isOf(ModItems.BLUE_PORT_O_HIVE) || itemStack.isOf(ModItems.PORCELAIN_PORT_O_HIVE)) {
+			matrixStack.translate(0f, (24f - 18.75f) / 16f, 19f / 16f);
+			maxWidth = 0.15f;
+		} else if(itemStack.isOf(ModItems.COCONUT_CANISTER)) {
+			matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(15f));
+			matrixStack.translate(0f, (24f - 15.75f) / 16f, 21.75f / 16f);
+			maxWidth = 0.15f;
+		}
+		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
+
+		matrixStack.scale(maxWidth / 18f / (textWidth * 0.01f), maxWidth / 18f / (textWidth * 0.01f), 0.5f / 18f);
 	}
 }

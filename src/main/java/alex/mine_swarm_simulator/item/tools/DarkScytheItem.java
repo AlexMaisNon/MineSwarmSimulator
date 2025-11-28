@@ -18,8 +18,9 @@ public class DarkScytheItem extends CollectToolItem {
 	}
 
 	@Override
-	public int collect(World world, BlockPos pos, PlayerEntity miner) {
-		if(!miner.getItemCooldownManager().isCoolingDown(this)) {
+	public int collect(World world, BlockPos pos, PlayerEntity miner, boolean isFull) {
+		int amount = 0;
+		if(!isFull) {
 			for(BlockPos blockPos : this.getPattern()) {
 				// Calculate the rotation of the pattern
 				BlockPos calculatedPos;
@@ -35,24 +36,15 @@ public class DarkScytheItem extends CollectToolItem {
 
 				// Apply modifications to each flower block
 				if(world.getBlockEntity(calculatedPos.add(pos.getX(), pos.getY(), pos.getZ())) instanceof FlowerBlockEntity flowerBlockEntity) {
-					switch (world.getBlockState(flowerBlockEntity.getPos()).get(FlowerBlock.COLOR)) {
-						case 0:
-							// count x1.5 white pollen (6)
-							flowerBlockEntity.removePollen(Math.round(this.getBaseCollection() * 1.5f));
-							break;
-						case 1:
-							// count x2 red pollen (10)
-							flowerBlockEntity.removePollen(this.getBaseCollection() * 2);
-							break;
-						case 2:
-							// (4)
-							flowerBlockEntity.removePollen(this.getBaseCollection());
-							break;
-					}
+					amount += switch(world.getBlockState(flowerBlockEntity.getPos()).get(FlowerBlock.COLOR)) {
+						case 0 -> flowerBlockEntity.collectPollen(Math.round(this.getBaseCollection() * 1.5f), miner); // x1.5 white pollen
+						case 1 -> flowerBlockEntity.collectPollen(this.getBaseCollection() * 2, miner); // x2 red pollen
+						default -> flowerBlockEntity.collectPollen(this.getBaseCollection(), miner);
+					};
 				}
 			}
-			miner.getItemCooldownManager().set(this, (int)(20 * this.getCollectSpeed()));
 		}
-		return 0;
+		miner.getItemCooldownManager().set(this, this.getCooldownTime());
+		return amount;
 	}
 }

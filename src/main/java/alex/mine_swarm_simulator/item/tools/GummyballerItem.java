@@ -37,8 +37,9 @@ public class GummyballerItem extends CollectToolItem {
 	}
 
 	@Override
-	public int collect(World world, BlockPos pos, PlayerEntity miner) {
-		if(!miner.getItemCooldownManager().isCoolingDown(this)) {
+	public int collect(World world, BlockPos pos, PlayerEntity miner, boolean isFull) {
+		int amount = 0;
+		if(!isFull) {
 			int totalFlowers = 0;
 			for(BlockPos blockPos : this.getPattern()) {
 				// Calculate the rotation of the pattern
@@ -55,15 +56,13 @@ public class GummyballerItem extends CollectToolItem {
 
 				// Apply modifications to each flower block
 				if(world.getBlockEntity(calculatedPos.add(pos.getX(), pos.getY(), pos.getZ())) instanceof FlowerBlockEntity flowerBlockEntity) {
-					flowerBlockEntity.removePollen(this.getBaseCollection());
-					// count x2 pollen
+					amount += flowerBlockEntity.collectPollen(this.getBaseCollection(), miner, 2f);
 					if(!flowerBlockEntity.getGoo().isEmpty()) {
 						flowerBlockEntity.setGoo(new ArrayList<>());
 						totalFlowers++;
 					}
 				}
 			}
-			miner.getItemCooldownManager().set(this, (int)(20 * this.getCollectSpeed()));
 
 			if(totalFlowers > 0) {
 				if (miner.hasStatusEffect(ModStatusEffects.GUMMYBALL_STATUS_EFFECT)) {
@@ -76,7 +75,8 @@ public class GummyballerItem extends CollectToolItem {
 				}
 			}
 		}
-		return 0;
+		miner.getItemCooldownManager().set(this, this.getCooldownTime());
+		return amount;
 	}
 
 	@Override

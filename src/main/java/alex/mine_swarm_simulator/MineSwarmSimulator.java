@@ -1,6 +1,9 @@
 package alex.mine_swarm_simulator;
 
+import alex.mine_swarm_simulator.attributes.ModAttributes;
 import alex.mine_swarm_simulator.block.ModBlockEntities;
+import alex.mine_swarm_simulator.data.PlayerData;
+import alex.mine_swarm_simulator.data.StateSaverAndLoader;
 import alex.mine_swarm_simulator.entity.ModEntities;
 import alex.mine_swarm_simulator.screens.handlers.ModScreenHandlers;
 import alex.mine_swarm_simulator.commands.DebugCommand;
@@ -19,8 +22,12 @@ import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,8 +60,17 @@ public class MineSwarmSimulator implements ModInitializer {
 
 		MiningBlockCallback.EVENT.register((player, world, hand, pos) -> {
 			ItemStack itemStack = player.getWeaponStack();
-			if(itemStack.getItem() instanceof CollectToolItem item && !world.isClient) {
-				item.collect(world, pos, player);
+			if(itemStack.getItem() instanceof CollectToolItem item && !player.getItemCooldownManager().isCoolingDown(item) && !world.isClient && player instanceof ServerPlayerEntity serverPlayer) {
+				PlayerData playerData = StateSaverAndLoader.getPlayerState(serverPlayer);
+
+				long capacity = (long)Math.floor(serverPlayer.getAttributeValue(ModAttributes.PLAYER_CAPACITY) * serverPlayer.getAttributeValue(ModAttributes.PLAYER_CAPACITY_MULTIPLIER));
+				boolean isFull = playerData.pollen >= capacity;
+
+				int collectedAmount = item.collect(world, pos, serverPlayer, isFull);
+
+				if(isFull) {
+					serverPlayer.sendMessage(Text.literal("Pollen container full. Go to your hive to make honey.").formatted(Formatting.RED));
+				}
 			}
             return ActionResult.PASS;
         });

@@ -61,7 +61,8 @@ public class CollectPollenGoal extends WanderAroundOwnerGoal {
 	public void stop() {
 		super.stop();
 		if(this.cooldown != 0 && this.bee.getWorld().getBlockEntity(this.bee.getBlockPos().down()) instanceof FlowerBlockEntity flowerBlockEntity) {
-			flowerBlockEntity.removePollen(this.bee.getBeeType().getGatherAmount());
+			flowerBlockEntity.collectPollen(this.bee.getBeeType().getGatherAmount(), this.bee);
+
 			if(this.random.nextFloat() < 0.125) {
 				double x = this.bee.getLevel() - 1d;
 				long calculatedBond = Math.round(0.0011d * Math.pow(x, 4d) - 0.0428d * Math.pow(x, 3d) + 0.8d * Math.pow(x, 2d) + 1.25d * x + 1d);

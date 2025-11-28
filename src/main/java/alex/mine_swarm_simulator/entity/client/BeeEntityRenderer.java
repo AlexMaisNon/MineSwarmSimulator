@@ -80,6 +80,7 @@ public class BeeEntityRenderer extends MobEntityRenderer<BeeEntity, BeeEntityMod
 		} else {
 			matrixStack.scale(1f, 1f, 1f);
 		}
+		super.render(beeEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
 
 		// Level text rendering
 		if(beeEntity.getLevel() > 1 && !beeEntity.isDead()) {
@@ -120,7 +121,5 @@ public class BeeEntityRenderer extends MobEntityRenderer<BeeEntity, BeeEntityMod
 			textRenderer.draw(text, -width / 2f, 0f, 0xffffff, false, matrixStack.peek().getPositionMatrix(), vertexConsumerProvider, TextRenderer.TextLayerType.NORMAL, 0, light);
 			matrixStack.pop();
 		}
-
-		super.render(beeEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
 	}
 }

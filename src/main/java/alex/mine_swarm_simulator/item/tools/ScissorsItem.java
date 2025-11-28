@@ -11,15 +11,15 @@ public class ScissorsItem extends CollectToolItem {
 	}
 
 	@Override
-	public int collect(World world, BlockPos pos, PlayerEntity miner) {
-		if(!miner.getItemCooldownManager().isCoolingDown(this)) {
+	public int collect(World world, BlockPos pos, PlayerEntity miner, boolean isFull) {
+		int amount = 0;
+		if(!isFull) {
 			// Apply modifications to the flower block
 			if(world.getBlockEntity(pos) instanceof FlowerBlockEntity flowerBlockEntity) {
-				// and collects flowerBlockEntity.getPollen()
-				flowerBlockEntity.setPollen(0);
+				amount = flowerBlockEntity.collectPollen(flowerBlockEntity.getPollen(), miner);
 			}
-			miner.getItemCooldownManager().set(this, (int)(20 * this.getCollectSpeed()));
 		}
-		return 0;
+		miner.getItemCooldownManager().set(this, this.getCooldownTime());
+		return amount;
 	}
 }

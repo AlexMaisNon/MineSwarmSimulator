@@ -21,20 +21,20 @@ public class BubbleWandItem extends CollectToolItem {
 	}
 
 	@Override
-	public int collect(World world, BlockPos pos, PlayerEntity miner) {
-		if(!miner.getItemCooldownManager().isCoolingDown(this)) {
+	public int collect(World world, BlockPos pos, PlayerEntity miner, boolean isFull) {
+		int amount = 0;
+		if(!isFull) {
 			for(BlockPos blockPos : this.getPattern()) {
 				// Apply modifications to each flower block
 				if(world.getBlockEntity(blockPos.add(pos.getX(), pos.getY(), pos.getZ())) instanceof FlowerBlockEntity flowerBlockEntity) {
 					if(world.getBlockState(flowerBlockEntity.getPos()).get(FlowerBlock.COLOR) != 2) {
-						flowerBlockEntity.removePollen(this.getBaseCollection());
+						amount += flowerBlockEntity.collectPollen(this.getBaseCollection(), miner);
 					} else {
-						// count x2 blue pollen
-						flowerBlockEntity.removePollen(this.getBaseCollection() * 2);
+						// x2 blue pollen
+						amount += flowerBlockEntity.collectPollen(this.getBaseCollection() * 2, miner);
 					}
 				}
 			}
-			miner.getItemCooldownManager().set(this, (int)(20 * this.getCollectSpeed()));
 
 			ItemStack currentItem = miner.getMainHandStack();
 			if(currentItem.getDamage() <= 1) {
@@ -43,6 +43,7 @@ public class BubbleWandItem extends CollectToolItem {
 				currentItem.setDamage(currentItem.getDamage() - 1);
 			}
 		}
-		return 0;
+		miner.getItemCooldownManager().set(this, this.getCooldownTime());
+		return amount;
 	}
 }

@@ -80,8 +80,9 @@ public class CollectToolItem extends Item {
 		}
 	}
 
-	public int collect(World world, BlockPos pos, PlayerEntity miner) {
-		if(!miner.getItemCooldownManager().isCoolingDown(this)) {
+	public int collect(World world, BlockPos pos, PlayerEntity miner, boolean isFull) {
+		int amount = 0;
+		if(!isFull) {
 			for(BlockPos blockPos : this.pattern) {
 				// Calculate the rotation of the pattern
 				BlockPos calculatedPos = blockPos;
@@ -99,11 +100,15 @@ public class CollectToolItem extends Item {
 
 				// Apply modifications to each flower block
 				if(world.getBlockEntity(calculatedPos.add(pos.getX(), pos.getY(), pos.getZ())) instanceof FlowerBlockEntity flowerBlockEntity) {
-					flowerBlockEntity.removePollen(this.baseCollection);
+					amount += flowerBlockEntity.collectPollen(this.baseCollection, miner);
 				}
 			}
-			miner.getItemCooldownManager().set(this, (int)(20 * this.collectSpeed));
 		}
-		return 0;
+		miner.getItemCooldownManager().set(this, this.getCooldownTime());
+		return amount;
+	}
+
+	public int getCooldownTime() {
+		return Math.round(20 * this.collectSpeed);
 	}
 }

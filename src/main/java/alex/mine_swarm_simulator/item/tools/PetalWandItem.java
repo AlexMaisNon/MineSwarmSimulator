@@ -24,16 +24,16 @@ public class PetalWandItem extends CollectToolItem {
 	}
 
 	@Override
-	public int collect(World world, BlockPos pos, PlayerEntity miner) {
-		if(!miner.getItemCooldownManager().isCoolingDown(this)) {
+	public int collect(World world, BlockPos pos, PlayerEntity miner, boolean isFull) {
+		int amount = 0;
+		if(!isFull) {
 			for(BlockPos blockPos : this.getPattern()) {
 				// Apply modifications to each flower block
 				if(world.getBlockEntity(blockPos.add(pos.getX(), pos.getY(), pos.getZ())) instanceof FlowerBlockEntity flowerBlockEntity) {
-					// count +100% pollen here (flowerBlockEntity.getPollen() * 2)
-					flowerBlockEntity.removePollen(this.getBaseCollection());
+					// +100% pollen
+					amount += flowerBlockEntity.collectPollen(this.getBaseCollection(), miner, 2f);
 				}
 			}
-			miner.getItemCooldownManager().set(this, (int)(20 * this.getCollectSpeed()));
 
 			ItemStack currentItem = miner.getMainHandStack();
 			if(currentItem.getDamage() <= 1) {
@@ -42,6 +42,7 @@ public class PetalWandItem extends CollectToolItem {
 				currentItem.setDamage(currentItem.getDamage() - 1);
 			}
 		}
-		return 0;
+		miner.getItemCooldownManager().set(this, this.getCooldownTime());
+		return amount;
 	}
 }

@@ -16,8 +16,8 @@ public class GoldenRakeItem extends CollectToolItem {
 	}
 
 	@Override
-	public int collect(World world, BlockPos pos, PlayerEntity miner) {
-		if(!miner.getItemCooldownManager().isCoolingDown(this)) {
+	public int collect(World world, BlockPos pos, PlayerEntity miner, boolean isFull) {
+		if(!isFull) {
 			// put 5th thing logic here
 
 			ItemStack currentItem = miner.getMainHandStack();
@@ -27,6 +27,6 @@ public class GoldenRakeItem extends CollectToolItem {
 				currentItem.setDamage(currentItem.getDamage() - 1);
 			}
 		}
-		return super.collect(world, pos, miner);
+		return super.collect(world, pos, miner, isFull);
 	}
 }

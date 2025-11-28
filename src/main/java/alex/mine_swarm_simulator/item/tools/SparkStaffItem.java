@@ -25,8 +25,9 @@ public class SparkStaffItem extends CollectToolItem {
 	}
 
 	@Override
-	public int collect(World world, BlockPos pos, PlayerEntity miner) {
-		if(!miner.getItemCooldownManager().isCoolingDown(this)) {
+	public int collect(World world, BlockPos pos, PlayerEntity miner, boolean isFull) {
+		int amount = 0;
+		if(!isFull) {
 			List<BlockPos> finalPos = new ArrayList<>();
 			List<BlockPos> shuffledPattern = new java.util.ArrayList<>(Arrays.stream(this.getPattern()).toList());
 			HashMap<BlockPos, Byte> blockMap = new HashMap<>();
@@ -43,12 +44,11 @@ public class SparkStaffItem extends CollectToolItem {
 			for(int i = 0; i < 3 && i < finalPos.size(); i++) {
 				if(world.getBlockEntity(finalPos.get(i).add(pos.getX(), pos.getY(), pos.getZ())) instanceof FlowerBlockEntity finalFlowerBlockEntity) {
 					// Apply modifications to each flower block
-					// and collects finalFlowerBlockEntity.getPollen() * 1.2
-					finalFlowerBlockEntity.setPollen(0);
+					amount += finalFlowerBlockEntity.collectPollen(finalFlowerBlockEntity.getPollen(), miner, 1.2f);
 				}
 			}
-			miner.getItemCooldownManager().set(this, (int)(20 * this.getCollectSpeed()));
 		}
-		return 0;
+		miner.getItemCooldownManager().set(this, this.getCooldownTime());
+		return amount;
 	}
 }

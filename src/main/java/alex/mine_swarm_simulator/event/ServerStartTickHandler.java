@@ -22,7 +22,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ServerStartTickHandler implements ServerTickEvents.StartTick {
-	private HashMap<UUID, BlockPos> lastPos = new HashMap<>();
+	private final HashMap<UUID, BlockPos> lastPos = new HashMap<>();
 
 	@Override
 	public void onStartTick(MinecraftServer minecraftServer) {
@@ -49,7 +49,7 @@ public class ServerStartTickHandler implements ServerTickEvents.StartTick {
 				if(serverWorld.getBlockEntity(serverPlayer.getBlockPos()) instanceof FlowerBlockEntity flowerBlockEntity) {
 					double movementCollection = serverPlayer.getAttributeValue(ModAttributes.PLAYER_MOVEMENT_COLLECTION);
 					if(movementCollection > 0) {
-						flowerBlockEntity.removePollen((int)Math.round(movementCollection));
+						flowerBlockEntity.collectPollen((int)Math.round(movementCollection), serverPlayer);
 					}
 
 					for(ItemStack itemStack : serverPlayer.getArmorItems()) {
@@ -67,7 +67,9 @@ public class ServerStartTickHandler implements ServerTickEvents.StartTick {
 			lastPos.put(serverPlayer.getUuid(), serverPlayer.getBlockPos());
 
 			// temp
-			ServerPlayNetworking.send(serverPlayer, new SyncPlayerDataPayload(playerData.honey, playerData.pollen, (long)Math.floor(serverPlayer.getAttributeValue(ModAttributes.PLAYER_CAPACITY) * serverPlayer.getAttributeValue(ModAttributes.PLAYER_CAPACITY_MULTIPLIER))));
+			for(ServerPlayerEntity otherServerPlayer : minecraftServer.getPlayerManager().getPlayerList()) {
+				ServerPlayNetworking.send(otherServerPlayer, new SyncPlayerDataPayload(serverPlayer.getUuid().toString(), playerData.honey, playerData.pollen, (long) Math.floor(serverPlayer.getAttributeValue(ModAttributes.PLAYER_CAPACITY) * serverPlayer.getAttributeValue(ModAttributes.PLAYER_CAPACITY_MULTIPLIER))));
+			}
 		}
 	}
 }

@@ -1,6 +1,7 @@
 package alex.mine_swarm_simulator.screens.ingame;
 
 import alex.mine_swarm_simulator.MineSwarmSimulator;
+import alex.mine_swarm_simulator.data.PlayerData;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -23,7 +24,7 @@ public class MineSwarmHud implements HudRenderCallback {
 	@Override
 	public void onHudRender(DrawContext drawContext, RenderTickCounter renderTickCounter) {
 		MinecraftClient client = MinecraftClient.getInstance();
-		if(client != null) {
+		if(client != null && client.player != null) {
 			int windowWidth = drawContext.getScaledWindowWidth();
 
 			// Draws the bars on top of the screen
@@ -39,21 +40,24 @@ public class MineSwarmHud implements HudRenderCallback {
 			drawContext.drawText(client.textRenderer, pollenTitle, (windowWidth / 2 + 36) - client.textRenderer.getWidth(pollenTitle) / 2, 18, 0x1B2A35, false);
 
 			// Draws the capacity bar
-			if(MineSwarmSimulatorClient.getClientPlayerData().capacity > 0) {
-				drawContext.setShaderColor(
-					(float)(0.671 * Math.pow((double)MineSwarmSimulatorClient.getClientPlayerData().pollen / MineSwarmSimulatorClient.getClientPlayerData().capacity, 3) + 0.329),
-					(float)(-0.925 * Math.pow((double)MineSwarmSimulatorClient.getClientPlayerData().pollen / MineSwarmSimulatorClient.getClientPlayerData().capacity, 3) + 0.925),
-					(float)(-0.561 * Math.pow((double)MineSwarmSimulatorClient.getClientPlayerData().pollen / MineSwarmSimulatorClient.getClientPlayerData().capacity, 3) + 0.561),
-					1f);
-				drawContext.drawTexture(CAPACITY_BAR, windowWidth / 2 + 54, 13, 0, 0, Math.min(Math.round(138 * ((float) MineSwarmSimulatorClient.getClientPlayerData().pollen / MineSwarmSimulatorClient.getClientPlayerData().capacity)), 138), 16, 138, 16);
-				drawContext.setShaderColor(1f, 1f, 1f, 1f);
-			}
+			PlayerData currentPlayerData = MineSwarmSimulatorClient.getClientPlayerData(client.player);
+			if(currentPlayerData != null) {
+				if(currentPlayerData.capacity > 0) {
+					drawContext.setShaderColor(
+						(float) (0.671 * Math.pow((double) currentPlayerData.pollen / currentPlayerData.capacity, 3) + 0.329),
+						(float) (-0.925 * Math.pow((double) currentPlayerData.pollen / currentPlayerData.capacity, 3) + 0.925),
+						(float) (-0.561 * Math.pow((double) currentPlayerData.pollen / currentPlayerData.capacity, 3) + 0.561),
+						1f);
+					drawContext.drawTexture(CAPACITY_BAR, windowWidth / 2 + 54, 13, 0, 0, Math.min(Math.round(138 * ((float) currentPlayerData.pollen / currentPlayerData.capacity)), 138), 16, 138, 16);
+					drawContext.setShaderColor(1f, 1f, 1f, 1f);
+				}
 
-			// Draws the quantity of honey and pollen
-			String[] languageInfo = client.getLanguageManager().getLanguage().split("_");
-			Locale locale = Locale.of(languageInfo[0], languageInfo[1]);
-			drawContext.drawText(client.textRenderer, String.format(locale, "%,d", MineSwarmSimulatorClient.getClientPlayerData().honey), windowWidth / 2 - 160, 18, 0xF8DC7D, false);
-			drawContext.drawText(client.textRenderer, String.format(locale, "%,d", MineSwarmSimulatorClient.getClientPlayerData().pollen) + "/" + String.format(locale, "%,d", MineSwarmSimulatorClient.getClientPlayerData().capacity), windowWidth / 2 + 58, 18, 0xFFFFFF, false);
+				// Draws the quantity of honey and pollen
+				String[] languageInfo = client.getLanguageManager().getLanguage().split("_");
+				Locale locale = Locale.of(languageInfo[0], languageInfo[1]);
+				drawContext.drawText(client.textRenderer, String.format(locale, "%,d", currentPlayerData.honey), windowWidth / 2 - 160, 18, 0xF8DC7D, false);
+				drawContext.drawText(client.textRenderer, String.format(locale, "%,d", currentPlayerData.pollen) + "/" + String.format(locale, "%,d", currentPlayerData.capacity), windowWidth / 2 + 58, 18, 0xFFFFFF, false);
+			}
 		}
 	}
 }

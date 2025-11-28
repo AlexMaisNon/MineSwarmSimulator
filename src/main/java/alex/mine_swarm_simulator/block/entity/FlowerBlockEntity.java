@@ -1,19 +1,28 @@
 package alex.mine_swarm_simulator.block.entity;
 
+import alex.mine_swarm_simulator.MineSwarmSimulator;
+import alex.mine_swarm_simulator.attributes.ModAttributes;
 import alex.mine_swarm_simulator.block.ModBlockEntities;
 import alex.mine_swarm_simulator.block.custom.FlowerBlock;
+import alex.mine_swarm_simulator.data.PlayerData;
+import alex.mine_swarm_simulator.data.StateSaverAndLoader;
+import alex.mine_swarm_simulator.entity.BeeEntity;
 import alex.mine_swarm_simulator.util.GooObject;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class FlowerBlockEntity extends BlockEntity {
 	private byte pollen;
@@ -39,30 +48,14 @@ public class FlowerBlockEntity extends BlockEntity {
 		return goo;
 	}
 
-	public void setPollen(byte value) {
+	public void setPollen(int value) {
 		this.pollen = (byte)Math.max(Math.min(this.maxPollen, value), 0);
 		markDirty();
 	}
 
-	public void setPollen(int value) {
-		this.setPollen((byte)value);
-	}
-
-	public void removePollen(byte value) {
-		this.setPollen(this.pollen - value);
-	}
-
-	public void removePollen(int value) {
-		this.setPollen(this.pollen - value);
-	}
-
-	public void setMaxPollen(byte value) {
+	public void setMaxPollen(int value) {
 		this.maxPollen = (byte)Math.max(value, 0);
 		markDirty();
-	}
-
-	public void setMaxPollen(int value) {
-		this.setMaxPollen((byte)value);
 	}
 
 	public void setGoo(List<GooObject> value) {
@@ -81,6 +74,33 @@ public class FlowerBlockEntity extends BlockEntity {
 
 	public void modifyGooDuration(GooObject gooObject, float value) {
 		this.goo.get(this.goo.indexOf(gooObject)).setDuration(value);
+	}
+
+	public int collectPollen(int amount, LivingEntity livingEntity, float multiplier) {
+		int collected = this.pollen - amount > 0 ? amount : this.pollen;
+		int totalCollected = Math.round(collected * (this.getCachedState().get(FlowerBlock.LEVEL) + 1) * multiplier);
+
+		ServerPlayerEntity serverPlayer = null;
+		if(livingEntity instanceof ServerPlayerEntity serverPlayerEntity) {
+			serverPlayer = serverPlayerEntity;
+		} else if(livingEntity instanceof BeeEntity beeEntity && beeEntity.getOwner() instanceof ServerPlayerEntity serverPlayerEntity) {
+			serverPlayer = serverPlayerEntity;
+		} else {
+			MineSwarmSimulator.LOGGER.info("WHAT: {}", livingEntity.getClass().getName());
+		}
+
+		if(serverPlayer != null) {
+			PlayerData playerData = StateSaverAndLoader.getPlayerState(serverPlayer);
+			long capacity = (long)Math.floor(serverPlayer.getAttributeValue(ModAttributes.PLAYER_CAPACITY) * serverPlayer.getAttributeValue(ModAttributes.PLAYER_CAPACITY_MULTIPLIER));
+			totalCollected = Math.toIntExact(playerData.pollen + totalCollected <= capacity ? totalCollected : Math.max(capacity - playerData.pollen, 0));
+			playerData.pollen += totalCollected;
+			this.setPollen(this.pollen - amount);
+		}
+		return totalCollected;
+	}
+
+	public int collectPollen(int amount, LivingEntity livingEntity) {
+		return this.collectPollen(amount, livingEntity, 1f);
 	}
 
 	@Override
@@ -122,7 +142,7 @@ public class FlowerBlockEntity extends BlockEntity {
 			if(!flowerBlockEntity.goo.isEmpty()) {
 				List<GooObject> gooObjectsToDelete = new ArrayList<>();
 				flowerBlockEntity.goo.forEach(gooObject -> {
-					if(gooObject.getOwner() != null && !Objects.equals(gooObject.getOwner(), "gummy_morph_passive")) {
+					if(gooObject.getOwner() != null && !gooObject.getOwner().equals("gummy_morph_passive")) {
 						gooObject.setDuration(gooObject.getDuration() - 0.0125f);
 					} else {
 						gooObject.setDuration(gooObject.getDuration() - 0.00625f);

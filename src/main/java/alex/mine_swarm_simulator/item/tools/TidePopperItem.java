@@ -23,8 +23,9 @@ public class TidePopperItem extends CollectToolItem {
 	}
 
 	@Override
-	public int collect(World world, BlockPos pos, PlayerEntity miner) {
-		if(!miner.getItemCooldownManager().isCoolingDown(this)) {
+	public int collect(World world, BlockPos pos, PlayerEntity miner, boolean isFull) {
+		int amount = 0;
+		if(!isFull) {
 			for(BlockPos blockPos : this.getPattern()) {
 				// Calculate the rotation of the pattern
 				BlockPos calculatedPos;
@@ -40,23 +41,15 @@ public class TidePopperItem extends CollectToolItem {
 
 				// Apply modifications to each flower block
 				if(world.getBlockEntity(calculatedPos.add(pos.getX(), pos.getY(), pos.getZ())) instanceof FlowerBlockEntity flowerBlockEntity) {
-					switch (world.getBlockState(flowerBlockEntity.getPos()).get(FlowerBlock.COLOR)) {
-						case 0:
-							// count x1.2 white pollen
-							flowerBlockEntity.removePollen(Math.round(this.getBaseCollection() * 1.2f));
-							break;
-						case 1:
-							flowerBlockEntity.removePollen(this.getBaseCollection());
-							break;
-						case 2:
-							// count x2 blue pollen
-							flowerBlockEntity.removePollen(this.getBaseCollection() * 2);
-							break;
-					}
+					amount += switch(world.getBlockState(flowerBlockEntity.getPos()).get(FlowerBlock.COLOR)) {
+						case 0 -> flowerBlockEntity.collectPollen(Math.round(this.getBaseCollection() * 1.2f), miner); 	// x1.2 white pollen
+						case 1 -> flowerBlockEntity.collectPollen(this.getBaseCollection(), miner); 					// x1 red pollen
+						default -> flowerBlockEntity.collectPollen(this.getBaseCollection() * 2, miner); 		// x2 blue pollen
+					};
 				}
 			}
-			miner.getItemCooldownManager().set(this, (int)(20 * this.getCollectSpeed()));
 		}
-		return 0;
+		miner.getItemCooldownManager().set(this, this.getCooldownTime());
+		return amount;
 	}
 }

@@ -17,9 +17,7 @@ public record InventoryComponent(List<Item> items, int size) {
 
 	public Inventory createInventory() {
 		Inventory inventory = new SimpleInventory(this.size);
-		this.items.forEach(item -> {
-			inventory.setStack(item.slot(), item.stack());
-		});
+		this.items.forEach(item -> inventory.setStack(item.slot(), item.stack()));
 		return inventory;
 	}
 

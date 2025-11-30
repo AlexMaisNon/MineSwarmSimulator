@@ -584,6 +584,9 @@
 	"block.mine_swarm_simulator.ticket_shop": "Ticket Shop",
 	"block.mine_swarm_simulator.treat_shop": "Treat Shop",
 
+	"block.mine_swarm_simulator.hive_block": "Hive Slot",
+	"block.mine_swarm_simulator.hive_block_slab": "Hive Block Slab",
+	"block.mine_swarm_simulator.hive_plate": "Hive Plate",
 	"block.mine_swarm_simulator.hive_slot": "Hive Slot",
 	"block.mine_swarm_simulator.flower_block": "Flower Block",
 

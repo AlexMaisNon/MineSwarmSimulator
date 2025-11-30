@@ -3,9 +3,11 @@ package alex.mine_swarm_simulator.entity.ai.goal;
 import alex.mine_swarm_simulator.MineSwarmSimulator;
 import alex.mine_swarm_simulator.block.ModBlocks;
 import alex.mine_swarm_simulator.block.entity.FlowerBlockEntity;
+import alex.mine_swarm_simulator.util.PlayerUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.WanderAroundGoal;
 import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.Nullable;
 
@@ -22,7 +24,7 @@ public class WanderAroundOwnerGoal extends WanderAroundGoal {
 	}
 
 	protected boolean canGetTarget() {
-		return this.owner != null && this.tameable.squaredDistanceTo(this.owner) < 36 && !this.tameable.getWorld().getBlockState(this.owner.getBlockPos()).isOf(ModBlocks.FLOWER_BLOCK);
+		return this.owner instanceof PlayerEntity player && this.tameable.squaredDistanceTo(this.owner) < 36 && (!this.tameable.getWorld().getBlockState(this.owner.getBlockPos()).isOf(ModBlocks.FLOWER_BLOCK) || PlayerUtils.getPlayerPollen(player) >= PlayerUtils.getPlayerCapacity(player));
 	}
 
 	@Nullable
@@ -68,13 +70,13 @@ public class WanderAroundOwnerGoal extends WanderAroundGoal {
 
 	@Override
 	public boolean shouldContinue() {
-		return super.shouldContinue() && !this.tameable.getWorld().getBlockState(this.owner.getBlockPos()).isOf(ModBlocks.FLOWER_BLOCK);
+		return super.shouldContinue() && this.canGetTarget();
 	}
 
 	@Override
 	public void stop() {
 		super.stop();
-		if(!this.tameable.getWorld().getBlockState(this.owner.getBlockPos()).isOf(ModBlocks.FLOWER_BLOCK)) {
+		if(this.owner instanceof PlayerEntity player && (!this.tameable.getWorld().getBlockState(this.owner.getBlockPos()).isOf(ModBlocks.FLOWER_BLOCK) || PlayerUtils.getPlayerPollen(player) >= PlayerUtils.getPlayerCapacity(player))) {
 			this.cooldown = this.tameable.getWorld().getTime() + new Random().nextInt(49, 55);
 		}
 	}

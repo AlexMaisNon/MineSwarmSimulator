@@ -14,6 +14,7 @@ import alex.mine_swarm_simulator.component.ModComponents;
 import alex.mine_swarm_simulator.item.tools.CollectToolItem;
 import alex.mine_swarm_simulator.networking.SyncPlayerDataPayload;
 import alex.mine_swarm_simulator.status_effect.ModStatusEffects;
+import alex.mine_swarm_simulator.util.PlayerUtils;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -61,10 +62,7 @@ public class MineSwarmSimulator implements ModInitializer {
 		MiningBlockCallback.EVENT.register((player, world, hand, pos) -> {
 			ItemStack itemStack = player.getWeaponStack();
 			if(itemStack.getItem() instanceof CollectToolItem item && !player.getItemCooldownManager().isCoolingDown(item) && !world.isClient && player instanceof ServerPlayerEntity serverPlayer) {
-				PlayerData playerData = StateSaverAndLoader.getPlayerState(serverPlayer);
-
-				long capacity = (long)Math.floor(serverPlayer.getAttributeValue(ModAttributes.PLAYER_CAPACITY) * serverPlayer.getAttributeValue(ModAttributes.PLAYER_CAPACITY_MULTIPLIER));
-				boolean isFull = playerData.pollen >= capacity;
+				boolean isFull = PlayerUtils.getPlayerPollen(serverPlayer) >= PlayerUtils.getPlayerCapacity(serverPlayer);
 
 				int collectedAmount = item.collect(world, pos, serverPlayer, isFull);
 

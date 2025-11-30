@@ -231,6 +231,9 @@ public class ModItemGroups {
 			entries.add(ModBlocks.TICKET_SHOP);
 			entries.add(ModBlocks.TREAT_SHOP);
 
+			entries.add(ModBlocks.HIVE_BLOCK);
+			entries.add(ModBlocks.HIVE_BLOCK_SLAB);
+			entries.add(ModBlocks.HIVE_PLATE);
 			entries.add(ModBlocks.HIVE_SLOT);
 			entries.add(ModBlocks.FLOWER_BLOCK);
 		})

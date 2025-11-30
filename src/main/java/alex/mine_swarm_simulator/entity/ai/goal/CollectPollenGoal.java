@@ -3,6 +3,8 @@ package alex.mine_swarm_simulator.entity.ai.goal;
 import alex.mine_swarm_simulator.block.ModBlocks;
 import alex.mine_swarm_simulator.block.entity.FlowerBlockEntity;
 import alex.mine_swarm_simulator.entity.BeeEntity;
+import alex.mine_swarm_simulator.util.PlayerUtils;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.Nullable;
@@ -24,7 +26,7 @@ public class CollectPollenGoal extends WanderAroundOwnerGoal {
 
 	@Override
 	protected boolean canGetTarget() {
-		return this.owner != null && this.bee.getWorld().getBlockState(this.owner.getBlockPos()).isOf(ModBlocks.FLOWER_BLOCK);
+		return this.owner instanceof PlayerEntity player && this.bee.getWorld().getBlockState(this.owner.getBlockPos()).isOf(ModBlocks.FLOWER_BLOCK) && PlayerUtils.getPlayerPollen(player) < PlayerUtils.getPlayerCapacity(player);
 	}
 
 	@Nullable

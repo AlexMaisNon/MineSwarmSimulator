@@ -1,6 +1,6 @@
 package alex.mine_swarm_simulator.item.misc;
 
-import alex.mine_swarm_simulator.block.entity.HiveBlockEntity;
+import alex.mine_swarm_simulator.block.entity.HiveSlotBlockEntity;
 import alex.mine_swarm_simulator.entity.BeeEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
@@ -14,12 +14,12 @@ public class BeequipItem extends Item {
 
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
-		if(context.getPlayer() != null && context.getWorld() instanceof ServerWorld serverWorld && context.getWorld().getBlockEntity(context.getBlockPos()) instanceof HiveBlockEntity hiveBlockEntity) {
-			if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
+		if(context.getPlayer() != null && context.getWorld() instanceof ServerWorld serverWorld && context.getWorld().getBlockEntity(context.getBlockPos()) instanceof HiveSlotBlockEntity hiveSlotBlockEntity) {
+			if(serverWorld.getEntity(hiveSlotBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
 				beeEntity.setBeequip(context.getStack().copy());
 
 				context.getStack().decrement(1);
-				context.getPlayer().giveItemStack(hiveBlockEntity.getBeeBeequip());
+				context.getPlayer().giveItemStack(hiveSlotBlockEntity.getBeeBeequip().copy());
 
 				return ActionResult.SUCCESS;
 			}

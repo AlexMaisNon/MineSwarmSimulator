@@ -29,7 +29,10 @@ public class ModBlocks {
 	public static final Block TREAT_SHOP = registerBlock("treat_shop", new ShopBlock(AbstractBlock.Settings.create()));
 
 	// Misc.
-	public static final Block HIVE_SLOT = registerBlock("hive_slot", new HiveBlock(AbstractBlock.Settings.create()));
+	public static final Block HIVE_BLOCK = registerBlock("hive_block", new HiveBlock());
+	public static final Block HIVE_BLOCK_SLAB = registerBlock("hive_block_slab", new HiveBlockSlab());
+	public static final Block HIVE_PLATE = registerBlock("hive_plate", new HivePlateBlock(AbstractBlock.Settings.create()));
+	public static final Block HIVE_SLOT = registerBlock("hive_slot", new HiveSlotBlock(AbstractBlock.Settings.create()));
 	public static final Block FLOWER_BLOCK = registerBlock("flower_block", new FlowerBlock(AbstractBlock.Settings.create()));
 
 

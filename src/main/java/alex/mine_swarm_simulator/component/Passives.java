@@ -102,11 +102,12 @@ public class Passives {
 			seen.add(currentPos);
 
 			BlockPos[] neighbors = {
-				new BlockPos(currentPos.getX() - 1, currentPos.getY(), currentPos.getZ()),
-				new BlockPos(currentPos.getX() + 1, currentPos.getY(), currentPos.getZ()),
-				new BlockPos(currentPos.getX(), currentPos.getY(), currentPos.getZ() - 1),
-				new BlockPos(currentPos.getX(), currentPos.getY(), currentPos.getZ() + 1)
+				currentPos.add(-1, 0, 0),
+				currentPos.add(1, 0, 0),
+				currentPos.add(0, 0, -1),
+				currentPos.add(0, 0, 1)
 			};
+
 			for(BlockPos blockPos : neighbors) {
 				if(serverWorld.getBlockEntity(blockPos) instanceof FlowerBlockEntity flowerBlockEntity) {
 					GooObject gooObject = flowerBlockEntity.getGoo().stream().filter(value -> Objects.equals(value.getOwner(), playerEntity.getUuidAsString())).findAny().orElse(null);

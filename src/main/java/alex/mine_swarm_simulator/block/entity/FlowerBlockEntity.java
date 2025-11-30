@@ -8,16 +8,14 @@ import alex.mine_swarm_simulator.data.PlayerData;
 import alex.mine_swarm_simulator.data.StateSaverAndLoader;
 import alex.mine_swarm_simulator.entity.BeeEntity;
 import alex.mine_swarm_simulator.util.GooObject;
+import alex.mine_swarm_simulator.util.PlayerUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -85,14 +83,11 @@ public class FlowerBlockEntity extends BlockEntity {
 			serverPlayer = serverPlayerEntity;
 		} else if(livingEntity instanceof BeeEntity beeEntity && beeEntity.getOwner() instanceof ServerPlayerEntity serverPlayerEntity) {
 			serverPlayer = serverPlayerEntity;
-		} else {
-			MineSwarmSimulator.LOGGER.info("WHAT: {}", livingEntity.getClass().getName());
 		}
 
 		if(serverPlayer != null) {
 			PlayerData playerData = StateSaverAndLoader.getPlayerState(serverPlayer);
-			long capacity = (long)Math.floor(serverPlayer.getAttributeValue(ModAttributes.PLAYER_CAPACITY) * serverPlayer.getAttributeValue(ModAttributes.PLAYER_CAPACITY_MULTIPLIER));
-			totalCollected = Math.toIntExact(playerData.pollen + totalCollected <= capacity ? totalCollected : Math.max(capacity - playerData.pollen, 0));
+			totalCollected = Math.toIntExact(playerData.pollen + totalCollected <= PlayerUtils.getPlayerCapacity(serverPlayer) ? totalCollected : Math.max(PlayerUtils.getPlayerCapacity(serverPlayer) - playerData.pollen, 0));
 			playerData.pollen += totalCollected;
 			this.setPollen(this.pollen - amount);
 		}

@@ -1,0 +1,8 @@
+{
+	"parent": "minecraft:block/slab_top",
+	"textures": {
+		"bottom": "mine_swarm_simulator:block/models/hive_skin/hive_skin8",
+		"side": "mine_swarm_simulator:block/models/hive_skin/hive_skin8",
+		"top": "mine_swarm_simulator:block/models/hive_skin/hive_skin8"
+	}
+}

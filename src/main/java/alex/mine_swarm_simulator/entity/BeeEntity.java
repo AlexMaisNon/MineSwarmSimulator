@@ -2,7 +2,7 @@ package alex.mine_swarm_simulator.entity;
 
 import alex.mine_swarm_simulator.MineSwarmSimulator;
 import alex.mine_swarm_simulator.attributes.ModAttributes;
-import alex.mine_swarm_simulator.block.entity.HiveBlockEntity;
+import alex.mine_swarm_simulator.block.entity.HiveSlotBlockEntity;
 import alex.mine_swarm_simulator.entity.ai.control.BeeFlightControl;
 import alex.mine_swarm_simulator.entity.ai.goal.*;
 import alex.mine_swarm_simulator.entity.ai.pathing.BeeNavigation;
@@ -202,7 +202,7 @@ public class BeeEntity extends TameableEntity {
 		if(this.getWorld().isClient()) {
 			this.updateAnimations();
 		} else {
-			if(this.hivePos != null && !(this.getWorld().getBlockEntity(this.hivePos) instanceof HiveBlockEntity)) {
+			if(this.hivePos != null && !(this.getWorld().getBlockEntity(this.hivePos) instanceof HiveSlotBlockEntity)) {
 				this.hivePos = null;
 			}
 		}

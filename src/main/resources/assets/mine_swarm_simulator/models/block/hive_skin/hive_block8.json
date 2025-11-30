@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/cube_all",
+	"textures": {
+		"all": "mine_swarm_simulator:block/models/hive_skin/hive_skin8"
+	}
+}

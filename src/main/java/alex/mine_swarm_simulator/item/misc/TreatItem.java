@@ -1,6 +1,6 @@
 package alex.mine_swarm_simulator.item.misc;
 
-import alex.mine_swarm_simulator.block.entity.HiveBlockEntity;
+import alex.mine_swarm_simulator.block.entity.HiveSlotBlockEntity;
 import alex.mine_swarm_simulator.entity.BeeEntity;
 import alex.mine_swarm_simulator.util.BeeType;
 import net.minecraft.item.Item;
@@ -68,8 +68,8 @@ public class TreatItem extends Item {
 
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
-		if(context.getPlayer() != null && context.getWorld() instanceof ServerWorld serverWorld && context.getWorld().getBlockEntity(context.getBlockPos()) instanceof HiveBlockEntity hiveBlockEntity) {
-			if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
+		if(context.getPlayer() != null && context.getWorld() instanceof ServerWorld serverWorld && context.getWorld().getBlockEntity(context.getBlockPos()) instanceof HiveSlotBlockEntity hiveSlotBlockEntity) {
+			if(serverWorld.getEntity(hiveSlotBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
 				int count = context.getPlayer().isSneaking() ? context.getStack().getCount() : 1;
 				long addedBond = (long) count * this.getBond(beeEntity.getBeeType());
 				beeEntity.addBond(addedBond);

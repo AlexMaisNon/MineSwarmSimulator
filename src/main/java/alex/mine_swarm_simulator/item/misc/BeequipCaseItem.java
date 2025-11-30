@@ -1,7 +1,7 @@
 package alex.mine_swarm_simulator.item.misc;
 
 import alex.mine_swarm_simulator.block.ModBlocks;
-import alex.mine_swarm_simulator.block.entity.HiveBlockEntity;
+import alex.mine_swarm_simulator.block.entity.HiveSlotBlockEntity;
 import alex.mine_swarm_simulator.entity.BeeEntity;
 import alex.mine_swarm_simulator.screens.handlers.BeequipCaseScreenHandler;
 import alex.mine_swarm_simulator.component.InventoryComponent;
@@ -37,7 +37,7 @@ public class BeequipCaseItem extends Item implements ExtendedScreenHandlerFactor
 		// InventoryComponent oldComponent = user.getStackInHand(hand).get(ModComponents.INVENTORY_COMPONENT);
 		// user.getStackInHand(hand).set(ModComponents.INVENTORY_COMPONENT, new InventoryComponent(oldComponent.items(), oldComponent.size() + 1));
 
-		// Opens the beequip case inventory screen only if not looking at a hive slot and not sneaking
+		// Opens the beequip case inventory screen only the user can't pick a beequip from the Hive Slot
 		BlockHitResult hitResult = (BlockHitResult)user.raycast(5, 0, false);
 		if(!world.getBlockState(hitResult.getBlockPos()).isOf(ModBlocks.HIVE_SLOT) || !user.isSneaking()) {
 			user.openHandledScreen(this);
@@ -47,8 +47,8 @@ public class BeequipCaseItem extends Item implements ExtendedScreenHandlerFactor
 
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
-		if(context.getPlayer() != null && context.getWorld() instanceof ServerWorld serverWorld && context.getWorld().getBlockEntity(context.getBlockPos()) instanceof HiveBlockEntity hiveBlockEntity) {
-			if(serverWorld.getEntity(hiveBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity && !beeEntity.getBeequip().isEmpty() && context.getPlayer().isSneaking()) {
+		if(context.getPlayer() != null && context.getWorld() instanceof ServerWorld serverWorld && context.getWorld().getBlockEntity(context.getBlockPos()) instanceof HiveSlotBlockEntity hiveSlotBlockEntity) {
+			if(serverWorld.getEntity(hiveSlotBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity && !beeEntity.getBeequip().isEmpty() && context.getPlayer().isSneaking()) {
 				boolean inserted = false;
 				int i = 0;
 
@@ -56,7 +56,7 @@ public class BeequipCaseItem extends Item implements ExtendedScreenHandlerFactor
 
 				while(i < beequipInv.size() && !inserted) {
 					if(beequipInv.getStack(i).isEmpty()) {
-						beequipInv.setStack(i, beeEntity.getBeequip());
+						beequipInv.setStack(i, beeEntity.getBeequip().copy());
 						inserted = true;
 					}
 					i++;

@@ -1,6 +1,7 @@
 package alex.mine_swarm_simulator.entity.ai.goal;
 
 import alex.mine_swarm_simulator.block.ModBlocks;
+import alex.mine_swarm_simulator.block.custom.FlowerBlock;
 import alex.mine_swarm_simulator.block.entity.FlowerBlockEntity;
 import alex.mine_swarm_simulator.entity.BeeEntity;
 import alex.mine_swarm_simulator.util.PlayerUtils;
@@ -34,6 +35,7 @@ public class CollectPollenGoal extends WanderAroundOwnerGoal {
 	protected Vec3d createTarget() {
 		if(this.owner != null) {
 			List<BlockPos> flowerPos = new ArrayList<>();
+			// Replace ts with a DFS algorithm
 			BlockPos.iterate(this.owner.getBlockPos().add(-8, 0, -8), this.owner.getBlockPos().add(8, 0, 8)).forEach(blockPos -> {
 				if(this.bee.getWorld().getBlockEntity(blockPos) instanceof FlowerBlockEntity) {
 					flowerPos.add(new BlockPos(blockPos.getX(), blockPos.getY(), blockPos.getZ()));
@@ -54,7 +56,7 @@ public class CollectPollenGoal extends WanderAroundOwnerGoal {
 		if(this.bee.getEnergy() <= 0 || this.owner == null || (!this.bee.getNavigation().isIdle() && !this.bee.getWorld().getBlockState(this.owner.getBlockPos()).isOf(ModBlocks.FLOWER_BLOCK))) {
 			return false;
 		} else if(this.bee.getNavigation().isIdle() && this.cooldown == 0) {
-			this.cooldown = (this.bee.getWorld().getTime() + Math.round(20f * this.bee.getBeeType().getGatherSpeed()));
+			this.cooldown = this.bee.getWorld().getTime() + this.bee.getGatherSpeed();
 		}
 		return this.cooldown - this.bee.getWorld().getTime() > 0 || this.cooldown == 0;
 	}
@@ -62,8 +64,9 @@ public class CollectPollenGoal extends WanderAroundOwnerGoal {
 	@Override
 	public void stop() {
 		super.stop();
-		if(this.cooldown != 0 && this.bee.getWorld().getBlockEntity(this.bee.getBlockPos().down()) instanceof FlowerBlockEntity flowerBlockEntity) {
-			flowerBlockEntity.collectPollen(this.bee.getBeeType().getGatherAmount(), this.bee);
+		BlockPos flowerPos = this.bee.getBlockPos().down();
+		if(this.cooldown != 0 && this.bee.getWorld().getBlockEntity(flowerPos) instanceof FlowerBlockEntity flowerBlockEntity) {
+			flowerBlockEntity.collectPollen(this.bee.getGatherAmount() * (this.bee.getWorld().getBlockState(flowerPos).get(FlowerBlock.COLOR) == this.bee.getBeeType().getColorId() ? 2f : 1f), this.bee);
 
 			if(this.random.nextFloat() < 0.125) {
 				double x = this.bee.getLevel() - 1d;

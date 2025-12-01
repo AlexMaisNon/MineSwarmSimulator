@@ -26,7 +26,7 @@ public class HivePlateBlock extends BlockWithEntity {
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		if(!world.isClient()) {
 			if(world.getBlockEntity(pos) instanceof HivePlateBlockEntity hivePlateBlockEntity && placer != null) {
-				hivePlateBlockEntity.setOwner(placer.getUuid());
+				hivePlateBlockEntity.setOwnerUUID(placer.getUuid());
 			}
 		}
 	}

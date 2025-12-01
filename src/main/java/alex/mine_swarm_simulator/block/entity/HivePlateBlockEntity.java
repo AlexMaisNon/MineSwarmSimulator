@@ -20,7 +20,7 @@ public class HivePlateBlockEntity extends BlockEntity {
 		return this.owner;
 	}
 
-	public void setOwner(UUID owner) {
+	public void setOwnerUUID(UUID owner) {
 		this.owner = owner;
 		markDirty();
 	}

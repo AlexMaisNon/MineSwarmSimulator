@@ -14,6 +14,7 @@ import java.util.Random;
 
 public class FollowAroundOwnerGoal extends FollowOwnerGoal {
 	private final TameableEntity tameable;
+	private final double speed;
 	private LivingEntity owner;
 
 	private final EntityNavigation navigation;
@@ -24,9 +25,10 @@ public class FollowAroundOwnerGoal extends FollowOwnerGoal {
 	private int zOffset;
 	private boolean fastMode = false;
 
-	public FollowAroundOwnerGoal(TameableEntity tameable, float minDistance) {
-		super(tameable, 1d, minDistance, Integer.MAX_VALUE);
+	public FollowAroundOwnerGoal(TameableEntity tameable, double speed, float minDistance) {
+		super(tameable, speed, minDistance, Integer.MAX_VALUE);
 		this.tameable = tameable;
+		this.speed = speed;
 		this.navigation = tameable.getNavigation();
 
 		this.random = new Random();
@@ -63,7 +65,7 @@ public class FollowAroundOwnerGoal extends FollowOwnerGoal {
 
 		if (--this.updateCountdownTicks <= 0) {
 			this.updateCountdownTicks = this.getTickCount(10);
-			this.navigation.startMovingTo(ownerPos.getX(), ownerPos.getY(), ownerPos.getZ(), fastMode ? 2 : 1);
+			this.navigation.startMovingTo(ownerPos.getX(), ownerPos.getY(), ownerPos.getZ(), fastMode ? 2 * this.speed : this.speed);
 		}
 	}
 }

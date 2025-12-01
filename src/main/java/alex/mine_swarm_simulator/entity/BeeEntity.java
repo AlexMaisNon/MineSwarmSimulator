@@ -128,6 +128,22 @@ public class BeeEntity extends TameableEntity {
 		this.hivePos = hivePos;
 	}
 
+	public float getGatherAmount() {
+		return this.getBeeType().getGatherAmount() * (1 + 0.05f * (this.getLevel() - 1));
+	}
+
+	public float getConvertAmount() {
+		return this.getBeeType().getConvertAmount() * (1 + 0.1f * (this.getLevel() - 1));
+	}
+
+	public int getGatherSpeed() {
+		return Math.round(20f * this.getBeeType().getGatherSpeed());
+	}
+
+	public int getConvertSpeed() {
+		return Math.round(20f * this.getBeeType().getConvertSpeed());
+	}
+
 	@Override
 	public void onTrackedDataSet(TrackedData<?> data) {
 		super.onTrackedDataSet(data);
@@ -137,10 +153,10 @@ public class BeeEntity extends TameableEntity {
 	@Override
 	protected void initGoals() {
 		this.goalSelector.add(0, new ReturnToHiveGoal(this, 1d));
-		//this.goalSelector.add(1, new ConvertPollenGoal(this, 1d));
+		this.goalSelector.add(1, new ConvertPollenGoal(this, 1d));
 		this.goalSelector.add(2, new CollectPollenGoal(this, 1d));
 		this.goalSelector.add(3, new WanderAroundOwnerGoal(this, 1d));
-		this.goalSelector.add(4, new FollowAroundOwnerGoal(this, 4));
+		this.goalSelector.add(4, new FollowAroundOwnerGoal(this, 1d, 4));
 	}
 
 	@Override

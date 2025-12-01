@@ -74,8 +74,8 @@ public class FlowerBlockEntity extends BlockEntity {
 		this.goo.get(this.goo.indexOf(gooObject)).setDuration(value);
 	}
 
-	public int collectPollen(int amount, LivingEntity livingEntity, float multiplier) {
-		int collected = this.pollen - amount > 0 ? amount : this.pollen;
+	public int collectPollen(float amount, LivingEntity livingEntity, float multiplier) {
+		float collected = this.pollen - amount > 0 ? amount : this.pollen;
 		int totalCollected = Math.round(collected * (this.getCachedState().get(FlowerBlock.LEVEL) + 1) * multiplier);
 
 		ServerPlayerEntity serverPlayer = null;
@@ -89,12 +89,12 @@ public class FlowerBlockEntity extends BlockEntity {
 			PlayerData playerData = StateSaverAndLoader.getPlayerState(serverPlayer);
 			totalCollected = Math.toIntExact(playerData.pollen + totalCollected <= PlayerUtils.getPlayerCapacity(serverPlayer) ? totalCollected : Math.max(PlayerUtils.getPlayerCapacity(serverPlayer) - playerData.pollen, 0));
 			playerData.pollen += totalCollected;
-			this.setPollen(this.pollen - amount);
+			this.setPollen(Math.round(this.pollen - amount));
 		}
 		return totalCollected;
 	}
 
-	public int collectPollen(int amount, LivingEntity livingEntity) {
+	public int collectPollen(float amount, LivingEntity livingEntity) {
 		return this.collectPollen(amount, livingEntity, 1f);
 	}
 

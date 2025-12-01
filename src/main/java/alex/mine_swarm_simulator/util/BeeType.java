@@ -137,4 +137,12 @@ public enum BeeType {
 	public static BeeType byId(byte id) {
 		return beeIds[id];
 	}
+
+	public int getColorId() {
+		return switch(this.color) {
+			case "colorless" -> 0;
+			case "red" -> 1;
+			default -> 2;
+		};
+	}
 }

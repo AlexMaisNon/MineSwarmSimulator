@@ -116,29 +116,31 @@ public class HiveSlotBlockEntity extends BlockEntity {
 
 	public static void tick(World world, BlockPos blockPos, BlockState blockState, HiveSlotBlockEntity hiveSlotBlockEntity) {
 		if(!world.isClient() && world instanceof ServerWorld serverWorld && hiveSlotBlockEntity.getBeeUUID() != HiveSlotBlockEntity.defaultUUID) {
-			if(serverWorld.getEntity(hiveSlotBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity && !beeEntity.isDead()) {
-				int typeId = beeEntity.getBeeTypeId() + 1;
-				if(typeId != blockState.get(HiveSlotBlock.BEE_ID) || beeEntity.getGifted() != blockState.get(HiveSlotBlock.GIFTED)) {
-					world.setBlockState(blockPos, blockState.with(HiveSlotBlock.BEE_ID, typeId).with(HiveSlotBlock.GIFTED, beeEntity.getGifted()));
+			if(serverWorld.getEntity(hiveSlotBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
+				if(beeEntity.isDead()) {
+					hiveSlotBlockEntity.setBeeUUID(defaultUUID);
+					hiveSlotBlockEntity.setBeeLevel((byte)0);
+					hiveSlotBlockEntity.setBeeMutationId((byte)0);
+					hiveSlotBlockEntity.setBeeBeequip(ItemStack.EMPTY);
+					world.setBlockState(blockPos, blockState.with(HiveSlotBlock.BEE_ID, 0).with(HiveSlotBlock.GIFTED, false));
+				} else {
+					int typeId = beeEntity.getBeeTypeId() + 1;
+					if (typeId != blockState.get(HiveSlotBlock.BEE_ID) || beeEntity.getGifted() != blockState.get(HiveSlotBlock.GIFTED)) {
+						world.setBlockState(blockPos, blockState.with(HiveSlotBlock.BEE_ID, typeId).with(HiveSlotBlock.GIFTED, beeEntity.getGifted()));
+					}
+					if (beeEntity.getLevel() != hiveSlotBlockEntity.getBeeLevel()) {
+						hiveSlotBlockEntity.setBeeLevel(beeEntity.getLevel());
+						serverWorld.getChunkManager().markForUpdate(blockPos);
+					}
+					if (beeEntity.getBond() != hiveSlotBlockEntity.getBeeBond()) {
+						hiveSlotBlockEntity.setBeeBond(beeEntity.getBond());
+						serverWorld.getChunkManager().markForUpdate(blockPos);
+					}
+					if (beeEntity.getBeequip() != hiveSlotBlockEntity.getBeeBeequip()) {
+						hiveSlotBlockEntity.setBeeBeequip(beeEntity.getBeequip());
+						serverWorld.getChunkManager().markForUpdate(blockPos);
+					}
 				}
-				if(beeEntity.getLevel() != hiveSlotBlockEntity.getBeeLevel()) {
-					hiveSlotBlockEntity.setBeeLevel(beeEntity.getLevel());
-					serverWorld.getChunkManager().markForUpdate(blockPos);
-				}
-				if(beeEntity.getBond() != hiveSlotBlockEntity.getBeeBond()) {
-					hiveSlotBlockEntity.setBeeBond(beeEntity.getBond());
-					serverWorld.getChunkManager().markForUpdate(blockPos);
-				}
-				if(beeEntity.getBeequip() != hiveSlotBlockEntity.getBeeBeequip()) {
-					hiveSlotBlockEntity.setBeeBeequip(beeEntity.getBeequip());
-					serverWorld.getChunkManager().markForUpdate(blockPos);
-				}
-			} else {
-				hiveSlotBlockEntity.setBeeUUID(defaultUUID);
-				hiveSlotBlockEntity.setBeeLevel((byte)0);
-				hiveSlotBlockEntity.setBeeMutationId((byte)0);
-				hiveSlotBlockEntity.setBeeBeequip(ItemStack.EMPTY);
-				world.setBlockState(blockPos, blockState.with(HiveSlotBlock.BEE_ID, 0).with(HiveSlotBlock.GIFTED, false));
 			}
 		}
 	}

@@ -138,7 +138,7 @@ public class HiveSlotBlock extends BlockWithEntity {
 
 	@Override
 	protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if(!world.isClient() && world instanceof ServerWorld serverWorld && world.getBlockEntity(pos) instanceof HiveSlotBlockEntity hiveSlotBlockEntity) {
+		if(world instanceof ServerWorld serverWorld && serverWorld.getBlockEntity(pos) instanceof HiveSlotBlockEntity hiveSlotBlockEntity) {
 			int selectedBee = -1;
 			boolean isGifted = false;
 

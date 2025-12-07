@@ -10,6 +10,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import alex.mine_swarm_simulator.MineSwarmSimulatorClient;
@@ -34,8 +35,8 @@ public class MineSwarmHud implements HudRenderCallback {
 			RenderSystem.disableBlend();
 
 			// Draws the Honey and Pollen texts
-			Text honeyTitle = Text.translatable("hud.mine_swarm_simulator.honey_title");
-			Text pollenTitle = Text.translatable("hud.mine_swarm_simulator.pollen_title");
+			Text honeyTitle = Text.translatable("hud.mine_swarm_simulator.honey_title").formatted(Formatting.BOLD);
+			Text pollenTitle = Text.translatable("hud.mine_swarm_simulator.pollen_title").formatted(Formatting.BOLD);
 			drawContext.drawText(client.textRenderer, honeyTitle, (windowWidth / 2 - 182) - client.textRenderer.getWidth(honeyTitle) / 2, 18, 0x1B2A35, false);
 			drawContext.drawText(client.textRenderer, pollenTitle, (windowWidth / 2 + 36) - client.textRenderer.getWidth(pollenTitle) / 2, 18, 0x1B2A35, false);
 
@@ -55,8 +56,8 @@ public class MineSwarmHud implements HudRenderCallback {
 				// Draws the quantity of honey and pollen
 				String[] languageInfo = client.getLanguageManager().getLanguage().split("_");
 				Locale locale = Locale.of(languageInfo[0], languageInfo[1]);
-				drawContext.drawText(client.textRenderer, String.format(locale, "%,d", currentPlayerData.honey), windowWidth / 2 - 160, 18, 0xF8DC7D, false);
-				drawContext.drawText(client.textRenderer, String.format(locale, "%,d", currentPlayerData.pollen) + "/" + String.format(locale, "%,d", currentPlayerData.capacity), windowWidth / 2 + 58, 18, 0xFFFFFF, false);
+				drawContext.drawText(client.textRenderer, String.format(locale, "%,d", currentPlayerData.honey), windowWidth / 2 - 160, 18, 0xF8DC7D, true);
+				drawContext.drawText(client.textRenderer, String.format(locale, "%,d", currentPlayerData.pollen) + "/" + String.format(locale, "%,d", currentPlayerData.capacity), windowWidth / 2 + 58, 18, 0xFFFFFF, true);
 			}
 		}
 	}

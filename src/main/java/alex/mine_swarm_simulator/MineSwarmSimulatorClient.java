@@ -2,6 +2,7 @@ package alex.mine_swarm_simulator;
 
 import alex.mine_swarm_simulator.block.ModBlockEntities;
 import alex.mine_swarm_simulator.block.client.HiveSlotBlockEntityRenderer;
+import alex.mine_swarm_simulator.block.client.ItemShopBlockEntityRenderer;
 import alex.mine_swarm_simulator.block.custom.FlowerBlock;
 import alex.mine_swarm_simulator.entity.ModEntities;
 import alex.mine_swarm_simulator.entity.client.BeeEntityModel;
@@ -102,6 +103,7 @@ public class MineSwarmSimulatorClient implements ClientModInitializer {
 		EntityModelLayerRegistry.registerModelLayer(BeeEntityModel.BEE_MODEL_LAYER, BeeEntityModel::getTexturedModelData);
 
 		BlockEntityRendererFactories.register(ModBlockEntities.HIVE_BLOCK_ENTITY, HiveSlotBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(ModBlockEntities.ITEM_SHOP_BLOCK_ENTITY, ItemShopBlockEntityRenderer::new);
 	}
 
 	private void registerArmorRenderer() {

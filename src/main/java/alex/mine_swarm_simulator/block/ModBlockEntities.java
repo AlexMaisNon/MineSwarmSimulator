@@ -4,6 +4,7 @@ import alex.mine_swarm_simulator.MineSwarmSimulator;
 import alex.mine_swarm_simulator.block.entity.FlowerBlockEntity;
 import alex.mine_swarm_simulator.block.entity.HivePlateBlockEntity;
 import alex.mine_swarm_simulator.block.entity.HiveSlotBlockEntity;
+import alex.mine_swarm_simulator.block.entity.ItemShopBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -15,6 +16,7 @@ public class ModBlockEntities {
 	public static final BlockEntityType<HivePlateBlockEntity> HIVE_PLATE_BLOCK_ENTITY = registerBlockEntity("hive_plate", HivePlateBlockEntity::new, ModBlocks.HIVE_PLATE);
 	public static final BlockEntityType<FlowerBlockEntity> FLOWER_BLOCK_ENTITY = registerBlockEntity("flower", FlowerBlockEntity::new, ModBlocks.FLOWER_BLOCK);
 	public static final BlockEntityType<HiveSlotBlockEntity> HIVE_BLOCK_ENTITY = registerBlockEntity("hive", HiveSlotBlockEntity::new, ModBlocks.HIVE_SLOT);
+	public static final BlockEntityType<ItemShopBlockEntity> ITEM_SHOP_BLOCK_ENTITY = registerBlockEntity("item_shop", ItemShopBlockEntity::new, ModBlocks.ITEM_SHOP);
 
 	private static <T extends BlockEntity> BlockEntityType<T> registerBlockEntity(String name, BlockEntityType.BlockEntityFactory<? extends T> entityFactory, Block block) {
 		Identifier id = Identifier.of(MineSwarmSimulator.MOD_ID, name);

@@ -236,6 +236,8 @@ public class ModItemGroups {
 			entries.add(ModBlocks.HIVE_PLATE);
 			entries.add(ModBlocks.HIVE_SLOT);
 			entries.add(ModBlocks.FLOWER_BLOCK);
+
+			entries.add(ModBlocks.ITEM_SHOP);
 		})
 		.build();
 

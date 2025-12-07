@@ -589,6 +589,7 @@
 	"block.mine_swarm_simulator.hive_plate": "Hive Plate",
 	"block.mine_swarm_simulator.hive_slot": "Hive Slot",
 	"block.mine_swarm_simulator.flower_block": "Flower Block",
+	"block.mine_swarm_simulator.item_shop": "Item Shop",
 
 	"block.mine_swarm_simulator.hive_slot.hatched": "You hatched a %s Bee! (%s)",
 	"block.mine_swarm_simulator.hive_slot.transform": "Your %s transformed into a %s! (%s)",

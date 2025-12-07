@@ -22,7 +22,6 @@ import net.minecraft.world.WorldEvents;
 import net.minecraft.world.WorldView;
 
 public class ShopBlock extends Block {
-
 	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 	public static final IntProperty PART_ID = IntProperty.of("part_id", 0, 2);
 
@@ -36,7 +35,7 @@ public class ShopBlock extends Block {
 		int partId = state.get(PART_ID);
 		if(direction == Direction.UP) {
 			if(neighborState.getBlock() instanceof ShopBlock && neighborState.get(PART_ID) != partId) {
-				return (BlockState) neighborState.with(PART_ID, partId);
+				return neighborState.with(PART_ID, partId);
 			}
 			return Blocks.AIR.getDefaultState();
 		}

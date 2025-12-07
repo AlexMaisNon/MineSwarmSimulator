@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/cube_all",
+	"textures": {
+		"all": "mine_swarm_simulator:item/item_shop"
+	}
+}

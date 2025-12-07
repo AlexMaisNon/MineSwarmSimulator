@@ -35,6 +35,8 @@ public class ModBlocks {
 	public static final Block HIVE_SLOT = registerBlock("hive_slot", new HiveSlotBlock(AbstractBlock.Settings.create()));
 	public static final Block FLOWER_BLOCK = registerBlock("flower_block", new FlowerBlock(AbstractBlock.Settings.create()));
 
+	public static final Block ITEM_SHOP = registerBlock("item_shop", new ItemShopBlock(AbstractBlock.Settings.create()));
+
 
 	private static Block registerBlock(String name, Block block) {
 		registerBlockItem(name, block);

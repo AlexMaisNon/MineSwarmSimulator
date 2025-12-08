@@ -2,5 +2,12 @@
     "parent": "mine_swarm_simulator:item/mask",
     "textures": {
       "all": "mine_swarm_simulator:item/models/masks/bubble_mask"
-    }
+    },
+	"display": {
+		"fixed": {
+			"translation": [0, 0, -6],
+			"rotation": [-20, 3, 0],
+			"scale": [1.25, 1.25, 1.25]
+		}
+	}
 }

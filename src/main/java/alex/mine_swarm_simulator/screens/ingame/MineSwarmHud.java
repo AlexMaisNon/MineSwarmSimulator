@@ -35,8 +35,8 @@ public class MineSwarmHud implements HudRenderCallback {
 			RenderSystem.disableBlend();
 
 			// Draws the Honey and Pollen texts
-			Text honeyTitle = Text.translatable("hud.mine_swarm_simulator.honey_title").formatted(Formatting.BOLD);
-			Text pollenTitle = Text.translatable("hud.mine_swarm_simulator.pollen_title").formatted(Formatting.BOLD);
+			Text honeyTitle = Text.translatable("hud.mine_swarm_simulator.honey_title");
+			Text pollenTitle = Text.translatable("hud.mine_swarm_simulator.pollen_title");
 			drawContext.drawText(client.textRenderer, honeyTitle, (windowWidth / 2 - 182) - client.textRenderer.getWidth(honeyTitle) / 2, 18, 0x1B2A35, false);
 			drawContext.drawText(client.textRenderer, pollenTitle, (windowWidth / 2 + 36) - client.textRenderer.getWidth(pollenTitle) / 2, 18, 0x1B2A35, false);
 

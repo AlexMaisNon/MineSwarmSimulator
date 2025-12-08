@@ -2,5 +2,12 @@
     "parent": "mine_swarm_simulator:item/mask",
     "textures": {
       "all": "mine_swarm_simulator:item/models/masks/honey_mask"
-    }
+    },
+	"display": {
+		"fixed": {
+			"translation": [0, 5, -2],
+			"rotation": [-20, 0, 0],
+			"scale": [1.25, 1.25, 1.25]
+		}
+	}
 }

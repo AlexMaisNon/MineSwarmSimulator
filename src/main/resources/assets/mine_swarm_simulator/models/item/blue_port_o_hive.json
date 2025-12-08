@@ -11,6 +11,11 @@
 			"rotation": [2, -7, -4],
 			"translation": [0, -2, 0],
 			"scale": [0.6, 0.6, 0.6]
+		},
+		"fixed": {
+			"translation": [0, -5, -5],
+			"rotation": [0, 175, -2],
+			"scale": [1.25, 1.25, 1.25]
 		}
 	}
 }

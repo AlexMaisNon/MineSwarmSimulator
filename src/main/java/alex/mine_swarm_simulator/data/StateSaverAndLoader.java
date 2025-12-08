@@ -23,6 +23,7 @@ public class StateSaverAndLoader extends PersistentState {
 
 	@Override
 	public NbtCompound writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+		// Field Storage
 		NbtCompound fieldsNbt = new NbtCompound();
 		fields.forEach((id, data) -> {
 			NbtCompound fieldData = new NbtCompound();
@@ -55,12 +56,14 @@ public class StateSaverAndLoader extends PersistentState {
 		});
 		nbt.put("fields", fieldsNbt);
 
+		// Player data storage
 		NbtCompound playersNbt = new NbtCompound();
 		players.forEach((key, value) -> {
 			NbtCompound playerNbt = new NbtCompound();
 			playerNbt.putString("currentField", players.get(key).currentField);
 			playerNbt.putLong("honey", players.get(key).honey);
 			playerNbt.putLong("pollen", players.get(key).pollen);
+			playerNbt.putByte("beeCount", players.get(key).beeCount);
 			playersNbt.put(key.toString(), playerNbt);
 		});
 		nbt.put("players", playersNbt);
@@ -70,6 +73,8 @@ public class StateSaverAndLoader extends PersistentState {
 
 	public static StateSaverAndLoader createFromNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
 		StateSaverAndLoader state = new StateSaverAndLoader();
+
+		// Field storage
 		NbtCompound fields = tag.getCompound("fields");
 		fields.getKeys().forEach(key -> {
 			FieldData fieldData = new FieldData();
@@ -90,12 +95,14 @@ public class StateSaverAndLoader extends PersistentState {
 			state.fields.put(key, fieldData);
 		});
 
+		// Player data storage
 		NbtCompound players = tag.getCompound("players");
 		players.getKeys().forEach(key -> {
 			PlayerData playerData = new PlayerData();
 			playerData.currentField = players.getCompound(key).getString("currentField");
 			playerData.honey = players.getCompound(key).getLong("honey");
 			playerData.pollen = players.getCompound(key).getLong("pollen");
+			playerData.beeCount = players.getCompound(key).getByte("beeCount");
 			state.players.put(UUID.fromString(key), playerData);
 		});
 

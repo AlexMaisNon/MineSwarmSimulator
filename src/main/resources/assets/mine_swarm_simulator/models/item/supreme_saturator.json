@@ -1,3 +1,41 @@
 {
-	"parent": "mine_swarm_simulator:block/supreme_saturator"
+	"parent": "mine_swarm_simulator:block/supreme_saturator",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, 90, 0],
+			"translation": [0, 4.75, 2],
+			"scale": [0.2, 0.2, 0.2]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, 90, 0],
+			"translation": [0, 4.75, 2],
+			"scale": [0.2, 0.2, 0.2]
+		},
+		"firstperson_righthand": {
+			"rotation": [15, 0, 0],
+			"translation": [2, 1, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_lefthand": {
+			"rotation": [15, 0, 0],
+			"translation": [2, 1, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"ground": {
+			"translation": [0, 5, 0],
+			"scale": [0.2, 0.2, 0.2]
+		},
+		"gui": {
+			"rotation": [15, 0, 0],
+			"translation": [0.25, 1, 0],
+			"scale": [0.3, 0.3, 0.3]
+		},
+		"head": {
+			"translation": [0, 30.25, 0]
+		},
+		"fixed": {
+			"translation": [0, 22, 0],
+			"scale": [1.25, 1.25, 1.25]
+		}
+	}
 }

@@ -6,8 +6,9 @@
 	},
 	"display": {
 		"fixed": {
-			"translation": [0, 6, -16],
-			"scale": [2, 2, 2]
+			"translation": [0, 5, -2],
+			"rotation": [-10, 0, 0],
+			"scale": [1.25, 1.25, 1.25]
 		}
 	}
 }

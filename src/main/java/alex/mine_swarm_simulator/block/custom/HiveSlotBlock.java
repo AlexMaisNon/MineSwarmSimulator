@@ -2,6 +2,8 @@ package alex.mine_swarm_simulator.block.custom;
 
 import alex.mine_swarm_simulator.block.ModBlockEntities;
 import alex.mine_swarm_simulator.block.entity.HiveSlotBlockEntity;
+import alex.mine_swarm_simulator.data.PlayerData;
+import alex.mine_swarm_simulator.data.StateSaverAndLoader;
 import alex.mine_swarm_simulator.entity.BeeEntity;
 import alex.mine_swarm_simulator.entity.ModEntities;
 import alex.mine_swarm_simulator.item.ModItems;
@@ -153,6 +155,8 @@ public class HiveSlotBlock extends BlockWithEntity {
 				if(!player.isInCreativeMode()) {
 					stack.decrement(1);
 				}
+				PlayerData playerData = StateSaverAndLoader.getPlayerState(player);
+				playerData.beeCount--;
 
 			} else if(stack.isOf(ModItems.STAR_EGG)) {
 				selectedBee = random.nextInt(0, 35);
@@ -164,6 +168,8 @@ public class HiveSlotBlock extends BlockWithEntity {
 				if(!player.isInCreativeMode()) {
 					stack.decrement(1);
 				}
+				PlayerData playerData = StateSaverAndLoader.getPlayerState(player);
+				playerData.beeCount++;
 
 			} else if(chances.containsKey(stack.getItem())) {
 				if(!(stack.isOf(ModItems.ROYAL_JELLY) || stack.isOf(ModItems.STAR_JELLY)) || state.get(BEE_ID) > 0) {
@@ -185,6 +191,8 @@ public class HiveSlotBlock extends BlockWithEntity {
 						player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.transform", BeeType.byId((byte)(state.get(BEE_ID) - 1)).getType(), beeName, beeType.getRarity()).formatted(typeColors.get(beeType.getRarity())));
 					} else {
 						player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.hatched", beeName, beeType.getRarity()).formatted(typeColors.get(beeType.getRarity())));
+						PlayerData playerData = StateSaverAndLoader.getPlayerState(player);
+						playerData.beeCount++;
 					}
 
 					if(!player.isInCreativeMode()) {

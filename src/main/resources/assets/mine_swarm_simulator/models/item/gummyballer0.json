@@ -2664,8 +2664,9 @@
 			"translation": [0, 2.75, 0]
 		},
 		"fixed": {
-			"translation": [0, -1, 0],
-			"scale": [0.4, 0.4, 0.4]
+			"translation": [0, 4, 0],
+			"rotation": [-30, 15, -30],
+			"scale": [1, 1, 1]
 		}
 	},
 	"groups": [

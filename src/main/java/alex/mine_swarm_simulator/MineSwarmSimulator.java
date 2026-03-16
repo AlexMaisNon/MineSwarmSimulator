@@ -62,8 +62,9 @@ public class MineSwarmSimulator implements ModInitializer {
 		MiningBlockCallback.EVENT.register((player, world, hand, pos) -> {
 			ItemStack itemStack = player.getWeaponStack();
 			if(itemStack.getItem() instanceof CollectToolItem item && !player.getItemCooldownManager().isCoolingDown(item) && !world.isClient && player instanceof ServerPlayerEntity serverPlayer) {
-				boolean isFull = PlayerUtils.getPlayerPollen(serverPlayer) >= PlayerUtils.getPlayerCapacity(serverPlayer);
+				boolean isFull = PlayerData.getPlayerPollen(serverPlayer) >= PlayerUtils.getPlayerCapacity(serverPlayer);
 
+				// Will become handy later
 				int collectedAmount = item.collect(world, pos, serverPlayer, isFull);
 
 				if(isFull) {

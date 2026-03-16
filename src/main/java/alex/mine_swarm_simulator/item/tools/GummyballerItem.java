@@ -8,6 +8,7 @@ import alex.mine_swarm_simulator.item.ModItems;
 import alex.mine_swarm_simulator.sound.ModSounds;
 import alex.mine_swarm_simulator.status_effect.ModStatusEffects;
 import alex.mine_swarm_simulator.util.GooObject;
+import alex.mine_swarm_simulator.util.PlayerUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -95,10 +96,12 @@ public class GummyballerItem extends CollectToolItem {
 		/* Gummy Mask thingy */
 		if(!world.isClient() && user.getEquippedStack(EquipmentSlot.HEAD).getItem().equals(ModItems.GUMMY_MASK)) {
 			StateSaverAndLoader state = StateSaverAndLoader.getServerState(world.getServer());
+			String playerField = PlayerUtils.getPlayerField(user);
+
 			PlayerData playerData = StateSaverAndLoader.getPlayerState(user);
-			if(state.fields.containsKey(playerData.currentField)) {
+			if(state.fields.containsKey(playerField)) {
 				List<FlowerBlockEntity> flowerBlocks = new ArrayList<>();
-				BlockPos.iterate(state.fields.get(playerData.currentField).pos[0], state.fields.get(playerData.currentField).pos[1]).forEach(blockPos -> {
+				BlockPos.iterate(state.fields.get(playerField).pos[0], state.fields.get(playerField).pos[1]).forEach(blockPos -> {
 					if(world.getBlockEntity(blockPos) instanceof FlowerBlockEntity flowerBlockEntity) {
 						flowerBlocks.add(flowerBlockEntity);
 					}

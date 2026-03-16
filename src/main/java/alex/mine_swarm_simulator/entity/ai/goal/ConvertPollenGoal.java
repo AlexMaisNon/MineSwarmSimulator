@@ -36,7 +36,7 @@ public class ConvertPollenGoal extends Goal {
 			this.owner = player;
 			this.hivePos = this.bee.getHivePos();
 
-			return PlayerUtils.getPlayerPollen(player) > 0 &&
+			return PlayerData.getPlayerPollen(player) > 0 &&
 				this.bee.getWorld().getBlockEntity(this.owner.getBlockPos()) instanceof HivePlateBlockEntity hivePlateBlockEntity &&
 				hivePlateBlockEntity.getOwnerUUID().equals(this.owner.getUuid()) &&
 				this.owner.isSneaking();
@@ -59,7 +59,7 @@ public class ConvertPollenGoal extends Goal {
 			this.bee.getWorld().getBlockEntity(this.owner.getBlockPos()) instanceof HivePlateBlockEntity hivePlateBlockEntity &&
 			hivePlateBlockEntity.getOwnerUUID().equals(this.owner.getUuid()) &&
 			this.owner.isSneaking() &&
-			(PlayerUtils.getPlayerPollen(player) > 0 || this.amountConverted > 0);
+			(PlayerData.getPlayerPollen(player) > 0 || this.amountConverted > 0);
 	}
 
 	@Override

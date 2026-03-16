@@ -7,10 +7,10 @@ import java.util.HashMap;
 
 public class FieldData {
 	public Text display_name = Text.literal("");
-	public BlockPos[] pos = new BlockPos[2];
+	public final BlockPos[] pos = new BlockPos[2];
 	public String color = "mixed";
-	public HashMap<String, Float> flower_colors = new HashMap<>();
-	public HashMap<Integer, Float> flower_levels = new HashMap<>();
+	public final HashMap<String, Float> flower_colors = new HashMap<>();
+	public final HashMap<Integer, Float> flower_levels = new HashMap<>();
 
 	public FieldData() {
 		flower_colors.put("white", 33.33f);

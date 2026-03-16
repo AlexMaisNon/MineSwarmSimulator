@@ -1,7 +1,7 @@
 package alex.mine_swarm_simulator.entity.ai.goal;
 
 import alex.mine_swarm_simulator.block.ModBlocks;
-import alex.mine_swarm_simulator.block.entity.FlowerBlockEntity;
+import alex.mine_swarm_simulator.data.PlayerData;
 import alex.mine_swarm_simulator.util.PlayerUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.FollowOwnerGoal;
@@ -39,7 +39,7 @@ public class FollowAroundOwnerGoal extends FollowOwnerGoal {
 	@Override
 	public boolean canStart() {
 		this.owner = tameable.getOwner();
-		boolean res = super.canStart() && this.owner instanceof PlayerEntity player && (!this.tameable.getWorld().getBlockState(this.owner.getBlockPos()).isOf(ModBlocks.FLOWER_BLOCK) || PlayerUtils.getPlayerPollen(player) >= PlayerUtils.getPlayerCapacity(player));
+		boolean res = super.canStart() && this.owner instanceof PlayerEntity player && (!this.tameable.getWorld().getBlockState(this.owner.getBlockPos()).isOf(ModBlocks.FLOWER_BLOCK) || PlayerData.getPlayerPollen(player) >= PlayerUtils.getPlayerCapacity(player));
 		if(!res) {
 			this.xOffset = random.nextInt(-3, 4);
 			this.zOffset = random.nextInt(-3, 4);

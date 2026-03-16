@@ -60,10 +60,16 @@ public class StateSaverAndLoader extends PersistentState {
 		NbtCompound playersNbt = new NbtCompound();
 		players.forEach((key, value) -> {
 			NbtCompound playerNbt = new NbtCompound();
-			playerNbt.putString("currentField", players.get(key).currentField);
 			playerNbt.putLong("honey", players.get(key).honey);
 			playerNbt.putLong("pollen", players.get(key).pollen);
-			playerNbt.putByte("beeCount", players.get(key).beeCount);
+
+			NbtCompound playerBees = new NbtCompound();
+			value.bees.forEach(((blockPos, beeUUID) -> {
+				String posFormat = blockPos.getX() + "_" + blockPos.getY() + "_" + blockPos.getZ();
+				playerBees.putUuid(posFormat, beeUUID);
+			}));
+
+			playerNbt.put("bees", playerBees);
 			playersNbt.put(key.toString(), playerNbt);
 		});
 		nbt.put("players", playersNbt);
@@ -99,10 +105,19 @@ public class StateSaverAndLoader extends PersistentState {
 		NbtCompound players = tag.getCompound("players");
 		players.getKeys().forEach(key -> {
 			PlayerData playerData = new PlayerData();
-			playerData.currentField = players.getCompound(key).getString("currentField");
 			playerData.honey = players.getCompound(key).getLong("honey");
 			playerData.pollen = players.getCompound(key).getLong("pollen");
-			playerData.beeCount = players.getCompound(key).getByte("beeCount");
+
+			NbtCompound beesCompound = players.getCompound(key).getCompound("bees");
+			beesCompound.getKeys().forEach(posFormat -> {
+				UUID beeUUID = beesCompound.getUuid(posFormat);
+
+				String[] coords = posFormat.split("_");
+				BlockPos blockPos = new BlockPos(Integer.parseInt(coords[0]), Integer.parseInt(coords[1]), Integer.parseInt(coords[2]));
+
+				playerData.bees.put(blockPos, beeUUID);
+			});
+
 			state.players.put(UUID.fromString(key), playerData);
 		});
 

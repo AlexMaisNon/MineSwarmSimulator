@@ -8,13 +8,13 @@ import alex.mine_swarm_simulator.component.PassivesComponent;
 import alex.mine_swarm_simulator.data.PlayerData;
 import alex.mine_swarm_simulator.data.StateSaverAndLoader;
 import alex.mine_swarm_simulator.networking.SyncPlayerDataPayload;
+import alex.mine_swarm_simulator.util.PlayerUtils;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.*;
@@ -27,24 +27,7 @@ public class ServerStartTickHandler implements ServerTickEvents.StartTick {
 	@Override
 	public void onStartTick(MinecraftServer minecraftServer) {
 		for(ServerPlayerEntity serverPlayer : minecraftServer.getPlayerManager().getPlayerList()) {
-			StateSaverAndLoader serverState = StateSaverAndLoader.getServerState(minecraftServer);
-			assert serverState != null;
-			PlayerData playerData = StateSaverAndLoader.getPlayerState(serverPlayer);
-
-			boolean inField = false;
-			for(String fieldId : serverState.fields.keySet()) {
-				if(BlockBox.create(serverState.fields.get(fieldId).pos[0], serverState.fields.get(fieldId).pos[1].add(0, 4, 0)).contains(serverPlayer.getBlockPos())) {
-					playerData.currentField = fieldId;
-					inField = true;
-					break;
-				}
-			}
-
-			if(!inField) {
-				playerData.currentField = "";
-			}
-
-			if(!Objects.equals(playerData.currentField, "") && lastPos.containsKey(serverPlayer.getUuid()) && serverPlayer.getBlockPos() != lastPos.get(serverPlayer.getUuid())) {
+			if(PlayerUtils.getPlayerField(serverPlayer) != null && lastPos.containsKey(serverPlayer.getUuid()) && serverPlayer.getBlockPos() != lastPos.get(serverPlayer.getUuid())) {
 				ServerWorld serverWorld = serverPlayer.getServerWorld();
 				if(serverWorld.getBlockEntity(serverPlayer.getBlockPos()) instanceof FlowerBlockEntity flowerBlockEntity) {
 					double movementCollection = serverPlayer.getAttributeValue(ModAttributes.PLAYER_MOVEMENT_COLLECTION);
@@ -66,7 +49,8 @@ public class ServerStartTickHandler implements ServerTickEvents.StartTick {
 			// Saving last BlockPos to check velocity
 			lastPos.put(serverPlayer.getUuid(), serverPlayer.getBlockPos());
 
-			// temp
+			// TEMP: to sync with client
+			PlayerData playerData = StateSaverAndLoader.getPlayerState(serverPlayer);
 			for(ServerPlayerEntity otherServerPlayer : minecraftServer.getPlayerManager().getPlayerList()) {
 				ServerPlayNetworking.send(otherServerPlayer, new SyncPlayerDataPayload(serverPlayer.getUuid().toString(), playerData.honey, playerData.pollen, (long) Math.floor(serverPlayer.getAttributeValue(ModAttributes.PLAYER_CAPACITY) * serverPlayer.getAttributeValue(ModAttributes.PLAYER_CAPACITY_MULTIPLIER))));
 			}

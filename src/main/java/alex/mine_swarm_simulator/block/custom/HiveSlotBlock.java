@@ -1,5 +1,6 @@
 package alex.mine_swarm_simulator.block.custom;
 
+import alex.mine_swarm_simulator.MineSwarmSimulator;
 import alex.mine_swarm_simulator.block.ModBlockEntities;
 import alex.mine_swarm_simulator.block.entity.HiveSlotBlockEntity;
 import alex.mine_swarm_simulator.data.PlayerData;
@@ -156,7 +157,7 @@ public class HiveSlotBlock extends BlockWithEntity {
 					stack.decrement(1);
 				}
 				PlayerData playerData = StateSaverAndLoader.getPlayerState(player);
-				playerData.beeCount--;
+				playerData.bees.remove(pos);
 
 			} else if(stack.isOf(ModItems.STAR_EGG)) {
 				selectedBee = random.nextInt(0, 35);
@@ -168,8 +169,6 @@ public class HiveSlotBlock extends BlockWithEntity {
 				if(!player.isInCreativeMode()) {
 					stack.decrement(1);
 				}
-				PlayerData playerData = StateSaverAndLoader.getPlayerState(player);
-				playerData.beeCount++;
 
 			} else if(chances.containsKey(stack.getItem())) {
 				if(!(stack.isOf(ModItems.ROYAL_JELLY) || stack.isOf(ModItems.STAR_JELLY)) || state.get(BEE_ID) > 0) {
@@ -191,8 +190,6 @@ public class HiveSlotBlock extends BlockWithEntity {
 						player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.transform", BeeType.byId((byte)(state.get(BEE_ID) - 1)).getType(), beeName, beeType.getRarity()).formatted(typeColors.get(beeType.getRarity())));
 					} else {
 						player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.hatched", beeName, beeType.getRarity()).formatted(typeColors.get(beeType.getRarity())));
-						PlayerData playerData = StateSaverAndLoader.getPlayerState(player);
-						playerData.beeCount++;
 					}
 
 					if(!player.isInCreativeMode()) {
@@ -229,6 +226,9 @@ public class HiveSlotBlock extends BlockWithEntity {
 
 				world.spawnEntity(beeEntity);
 				hiveSlotBlockEntity.setBeeUUID(beeEntity.getUuid());
+
+				PlayerData playerData = StateSaverAndLoader.getPlayerState(player);
+				playerData.bees.put(pos, beeEntity.getUuid());
 			}
 		}
 		return super.onUseWithItem(stack, state, world, pos, player, hand, hit);

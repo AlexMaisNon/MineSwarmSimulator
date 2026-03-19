@@ -343,6 +343,8 @@ public class ModItemGroups {
 			entries.add(ModItems.STICKER_CUB_BUDDY_VOUCHER);
 			entries.add(ModItems.STICKER_BEE_GATHER_VOUCHER);
 			entries.add(ModItems.STICKER_CONVERT_SPEED_VOUCHER);
+			entries.add(ModItems.STICKER_OFFLINE_VOUCHER);
+			entries.add(ModItems.STICKER_TICKET_VOUCHER);
 
 			entries.add(ModItems.STICKER_PLAY_BUTTON);
 			entries.add(ModItems.STICKER_GAMER_CHAT_ICON);

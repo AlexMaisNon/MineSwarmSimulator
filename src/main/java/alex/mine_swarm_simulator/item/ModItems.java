@@ -1410,6 +1410,8 @@ public class ModItems{
 	public static final Item STICKER_CUB_BUDDY_VOUCHER = registerItem("sticker_cub_buddy_voucher", new StickerItem());
 	public static final Item STICKER_BEE_GATHER_VOUCHER = registerItem("sticker_bee_gather_voucher", new StickerItem());
 	public static final Item STICKER_CONVERT_SPEED_VOUCHER = registerItem("sticker_convert_speed_voucher", new StickerItem());
+	public static final Item STICKER_OFFLINE_VOUCHER = registerItem("sticker_offline_voucher", new StickerItem());
+	public static final Item STICKER_TICKET_VOUCHER = registerItem("sticker_ticket_voucher", new StickerItem());
 
 	public static final Item STICKER_PLAY_BUTTON = registerItem("sticker_play_button", new StickerItem());
 	public static final Item STICKER_GAMER_CHAT_ICON = registerItem("sticker_gamer_chat_icon", new StickerItem());

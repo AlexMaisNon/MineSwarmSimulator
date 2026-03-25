@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": {"model": "mine_swarm_simulator:block/sticker_wavy_yellow_hive_skin"},
+		"facing=east": {"model": "mine_swarm_simulator:block/sticker_wavy_yellow_hive_skin", "y":  90},
+		"facing=south": {"model": "mine_swarm_simulator:block/sticker_wavy_yellow_hive_skin", "y": 180},
+		"facing=west": {"model": "mine_swarm_simulator:block/sticker_wavy_yellow_hive_skin", "y": 270}
+	}
+}

@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": {"model": "mine_swarm_simulator:block/sticker_fork_and_knife"},
+		"facing=east": {"model": "mine_swarm_simulator:block/sticker_fork_and_knife", "y":  90},
+		"facing=south": {"model": "mine_swarm_simulator:block/sticker_fork_and_knife", "y": 180},
+		"facing=west": {"model": "mine_swarm_simulator:block/sticker_fork_and_knife", "y": 270}
+	}
+}

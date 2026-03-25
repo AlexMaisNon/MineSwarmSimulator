@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": {"model": "mine_swarm_simulator:block/sticker_right_gold_swirl_fleuron"},
+		"facing=east": {"model": "mine_swarm_simulator:block/sticker_right_gold_swirl_fleuron", "y":  90},
+		"facing=south": {"model": "mine_swarm_simulator:block/sticker_right_gold_swirl_fleuron", "y": 180},
+		"facing=west": {"model": "mine_swarm_simulator:block/sticker_right_gold_swirl_fleuron", "y": 270}
+	}
+}

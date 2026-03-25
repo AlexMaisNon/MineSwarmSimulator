@@ -2,6 +2,7 @@ package alex.mine_swarm_simulator.item.misc;
 
 import alex.mine_swarm_simulator.block.ModBlocks;
 import alex.mine_swarm_simulator.block.custom.HiveBlock;
+import alex.mine_swarm_simulator.block.custom.StickerBlock;
 import alex.mine_swarm_simulator.block.entity.HiveSlotBlockEntity;
 import alex.mine_swarm_simulator.component.InventoryComponent;
 import alex.mine_swarm_simulator.component.ModComponents;
@@ -56,7 +57,7 @@ public class StickerBookItem extends Item implements ExtendedScreenHandlerFactor
 				boolean inserted = false;
 				int i = 0;
 
-				ItemStack itemStack = new ItemStack(HiveBlock.ITEM_TO_SKIN[blockState.get(HiveBlock.SKIN) - 1]);
+				ItemStack itemStack = new ItemStack(StickerBlock.HIVE_SKINS.get(blockState.get(HiveBlock.SKIN) - 1));
 
 				Inventory inv = context.getStack().get(ModComponents.INVENTORY_COMPONENT).createInventory();
 

@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": {"model": "mine_swarm_simulator:block/sticker_menacing_mantis"},
+		"facing=east": {"model": "mine_swarm_simulator:block/sticker_menacing_mantis", "y":  90},
+		"facing=south": {"model": "mine_swarm_simulator:block/sticker_menacing_mantis", "y": 180},
+		"facing=west": {"model": "mine_swarm_simulator:block/sticker_menacing_mantis", "y": 270}
+	}
+}

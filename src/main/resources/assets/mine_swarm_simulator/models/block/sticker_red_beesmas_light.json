@@ -1,0 +1,7 @@
+{
+	"parent": "mine_swarm_simulator:block/sticker",
+	"textures": {
+		"particle": "mine_swarm_simulator:item/sticker_red_beesmas_light",
+		"sticker": "mine_swarm_simulator:item/sticker_red_beesmas_light"
+	}
+}

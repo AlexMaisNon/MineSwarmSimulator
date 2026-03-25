@@ -1,0 +1,16 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"elements": [
+		{
+			"from": [3, 3, 0.05],
+			"to": [13, 13, 0.05],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 3, -0.75]},
+			"faces": {
+				"north": {"uv": [16, 0, 0, 16], "texture": "#sticker"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#sticker"}
+			}
+		}
+	]
+}

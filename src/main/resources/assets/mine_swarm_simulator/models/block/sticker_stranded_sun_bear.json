@@ -1,0 +1,7 @@
+{
+	"parent": "mine_swarm_simulator:block/sticker",
+	"textures": {
+		"particle": "mine_swarm_simulator:item/sticker_stranded_sun_bear",
+		"sticker": "mine_swarm_simulator:item/sticker_stranded_sun_bear"
+	}
+}

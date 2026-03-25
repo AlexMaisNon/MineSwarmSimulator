@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": {"model": "mine_swarm_simulator:block/sticker_pearl_girl"},
+		"facing=east": {"model": "mine_swarm_simulator:block/sticker_pearl_girl", "y":  90},
+		"facing=south": {"model": "mine_swarm_simulator:block/sticker_pearl_girl", "y": 180},
+		"facing=west": {"model": "mine_swarm_simulator:block/sticker_pearl_girl", "y": 270}
+	}
+}

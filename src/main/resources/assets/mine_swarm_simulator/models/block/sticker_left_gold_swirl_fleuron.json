@@ -1,0 +1,7 @@
+{
+	"parent": "mine_swarm_simulator:block/sticker",
+	"textures": {
+		"particle": "mine_swarm_simulator:item/sticker_left_gold_swirl_fleuron",
+		"sticker": "mine_swarm_simulator:item/sticker_left_gold_swirl_fleuron"
+	}
+}

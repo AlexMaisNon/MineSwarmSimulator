@@ -1,0 +1,7 @@
+{
+	"parent": "mine_swarm_simulator:block/sticker",
+	"textures": {
+		"particle": "mine_swarm_simulator:item/sticker_orange_green_tri_deco",
+		"sticker": "mine_swarm_simulator:item/sticker_orange_green_tri_deco"
+	}
+}

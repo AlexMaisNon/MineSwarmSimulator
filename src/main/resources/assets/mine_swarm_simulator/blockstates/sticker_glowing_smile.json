@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": {"model": "mine_swarm_simulator:block/sticker_glowing_smile"},
+		"facing=east": {"model": "mine_swarm_simulator:block/sticker_glowing_smile", "y":  90},
+		"facing=south": {"model": "mine_swarm_simulator:block/sticker_glowing_smile", "y": 180},
+		"facing=west": {"model": "mine_swarm_simulator:block/sticker_glowing_smile", "y": 270}
+	}
+}

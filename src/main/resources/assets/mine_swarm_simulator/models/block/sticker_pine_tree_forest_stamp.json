@@ -1,0 +1,7 @@
+{
+	"parent": "mine_swarm_simulator:block/sticker",
+	"textures": {
+		"particle": "mine_swarm_simulator:item/sticker_pine_tree_forest_stamp",
+		"sticker": "mine_swarm_simulator:item/sticker_pine_tree_forest_stamp"
+	}
+}

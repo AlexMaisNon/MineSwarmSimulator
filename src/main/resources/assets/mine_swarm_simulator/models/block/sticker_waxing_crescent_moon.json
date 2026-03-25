@@ -1,0 +1,7 @@
+{
+	"parent": "mine_swarm_simulator:block/sticker",
+	"textures": {
+		"particle": "mine_swarm_simulator:item/sticker_waxing_crescent_moon",
+		"sticker": "mine_swarm_simulator:item/sticker_waxing_crescent_moon"
+	}
+}

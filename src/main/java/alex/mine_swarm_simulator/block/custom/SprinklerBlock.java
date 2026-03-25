@@ -1,10 +1,7 @@
 package alex.mine_swarm_simulator.block.custom;
 
 import alex.mine_swarm_simulator.block.ModBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.*;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
@@ -18,8 +15,8 @@ import net.minecraft.world.WorldView;
 public class SprinklerBlock extends Block {
 	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
-	public SprinklerBlock(Settings settings) {
-		super(settings.noCollision().sounds(BlockSoundGroup.METAL));
+	public SprinklerBlock() {
+		super(AbstractBlock.Settings.create().noCollision().sounds(BlockSoundGroup.METAL));
 		setDefaultState(getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
 	}
 

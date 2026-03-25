@@ -1,9 +1,6 @@
 package alex.mine_swarm_simulator.block.custom;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
@@ -25,8 +22,8 @@ public class ShopBlock extends Block {
 	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 	public static final IntProperty PART_ID = IntProperty.of("part_id", 0, 2);
 
-	public ShopBlock(Settings settings) {
-		super(settings.sounds(BlockSoundGroup.STONE));
+	public ShopBlock() {
+		super(AbstractBlock.Settings.create().sounds(BlockSoundGroup.STONE));
 		setDefaultState(getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH).with(PART_ID, 0));
 	}
 
@@ -39,7 +36,7 @@ public class ShopBlock extends Block {
 			}
 			return Blocks.AIR.getDefaultState();
 		}
-		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+		return state;
 	}
 
 	@Override

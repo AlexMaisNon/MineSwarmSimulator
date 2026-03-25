@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": {"model": "mine_swarm_simulator:block/sticker_blue_and_green_marble"},
+		"facing=east": {"model": "mine_swarm_simulator:block/sticker_blue_and_green_marble", "y":  90},
+		"facing=south": {"model": "mine_swarm_simulator:block/sticker_blue_and_green_marble", "y": 180},
+		"facing=west": {"model": "mine_swarm_simulator:block/sticker_blue_and_green_marble", "y": 270}
+	}
+}

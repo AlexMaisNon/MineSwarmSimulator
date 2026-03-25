@@ -1,0 +1,7 @@
+{
+	"parent": "mine_swarm_simulator:block/sticker",
+	"textures": {
+		"particle": "mine_swarm_simulator:item/sticker_purple_4_point_flower",
+		"sticker": "mine_swarm_simulator:item/sticker_purple_4_point_flower"
+	}
+}

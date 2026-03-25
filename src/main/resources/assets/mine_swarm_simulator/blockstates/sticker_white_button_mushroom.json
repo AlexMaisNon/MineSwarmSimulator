@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": {"model": "mine_swarm_simulator:block/sticker_white_button_mushroom"},
+		"facing=east": {"model": "mine_swarm_simulator:block/sticker_white_button_mushroom", "y":  90},
+		"facing=south": {"model": "mine_swarm_simulator:block/sticker_white_button_mushroom", "y": 180},
+		"facing=west": {"model": "mine_swarm_simulator:block/sticker_white_button_mushroom", "y": 270}
+	}
+}

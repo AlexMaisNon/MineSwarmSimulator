@@ -2,19 +2,14 @@ package alex.mine_swarm_simulator.block.custom;
 
 import alex.mine_swarm_simulator.MineSwarmSimulator;
 import alex.mine_swarm_simulator.block.ModBlocks;
-import alex.mine_swarm_simulator.component.InventoryComponent;
-import alex.mine_swarm_simulator.component.ModComponents;
-import alex.mine_swarm_simulator.item.ModItems;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.IntProperty;
@@ -27,27 +22,11 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class HiveBlock extends Block {
 	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 	public static final IntProperty SKIN = IntProperty.of("skin", 0, 12);
-
-	public static final Item[] ITEM_TO_SKIN = new Item[]{
-		ModItems.STICKER_BASIC_RED_HIVE_SKIN,
-		ModItems.STICKER_BASIC_BLUE_HIVE_SKIN,
-		ModItems.STICKER_BASIC_PINK_HIVE_SKIN,
-		ModItems.STICKER_BASIC_GREEN_HIVE_SKIN,
-		ModItems.STICKER_BASIC_WHITE_HIVE_SKIN,
-		ModItems.STICKER_BASIC_BLACK_HIVE_SKIN,
-		ModItems.STICKER_WAVY_YELLOW_HIVE_SKIN,
-		ModItems.STICKER_WAVY_CYAN_HIVE_SKIN,
-		ModItems.STICKER_WAVY_PURPLE_HIVE_SKIN,
-		ModItems.STICKER_WAVY_FESTIVE_HIVE_SKIN,
-		ModItems.STICKER_WAVY_DOODLE_HIVE_SKIN,
-		ModItems.STICKER_ICY_CROWNED_HIVE_SKIN
-	};
 
 	public HiveBlock() {
 		super(AbstractBlock.Settings.create());
@@ -70,11 +49,11 @@ public class HiveBlock extends Block {
 	}
 
 	public static ItemActionResult useWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player) {
-		int skin = Arrays.asList(ITEM_TO_SKIN).indexOf(stack.getItem()) + 1;
+		int skin = StickerBlock.HIVE_SKINS.indexOf(stack.getItem()) + 1;
 
 		if(skin > 0 && state.get(SKIN) != skin) {
 			if(state.get(SKIN) > 0) {
-				player.giveItemStack(new ItemStack(ITEM_TO_SKIN[state.get(SKIN) - 1]));
+				player.giveItemStack(new ItemStack(StickerBlock.HIVE_SKINS.get(state.get(SKIN) - 1)));
 			}
 			changeSkin(skin, state, world, pos, new ArrayList<>());
 

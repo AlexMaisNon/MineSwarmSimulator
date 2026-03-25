@@ -1,0 +1,7 @@
+{
+	"parent": "mine_swarm_simulator:block/sticker",
+	"textures": {
+		"particle": "mine_swarm_simulator:item/sticker_reniform_leaf",
+		"sticker": "mine_swarm_simulator:item/sticker_reniform_leaf"
+	}
+}

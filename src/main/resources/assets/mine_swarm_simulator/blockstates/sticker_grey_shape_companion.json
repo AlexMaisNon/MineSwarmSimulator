@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": {"model": "mine_swarm_simulator:block/sticker_grey_shape_companion"},
+		"facing=east": {"model": "mine_swarm_simulator:block/sticker_grey_shape_companion", "y":  90},
+		"facing=south": {"model": "mine_swarm_simulator:block/sticker_grey_shape_companion", "y": 180},
+		"facing=west": {"model": "mine_swarm_simulator:block/sticker_grey_shape_companion", "y": 270}
+	}
+}

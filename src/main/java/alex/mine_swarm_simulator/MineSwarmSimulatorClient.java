@@ -64,12 +64,11 @@ public class MineSwarmSimulatorClient implements ClientModInitializer {
 
 		HudRenderCallback.EVENT.register(new MineSwarmHud());
 
-		for(Item item : ModItems.trinketList) {
-			TrinketRendererRegistry.registerRenderer(item, TrinketModelRenderer::new);
-		}
+		ModItems.TRINKETS.forEach(trinket -> TrinketRendererRegistry.registerRenderer(trinket, TrinketModelRenderer::new));
 
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), ModBlocks.BASIC_EGG_SHOP, ModBlocks.GUMDROP_SHOP, ModBlocks.MAGIC_BEAN_SHOP,
 				ModBlocks.ROYAL_JELLY_SHOP, ModBlocks.STINGER_SHOP, ModBlocks.TICKET_SHOP, ModBlocks.TREAT_SHOP, ModBlocks.HIVE_SLOT, ModBlocks.FLOWER_BLOCK);
+		ModBlocks.STICKERS.forEach(sticker -> BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), sticker));
 
 		ClientLifecycleEvents.CLIENT_STARTED.register(client -> {
 			ResourceManager manager = MinecraftClient.getInstance().getResourceManager();

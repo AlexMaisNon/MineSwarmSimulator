@@ -1,0 +1,7 @@
+{
+	"parent": "mine_swarm_simulator:block/sticker",
+	"textures": {
+		"particle": "mine_swarm_simulator:item/sticker_sunflower_field_stamp",
+		"sticker": "mine_swarm_simulator:item/sticker_sunflower_field_stamp"
+	}
+}

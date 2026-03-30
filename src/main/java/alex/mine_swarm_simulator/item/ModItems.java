@@ -8,7 +8,6 @@ import alex.mine_swarm_simulator.item.armor.*;
 import alex.mine_swarm_simulator.item.misc.*;
 import alex.mine_swarm_simulator.item.tools.*;
 import alex.mine_swarm_simulator.sound.ModSounds;
-import alex.mine_swarm_simulator.util.BeeType;
 import dev.emi.trinkets.api.TrinketItem;
 import alex.mine_swarm_simulator.MineSwarmSimulator;
 import alex.mine_swarm_simulator.armor.ArmorModelHandler;
@@ -40,7 +39,7 @@ public class ModItems{
 	public static final Item BLACK_BALLON = registerItem("black_ballon", new Item(new Item.Settings().maxCount(25)));
 	public static final Item BLUE_DRIVE = registerItem("blue_drive", new DriveItem(ModStatusEffects.BLUE_DRIVE_STATUS_EFFECT));
 	public static final Item BLUE_EXTRACT = registerItem("blue_extract", new ConsumableItem(new Item.Settings(), UseAction.DRINK, new StatusEffectInstance(ModStatusEffects.BLUE_EXTRACT_STATUS_EFFECT, 12000), 20));
-	public static final Item BLUEBERRY = registerItem("blueberry", new TreatItem(25, new BeeType[]{BeeType.BUMBLE, BeeType.COOL, BeeType.BUBBLE, BeeType.BUCKO, BeeType.FROSTY, BeeType.DIAMOND, BeeType.MUSIC, BeeType.BUOYANT, BeeType.TADPOLE}));
+	public static final Item BLUEBERRY = registerItem("blueberry", new TreatItem(25));
 	public static final Item BOX_O_FROGS = registerItem("box_o_frogs", new Item(new Item.Settings().maxCount(15)));
 	public static final Item BROKEN_DRIVE = registerItem("broken_drive", new Item(new Item.Settings()));
 	public static final Item CAUSTIC_WAX = registerItem("caustic_wax", new WaxItem());
@@ -80,7 +79,7 @@ public class ModItems{
 	public static final Item NEONBERRY = registerItem("neonberry", new TreatItem(500, 0f));
 	public static final Item NIGHT_BELL = registerItem("night_bell", new NightBellItem(new Item.Settings()));
 	public static final Item OIL = registerItem("oil", new ConsumableItem(new Item.Settings(), UseAction.DRINK, new StatusEffectInstance(ModStatusEffects.OIL_STATUS_EFFECT, 12000, 0), 20, true));
-	public static final Item PINEAPPLE = registerItem("pineapple", new TreatItem(25, new BeeType[]{BeeType.BRAVE, BeeType.HASTY, BeeType.EXHAUSTED, BeeType.FIRE, BeeType.HONEY, BeeType.SHOCKED, BeeType.DEMON, BeeType.LION, BeeType.FUZZY}));
+	public static final Item PINEAPPLE = registerItem("pineapple", new TreatItem(25));
 	public static final Item PINK_BALLON = registerItem("pink_ballon", new Item(new Item.Settings().maxCount(25)));
 	public static final Item PLASTIC_EGG = registerItem("plastic_egg", new Item(new Item.Settings().maxCount(3)));
 	public static final Item PRESENT = registerItem("present", new Item(new Item.Settings()));
@@ -101,8 +100,8 @@ public class ModItems{
 	public static final Item STAR_JELLY = registerItem("star_jelly", new Item(new Item.Settings()));
 	public static final Item STAR_TREAT = registerItem("star_treat", new TreatItem(1000, 1f));
 	public static final Item STINGER = registerItem("stinger", new ConsumableItem(new Item.Settings(), UseAction.NONE, new StatusEffectInstance(ModStatusEffects.STINGER_STATUS_EFFECT, 600), 20));
-	public static final Item STRAWBERRY = registerItem("strawberry", new TreatItem(25, new BeeType[]{BeeType.RAD, BeeType.RASCAL, BeeType.STUBBORN, BeeType.RAGE, BeeType.RILEY, BeeType.BABY, BeeType.SHY, BeeType.SPICY}));
-	public static final Item SUNFLOWER_SEED = registerItem("sunflower_seed", new TreatItem(25, new BeeType[]{BeeType.BASIC, BeeType.BOMBER, BeeType.LOOKER, BeeType.COMMANDER, BeeType.DEMO, BeeType.CARPENTER, BeeType.NINJA, BeeType.VECTOR, BeeType.PRECISE}));
+	public static final Item STRAWBERRY = registerItem("strawberry", new TreatItem(25));
+	public static final Item SUNFLOWER_SEED = registerItem("sunflower_seed", new TreatItem(25));
 	public static final Item SUPER_SMOOTHIE = registerItem("super_smoothie", new ConsumableItem(new Item.Settings(), UseAction.DRINK, new StatusEffectInstance(ModStatusEffects.SUPER_SMOOTHIE_STATUS_EFFECT, 24000), 24000));
 	public static final Item SWIRLED_WAX = registerItem("swirled_wax", new WaxItem());
 	public static final Item TICKET = registerItem("ticket", new Item(new Item.Settings()));

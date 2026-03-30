@@ -67,7 +67,7 @@ public class CollectPollenGoal extends WanderAroundOwnerGoal {
 		super.stop();
 		BlockPos flowerPos = this.bee.getBlockPos().down();
 		if(this.cooldown != 0 && this.bee.getWorld().getBlockEntity(flowerPos) instanceof FlowerBlockEntity flowerBlockEntity) {
-			flowerBlockEntity.collectPollen(this.bee.getGatherAmount() * (this.bee.getWorld().getBlockState(flowerPos).get(FlowerBlock.COLOR) == this.bee.getBeeType().getColorId() ? 2f : 1f), this.bee);
+			flowerBlockEntity.collectPollen(this.bee.getGatherAmount() * (this.bee.getWorld().getBlockState(flowerPos).get(FlowerBlock.COLOR) == this.bee.getBeeType().getColor().getColorId() ? 2f : 1f), this.bee);
 
 			if(this.random.nextFloat() < 0.125) {
 				double x = this.bee.getLevel() - 1d;

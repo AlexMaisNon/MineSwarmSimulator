@@ -206,7 +206,7 @@ public class BeeEntity extends TameableEntity {
 		}
 
 		if(newLevel != this.getLevel() && this.getOwner() != null) {
-			this.getOwner().sendMessage(Text.literal(this.getBeeType().getType() + " Bee leveled up to level " + newLevel + "!").formatted(Formatting.YELLOW));
+			this.getOwner().sendMessage(Text.translatable("entity.mine_swarm_simulator.bee.level_up", this.getBeeType().getTranslatedType(), newLevel).formatted(Formatting.YELLOW));
 		}
 		this.setLevel(newLevel);
 	}

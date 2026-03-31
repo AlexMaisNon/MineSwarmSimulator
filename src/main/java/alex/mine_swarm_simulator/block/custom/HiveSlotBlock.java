@@ -1,6 +1,5 @@
 package alex.mine_swarm_simulator.block.custom;
 
-import alex.mine_swarm_simulator.MineSwarmSimulator;
 import alex.mine_swarm_simulator.block.ModBlockEntities;
 import alex.mine_swarm_simulator.block.entity.HiveSlotBlockEntity;
 import alex.mine_swarm_simulator.data.PlayerData;
@@ -25,8 +24,8 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
@@ -74,15 +73,6 @@ public class HiveSlotBlock extends BlockWithEntity {
 		{29, 30, 31, 32, 33, 34},
 		{35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45}
 	};
-
-	private static final Map<String, Formatting> typeColors = Map.of(
-		"common", Formatting.WHITE,
-		"rare", Formatting.GRAY,
-		"epic", Formatting.YELLOW,
-		"legendary", Formatting.AQUA,
-		"mythic", Formatting.LIGHT_PURPLE,
-		"event", Formatting.GREEN
-	);
 
 	public HiveSlotBlock(Settings settings) {
 		super(settings.noCollision().nonOpaque().sounds(BlockSoundGroup.HONEY));
@@ -163,7 +153,8 @@ public class HiveSlotBlock extends BlockWithEntity {
 				selectedBee = random.nextInt(0, 35);
 				BeeType beeType = BeeType.byId((byte)(selectedBee));
 
-				player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.hatched", "gifted" + "_" + beeType.getType(), beeType.getRarity()).formatted(typeColors.get(beeType.getRarity())));
+				MutableText beeName = Text.translatable("entity.mine_swarm_simulator.bee.gifted").append(" ").append(beeType.getTranslatedType());
+				player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.hatched", beeName, beeType.getRarity().getTranslated()).formatted(beeType.getRarity().getFormatting()));
 				isGifted = true;
 
 				if(!player.isInCreativeMode()) {
@@ -184,12 +175,15 @@ public class HiveSlotBlock extends BlockWithEntity {
 					isGifted = random.nextFloat() < 0.004 || Arrays.stream(giftedItems).anyMatch(item -> item == stack.getItem());
 
 					BeeType beeType = BeeType.byId((byte)(selectedBee));
-					String beeName = isGifted ? "gifted" + "_" + beeType.getType() : beeType.getType();
+					MutableText beeName = Text.empty().append(beeType.getTranslatedType());
+					if(isGifted) {
+						beeName = Text.translatable("entity.mine_swarm_simulator.bee.gifted").append(" ").append(beeName);
+					}
 
 					if(stack.isOf(ModItems.ROYAL_JELLY) || stack.isOf(ModItems.STAR_JELLY)) {
-						player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.transform", BeeType.byId((byte)(state.get(BEE_ID) - 1)).getType(), beeName, beeType.getRarity()).formatted(typeColors.get(beeType.getRarity())));
+						player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.transform", BeeType.byId((byte)(state.get(BEE_ID) - 1)).getTranslatedType(), beeName, beeType.getRarity().getTranslated()).formatted(beeType.getRarity().getFormatting()));
 					} else {
-						player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.hatched", beeName, beeType.getRarity()).formatted(typeColors.get(beeType.getRarity())));
+						player.sendMessage(Text.translatable("block.mine_swarm_simulator.hive_slot.hatched", beeName, beeType.getRarity().getTranslated()).formatted(beeType.getRarity().getFormatting()));
 					}
 
 					if(!player.isInCreativeMode()) {

@@ -54,7 +54,7 @@ public class ReturnToHiveGoal extends Goal {
 	@Override
 	public void start() {
 		if(this.owner != null) {
-			this.owner.sendMessage(Text.literal(this.bee.getBeeType().getType() + " Bee is out of energy! It's going to sleep.").formatted(Formatting.BLUE));
+			this.owner.sendMessage(Text.translatable("entity.mine_swarm_simulator.bee.out_of_energy", this.bee.getBeeType().getTranslatedType()).formatted(Formatting.BLUE));
 		}
 		this.bee.getNavigation().startMovingTo(this.hivePos.getX(), this.hivePos.getY(), this.hivePos.getZ(), this.speed);
 	}

@@ -2,6 +2,8 @@ package alex.mine_swarm_simulator.block.custom;
 
 import alex.mine_swarm_simulator.block.ModBlockEntities;
 import alex.mine_swarm_simulator.block.entity.HiveSlotBlockEntity;
+import alex.mine_swarm_simulator.component.BeeComponent;
+import alex.mine_swarm_simulator.component.ModComponents;
 import alex.mine_swarm_simulator.data.PlayerData;
 import alex.mine_swarm_simulator.data.StateSaverAndLoader;
 import alex.mine_swarm_simulator.entity.BeeEntity;
@@ -137,6 +139,11 @@ public class HiveSlotBlock extends BlockWithEntity {
 
 			Random random = new Random();
 
+			if(stack.get(ModComponents.BEE_ID_COMPONENT) instanceof BeeComponent(int beeId, boolean gifted)) {
+				selectedBee = beeId;
+				isGifted = gifted;
+			}
+
 			if(stack.isOf(ModItems.EVICTION) && state.get(BEE_ID) > 0) {
 				if(serverWorld.getEntity(hiveSlotBlockEntity.getBeeUUID()) instanceof BeeEntity beeEntity) {
 					player.giveItemStack(beeEntity.getBeequip());
@@ -150,7 +157,9 @@ public class HiveSlotBlock extends BlockWithEntity {
 				playerData.bees.remove(pos);
 
 			} else if(stack.isOf(ModItems.STAR_EGG)) {
-				selectedBee = random.nextInt(0, 35);
+				if(selectedBee < 0 || selectedBee >= BeeType.values().length) {
+					selectedBee = random.nextInt(0, 35);
+				}
 				BeeType beeType = BeeType.byId((byte)(selectedBee));
 
 				MutableText beeName = Text.translatable("entity.mine_swarm_simulator.bee.gifted").append(" ").append(beeType.getTranslatedType());
@@ -163,16 +172,18 @@ public class HiveSlotBlock extends BlockWithEntity {
 
 			} else if(chances.containsKey(stack.getItem())) {
 				if(!(stack.isOf(ModItems.ROYAL_JELLY) || stack.isOf(ModItems.STAR_JELLY)) || state.get(BEE_ID) > 0) {
-					byte typeId = 0;
-					float currentChance = chances.get(stack.getItem())[typeId];
-					while(random.nextFloat() >= currentChance) {
-						typeId++;
-						currentChance += chances.get(stack.getItem())[typeId];
-					}
+					if(selectedBee < 0 || selectedBee >= BeeType.values().length) {
+						byte typeId = 0;
+						float currentChance = chances.get(stack.getItem())[typeId];
+						while (random.nextFloat() >= currentChance) {
+							typeId++;
+							currentChance += chances.get(stack.getItem())[typeId];
+						}
 
-					int[] selectedBees = bees[typeId];
-					selectedBee = selectedBees[random.nextInt(selectedBees.length)];
-					isGifted = random.nextFloat() < 0.004 || Arrays.stream(giftedItems).anyMatch(item -> item == stack.getItem());
+						int[] selectedBees = bees[typeId];
+						selectedBee = selectedBees[random.nextInt(selectedBees.length)];
+						isGifted = random.nextFloat() < 0.004 || Arrays.stream(giftedItems).anyMatch(item -> item == stack.getItem());
+					}
 
 					BeeType beeType = BeeType.byId((byte)(selectedBee));
 					MutableText beeName = Text.empty().append(beeType.getTranslatedType());
@@ -189,6 +200,9 @@ public class HiveSlotBlock extends BlockWithEntity {
 					if(!player.isInCreativeMode()) {
 						stack.decrement(1);
 					}
+				} else {
+					// Used to remove the component's value if set
+					selectedBee = -1;
 				}
 			}
 

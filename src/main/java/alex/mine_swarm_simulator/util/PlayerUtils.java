@@ -1,7 +1,6 @@
 package alex.mine_swarm_simulator.util;
 
 import alex.mine_swarm_simulator.attributes.ModAttributes;
-import alex.mine_swarm_simulator.data.PlayerData;
 import alex.mine_swarm_simulator.data.StateSaverAndLoader;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockBox;

@@ -1,7 +1,6 @@
 package alex.mine_swarm_simulator.status_effect.custom;
 
 import alex.mine_swarm_simulator.MineSwarmSimulator;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.effect.StatusEffect;

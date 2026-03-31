@@ -9,6 +9,7 @@ import net.minecraft.util.Identifier;
 public class ModComponents {
 	public static final ComponentType<InventoryComponent> INVENTORY_COMPONENT = registerComponent("inventory", ComponentType.<InventoryComponent>builder().codec(InventoryComponent.CODEC).build());
 	public static final ComponentType<PassivesComponent> PASSIVES_COMPONENT = registerComponent("passives", ComponentType.<PassivesComponent>builder().codec(PassivesComponent.CODEC).build());
+	public static final ComponentType<BeeComponent> BEE_ID_COMPONENT = registerComponent("bee", ComponentType.<BeeComponent>builder().codec(BeeComponent.CODEC).build());
 
 	public static <T> ComponentType<T> registerComponent(String name, ComponentType<T> type) {
 		return Registry.register(Registries.DATA_COMPONENT_TYPE, Identifier.of(MineSwarmSimulator.MOD_ID, name), type);

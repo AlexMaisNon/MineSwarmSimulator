@@ -598,7 +598,7 @@
 	"block.mine_swarm_simulator.sticker_bbm_from_below": "BBM From Below",
 
 	"block.mine_swarm_simulator.hive_slot.hatched": "You hatched a %s Bee! (%s)",
-	"block.mine_swarm_simulator.hive_slot.transform": "Your %s transformed into a %s! (%s)",
+	"block.mine_swarm_simulator.hive_slot.transform": "Your %s Bee transformed into a %s Bee! (%s)",
 
 
 
